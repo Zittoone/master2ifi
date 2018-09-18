@@ -17,6 +17,8 @@ func printAndWait(message string) {
 
 func main() {
 
+	start := time.Now()
+
 	var wg sync.WaitGroup
 	for i := 0; i < 1000; i++ {
 		wg.Add(1)
@@ -25,5 +27,9 @@ func main() {
 			wg.Done()
 		}()
 	}
+
 	wg.Wait()
+
+	timeElapsed := time.Since(start)
+	fmt.Printf("The program took %s\n", timeElapsed)
 }
