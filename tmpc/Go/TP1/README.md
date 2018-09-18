@@ -21,3 +21,7 @@ Pour voir le nombre de ligne juste faire un `go run goroutines.go | wc -l`
 ### 2. Affichage temps pris par le programme
 
 Utilisation de la lib time, affichage directement avec `%s` pour conversion automatique dans la grandeur adéquate.
+
+### 3. GOMAXPROCS
+
+Lors que la variable __GOMAXPROCS__ est supérieur à 1, le temps d'exécution est plus long. Paralléliser un programme aussi peu couteu fait ralentir le programme, la gestion de la division des routines sur plusieurs coeurs ajoute de la latence.
