@@ -45,3 +45,7 @@ Après quelques tests, la réponse de la goroutine ne semble pas nécessaire, je
 
 Boucle infinie que compare à chaque intération le temps actual au temps de l'appelle de la fonction auquel on avait ajouté la durée à dormir.
 Pour Tick, on fragmente la durée en 20 parties et on s'endore 20 fois 1/20 du temps et on affiche un `.` à haque itération.
+
+## 5. Course de relai
+
+Un point important était de rappeler une goroutine à l'intérieur d'une goroutine, cela permet de mettre en place une récursivité.
