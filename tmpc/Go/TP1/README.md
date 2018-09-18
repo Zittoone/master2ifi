@@ -40,3 +40,8 @@ Avec un deuxième channel, l'éxecution de la goroutine dans channel c est garen
 3. *main* termine.
 
 Après quelques tests, la réponse de la goroutine ne semble pas nécessaire, je pense que le temps décrire true dans le channel *done* permet de garantir le temps de printf, mais autant garder le processus de confirmation qui est plus sûr.
+
+## 4. Fonctions leep et Tick
+
+Boucle infinie que compare à chaque intération le temps actual au temps de l'appelle de la fonction auquel on avait ajouté la durée à dormir.
+Pour Tick, on fragmente la durée en 20 parties et on s'endore 20 fois 1/20 du temps et on affiche un `.` à haque itération.
