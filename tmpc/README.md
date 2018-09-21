@@ -1,15 +1,14 @@
 # TMPC Techniques Modernes de Programmation Concurrente
 
-Professeur responsable : *Erick Gallesio*
+Teacher in charge : *Erick Gallesio* - [Erick.GALLESIO@unice.fr](mailto:Erick.GALLESIO@unice.fr)
 
-## Présentation du cours
+## Useful links
 
-- [Site web du cours](http://users.polytech.unice.fr/~eg/TMPC/)
-- 3 TDs (Go, Clojure et Elixir)
+* [Web course](http://users.polytech.unice.fr/~eg/TMPC/)
 
 ## Partie Go
 
-- [Sources Go du cours](http://users.polytech.unice.fr/~eg/TMPC/Code/Go/)
+[Go files for exercices](http://users.polytech.unice.fr/~eg/TMPC/Code/Go/)
 
 ## Partie Clojure
 

@@ -1,13 +1,7 @@
-# Master 2 IFI : Option Architecture Logicielle
+# Master 2 IFI : Software Architecture (AL)
 
-## TODO
+## Courses
 
-Apprendre ou faire des tests sur les technos suivantes :
-
-* Docker
-* JEE
-* NodeJS
-
-## Présentation du parcours
-
-c'est dur
+* __[SOA Microservices](/microservices)__
+* __[Techniques Modernes de Programmation Concurrente](/tmpc)__
+* __[Software Architecture in Cloud Computing](/sacc)__
