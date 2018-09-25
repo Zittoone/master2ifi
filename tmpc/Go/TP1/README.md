@@ -49,3 +49,15 @@ Pour Tick, on fragmente la durée en 20 parties et on s'endore 20 fois 1/20 du t
 ## 5. Course de relai
 
 Un point important était de rappeler une goroutine à l'intérieur d'une goroutine, cela permet de mettre en place une récursivité.
+
+## 6. Scheduler
+
+Déferrer le close avec un wg.wait(), le consumer fera un wg.done() pour débloquer.
+
+## 8. Crible
+
+1. On créé un channel initial où le générateur générera une infinité de nombre (il est préférable d'utiliser une infinité de nombre pour que le main termine le process à la place de mettre en place un channel pour que les goroutines se disent qu'elles terminent si on a un nombre fini de nombres).
+2. On démarre une go routine pour le filtre (il semblerait que cela ne soit pas nécessaire mais je n'ai pas trouvé d'autre moyen)
+3. Le filtre prend le premier nombre du channel qui est par définition de notre récursivité un nombre premier.
+4. On met en place la prochaine go routine de *filter* qui aura son channel d'entrée où l'on y enverra les nombres après filtrage.
+5. On tmbe dans une récursivité infinie qui sera terminé par le programme principal.

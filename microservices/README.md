@@ -4,4 +4,4 @@ Teacher in charge : *Sébastien Mosser* - [sebastien.mosser@unice.fr](mailto:seb
 
 ## Useful links
 
-- [GitHub course](https://github.com/mosser/microservices)
+* [GitHub course](https://github.com/mosser/microservices)
