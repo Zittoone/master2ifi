@@ -1,0 +1,6 @@
+[submodule "architecture/software-architecture-project"]
+	path = architecture/software-architecture-project
+	url = https://github.com/acouvreur/software-architecture-project
+[submodule "pfce/project-sort"]
+	path = pfce/project-sort
+	url = https://github.com/acouvreur/pfce-tri
