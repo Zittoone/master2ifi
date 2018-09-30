@@ -61,3 +61,7 @@ Déferrer le close avec un wg.wait(), le consumer fera un wg.done() pour débloq
 3. Le filtre prend le premier nombre du channel qui est par définition de notre récursivité un nombre premier.
 4. On met en place la prochaine go routine de *filter* qui aura son channel d'entrée où l'on y enverra les nombres après filtrage.
 5. On tmbe dans une récursivité infinie qui sera terminé par le programme principal.
+
+## 9. Chat
+
+TODO
