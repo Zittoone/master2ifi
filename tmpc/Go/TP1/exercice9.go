@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -52,7 +53,7 @@ func broadcast(message string, users map[string]User) {
 	}
 }
 
-func login(reader *bufio.Reader, conn net.Conn, users map[string]User) (user User) {
+func login(reader *bufio.Reader, conn net.Conn, users map[string]User, mux *sync.Mutex) (user User) {
 
 	fmt.Fprintf(conn, "Nickname?")
 
@@ -61,13 +62,17 @@ func login(reader *bufio.Reader, conn net.Conn, users map[string]User) (user Use
 	name := strings.TrimSuffix(line, "\n")
 
 	// Check if Nickname is already taken
+	mux.Lock()
 	var _, ok = users[name]
 	for ; ok; _, ok = users[name] {
+		mux.Unlock()
 		fmt.Fprintf(conn, "Nickname already taken. Please choose another one.\n")
 		fmt.Fprintf(conn, "Nickname?")
 		line, _ = reader.ReadString('\n')
 		name = strings.TrimSuffix(line, "\n")
+		mux.Lock()
 	}
+	mux.Unlock()
 
 	fmt.Fprintf(conn, "Welcome on board %s\n", name)
 	logger("Login of " + name + ".")
@@ -90,37 +95,45 @@ func logout(user *User, users map[string]User, message string) {
 }
 
 // Note : instead of a pointer, user the map which is passed by ref
-func idle(user *User, users map[string]User) {
+func idle(user *User, users map[string]User, mux *sync.Mutex) {
 
 	var dur time.Duration = idleTime * time.Millisecond
 
 	// While user is connected check for idle
+	mux.Lock()
 	for _, ok := users[user.name]; ok; {
+
 		now := time.Now()
 		if (now.Sub(user.lastActivity)) > dur {
 			logger(user.name + " seems to be out (" + now.Sub(user.lastActivity).String() + "). Force disconnection.")
 			fmt.Fprintf(user.conn, "Idle for a too long time. I disconnect you !\n")
 			logout(user, users, user.name+" was idle too long and was disconnected.\n")
+			mux.Unlock()
 			return
 		}
+		mux.Unlock()
 		time.Sleep(1000)
-
+		mux.Lock()
 	}
 }
 
-func handleConnection(conn net.Conn, users map[string]User) {
+func handleConnection(conn net.Conn, users map[string]User, mux *sync.Mutex) {
 
 	reader := bufio.NewReader(conn)
 
-	user := login(reader, conn, users)
+	user := login(reader, conn, users, mux)
 	broadcast(user.name+" has joined.\n", users)
+	mux.Lock()
 	users[user.name] = user
-	go idle(&user, users)
+	mux.Unlock()
+	go idle(&user, users, mux)
 
 	// Once logged, defer the closing, removing and goodbye
 	defer func() {
 		//WARN: might cause a problem with idle
+		mux.Lock()
 		logout(&user, users, user.name+" is gone.")
+		mux.Unlock()
 	}()
 	for {
 		line, err := reader.ReadString('\n')
@@ -128,7 +141,9 @@ func handleConnection(conn net.Conn, users map[string]User) {
 			log.Println(err)
 			return
 		}
+		mux.Lock()
 		message(&user, line, users)
+		mux.Unlock()
 	}
 }
 
@@ -140,6 +155,7 @@ func main() {
 	}
 
 	users := make(map[string]User)
+	var mux = &sync.Mutex{}
 
 	for {
 		conn, err := listener.Accept()
@@ -147,6 +163,6 @@ func main() {
 			log.Println(err)
 			continue
 		}
-		go handleConnection(conn, users)
+		go handleConnection(conn, users, mux)
 	}
 }
