@@ -4,11 +4,12 @@ Auteur : *Alexis Couvreur*
 
 ## Exercice 8 : Crible
 
-1. On créé un channel initial où le générateur générera une infinité de nombre (il est préférable d'utiliser une infinité de nombre pour que le main termine le process à la place de mettre en place un channel pour que les goroutines se disent qu'elles terminent si on a un nombre fini de nombres).
-2. On démarre une go routine pour le filtre (il semblerait que cela ne soit pas nécessaire mais je n'ai pas trouvé d'autre moyen)
-3. Le filtre prend le premier nombre du channel qui est par définition de notre récursivité un nombre premier.
-4. On met en place la prochaine go routine de *filter* qui aura son channel d'entrée où l'on y enverra les nombres après filtrage.
-5. On tmbe dans une récursivité infinie qui sera terminé par le programme principal.
+1. We create an initial channel where the generator will be generating an infinity of numbers (it is better to deal with infinite data flow than finite, finite data flow means go routines must find an agreement to stop working)
+2. We launch one go routine on the initial filter call so we can enter processing prime numbers on the channel
+3. A filter assumes that the first input that goes through the channel (that we call *p*) is a prime number.
+4. We then create a new channel that is the input channel of the next filter call.
+5. We then proceed to send into a new channel all non p multiple forever (Which can be call the filtering...)
+6. We can from here see a recursive effect which will be nicely terminated by the main thread once it has read all the prime numbers.
 
 ## Exercice 9 : Un serveur de chat multi-utilisateur
 
