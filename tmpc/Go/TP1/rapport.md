@@ -12,14 +12,12 @@ Auteur : *Alexis Couvreur*
 
 ## Exercice 9 : Un serveur de chat multi-utilisateur
 
-### Gestion des utilisateurs
-
 #### 1. Go Routine per user
 
-Chaque nouvel utilisateur qui arrive engendre la création d'une goroutine qui meurt lors de la déconnexion de l'utilisateur :
+Every time a user connects, a new goroutine is created to handle the user behavior, this goroutine dies as soon as the user is no longer in the server (logout, kicked) :
 
-Elle va se charger des entrées/sorties entre le serveur et l'utilisateur, elle va donc demander le nom d'utilisateur lors de la connexion en prenant soin de ne pas connecter l'utilisateur au chat tant qu'il n'a pas choisi un nom, et aussi que son nom soit unique et non déjà utilisé.
-Elle devra aussi envoyer les messages au serveur tout en mettant à jour la dernière activité du l'utilisateur afin que la goroutine générale de l'idle ne le déconnecte pas.
+The goroutine will handle in and out communications between the user and the server, first of all when the user connects he will be asked his nickname so he can interacts with the other users, while his nickname is not set he will not be logged into the chatroom. A nickname cannot be taken twice, so if the user enter an already taken nickname he will be prompted to use another one.
+The goroutine will then handle the incoming messages from the user and spread it among all the users, updating his `lastActivity` field so he won't be disconnected for idle.
 
 #### 2. Main Thread
 
@@ -39,6 +37,6 @@ Once this map is created we wait for incomming connections and when someones con
 
 A workaround would be to use channel and so redirect the resource usage into channel's being thread safe, but i did it with mutex as we already used the channels a lot with previous exercices, i wanted to give it a try.
 
-#### Go Routine idle
+#### 3. Go Routine idle
 
 On top of that the main thread created a go routine which checks if a user is idle, when created the user map is passed and so every seconds it checks for every connected users if the user's lastActivity property minus current date is superior to an arbitrary time (here it is 30seconds).
