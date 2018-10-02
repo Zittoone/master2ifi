@@ -10,10 +10,7 @@ import (
 	"time"
 )
 
-// User : here you tell us what Salutation is
-// Printer : what is this?
-// Greet : describe what this function does
-// CreateMessage : describe what this function does
+// User struct with connection, name and last activity
 type User struct {
 	conn         net.Conn
 	name         string
@@ -95,25 +92,27 @@ func logout(user *User, users map[string]User, message string) {
 }
 
 // Note : instead of a pointer, user the map which is passed by ref
-func idle(user *User, users map[string]User, mux *sync.Mutex) {
+func idle(users map[string]User, mux *sync.Mutex) {
 
 	var dur time.Duration = idleTime * time.Millisecond
 
 	// While user is connected check for idle
-	mux.Lock()
-	for _, ok := users[user.name]; ok; {
 
+	for {
+		mux.Lock()
 		now := time.Now()
-		if (now.Sub(user.lastActivity)) > dur {
-			logger(user.name + " seems to be out (" + now.Sub(user.lastActivity).String() + "). Force disconnection.")
-			fmt.Fprintf(user.conn, "Idle for a too long time. I disconnect you !\n")
-			logout(user, users, user.name+" was idle too long and was disconnected.\n")
-			mux.Unlock()
-			return
+		for _, user := range users {
+			if (now.Sub(user.lastActivity)) > dur {
+
+				logger(user.name + " seems to be out (" + now.Sub(user.lastActivity).String() + "). Force disconnection.")
+				fmt.Fprintf(user.conn, "Idle for a too long time. I disconnect you !\n")
+				logout(&user, users, user.name+" was idle too long and was disconnected.\n")
+				mux.Unlock()
+				return
+			}
 		}
 		mux.Unlock()
 		time.Sleep(1000)
-		mux.Lock()
 	}
 }
 
@@ -126,7 +125,6 @@ func handleConnection(conn net.Conn, users map[string]User, mux *sync.Mutex) {
 	mux.Lock()
 	users[user.name] = user
 	mux.Unlock()
-	go idle(&user, users, mux)
 
 	// Once logged, defer the closing, removing and goodbye
 	defer func() {
@@ -156,6 +154,8 @@ func main() {
 
 	users := make(map[string]User)
 	var mux = &sync.Mutex{}
+
+	go idle(users, mux)
 
 	for {
 		conn, err := listener.Accept()

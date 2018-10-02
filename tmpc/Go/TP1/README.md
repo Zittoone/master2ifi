@@ -64,4 +64,4 @@ Déferrer le close avec un wg.wait(), le consumer fera un wg.done() pour débloq
 
 ## 9. Chat
 
-TODO
+Afin de créer le chat, j'ai voulu utiliser une go routine par connexion afin de ne pas bloquer le programme (comme dans l'exercice 1), j'ai créé suite à ça une go routine pour gérer l'idle. Parler des mutex pour l'accès concurrent des map
