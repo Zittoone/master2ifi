@@ -1,0 +1,8 @@
+./sacc/TP1/java-docs-samples
+
+**/target
+
+.settings
+.classpath
+.factorypath
+.project
