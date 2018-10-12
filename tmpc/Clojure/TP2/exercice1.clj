@@ -7,7 +7,7 @@
     (send a (fn [i] (println "Thread " i) n)))
 
 (dotimes [i 1000]
-    (future (threadJob i)))
+    (future (threadJob a)))
 
 (await a)
 
