@@ -12,3 +12,6 @@ Factorisation des méthodes ping et pong en une seule méthode, on utilise le pa
 
 ### 2.1 Version 1
 
+Définir la signature fonction `compute` était cruciale, un point important à comprendre est que : $fibonacci(n) = fibonacci(n-1) + n$
+
+Ainsi notre fonction aura la signature `compute(a, b)` où on appelle avec $a$ et $b$ `compute(b, a + b)`. On a donc $a$ qui correspond à $fibonacci(a)$ et $b$  à $fibonacci(a+1)$
