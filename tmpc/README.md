@@ -6,10 +6,15 @@ Teacher in charge : *Erick Gallesio* - [Erick.GALLESIO@unice.fr](mailto:Erick.GA
 
 * [Web course](http://users.polytech.unice.fr/~eg/TMPC/)
 
-## Partie Go
+## TP1 : Go
 
-[Go files for exercices](http://users.polytech.unice.fr/~eg/TMPC/Code/Go/)
+* [Go files for exercices](http://users.polytech.unice.fr/~eg/TMPC/Code/Go/)
+* [TP](/Go)
 
-## Partie Clojure
+## TP2 : Clojure
 
-## Partie Elixir
+* [TP](/Clojure)
+
+## TP3 : Elixir
+
+* [TP](/Elixir)
