@@ -15,3 +15,7 @@ Factorisation des méthodes ping et pong en une seule méthode, on utilise le pa
 Définir la signature fonction `compute` était cruciale, un point important à comprendre est que : $fibonacci(n) = fibonacci(n-1) + n$
 
 Ainsi notre fonction aura la signature `compute(a, b)` où on appelle avec $a$ et $b$ `compute(b, a + b)`. On a donc $a$ qui correspond à $fibonacci(a)$ et $b$  à $fibonacci(a+1)$
+
+### 2.2 Version 2
+
+L'utilisation des agents facilite grandement l'écriture, on peut voir que l'on a plus besoin d'utiliser send et les pid par exemple.

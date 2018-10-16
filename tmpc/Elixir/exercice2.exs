@@ -27,3 +27,20 @@ defmodule Fibonacci do
     end
   end
 end
+
+defmodule FibonacciAgent do
+  def start() do
+    {:ok, agent} = Agent.start_link(fn -> [0, 1] end)
+    agent
+  end
+
+  def next(agent) do
+    [a, b] = Agent.get(agent, fn(n) -> n end)
+    Agent.update(agent, fn(_) -> [b, a+b] end)
+    a
+  end
+
+  def restart(agent) do
+    Agent.update(agent, fn(_) -> [0, 1] end)
+  end
+end
