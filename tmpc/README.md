@@ -18,3 +18,6 @@ Teacher in charge : *Erick Gallesio* - [Erick.GALLESIO@unice.fr](mailto:Erick.GA
 ## TP3 : Elixir
 
 * [TP](/Elixir)
+
+## Notes de cours
+
