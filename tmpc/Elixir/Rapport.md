@@ -1,8 +1,6 @@
-# TMPC Elixir : TP3 Server Chat
+# Projet TMPC Server Chat en Elixir
 
-## Useful links
-
-* [Sujet du TP ici](http://users.polytech.unice.fr/~eg/TMPC/Tds/Td3/sujet.html)
+Alexis Couvreur
 
 ## Architecture
 
