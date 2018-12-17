@@ -21,6 +21,7 @@ import com.google.cloud.Timestamp;
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.Entity;
+import com.google.cloud.datastore.EntityQuery;
 import com.google.cloud.datastore.FullEntity;
 import com.google.cloud.datastore.IncompleteKey;
 import com.google.cloud.datastore.Key;
@@ -28,6 +29,10 @@ import com.google.cloud.datastore.KeyFactory;
 import com.google.cloud.datastore.Query;
 import com.google.cloud.datastore.QueryResults;
 import com.google.cloud.datastore.StructuredQuery;
+import com.google.cloud.datastore.StructuredQuery.CompositeFilter;
+import com.google.cloud.datastore.StructuredQuery.Filter;
+import com.google.cloud.datastore.StructuredQuery.PropertyFilter;
+import com.google.cloud.datastore.PathElement;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -42,7 +47,9 @@ import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,13 +59,13 @@ import javax.servlet.http.HttpServletResponse;
 
 // [START gae_flex_datastore_app]
 @SuppressWarnings("serial")
-@WebServlet(name = "datastore", urlPatterns = { "/articles" })
-public class DataStoreServlet extends HttpServlet {
+@WebServlet(name = "datastore", urlPatterns = { "/magasins" })
+public class DataStoreServletAncestor extends HttpServlet {
 
     private static final long serialVersionUID = -92037165009171105L;
     private Gson _gson = null;
 
-    public DataStoreServlet() {
+    public DataStoreServletAncestor() {
         super();
 
         _gson = new Gson();
@@ -91,18 +98,59 @@ public class DataStoreServlet extends HttpServlet {
 
         if (pathInfo == null || pathInfo.equals("/")) {
 
-            Query<Entity> query = Query.newEntityQueryBuilder().setKind("Article")
-                    .setOrderBy(StructuredQuery.OrderBy.desc("timestamp")).build();
-            QueryResults<Entity> results = datastore.run(query);
+            String q = req.getQueryString();
+            Map<String, String> queryParams = new HashMap<>();
 
-            ArrayList<Article> entities = new ArrayList<>();
-            while (results.hasNext()) {
-                Entity entity = results.next();
-                entities.add(
-                        new Article(entity.getString("name"), entity.getDouble("price"), entity.getLong("quantity")));
+            if(q != null) {
+                String[] params = q.split("&");
+                for(int i = 0; i < params.length; i++) {
+                    queryParams.put(params[i].split("=")[0], params[i].split("=")[1]);
+                }
+            }
+            
+            List<Filter> optFilters = new ArrayList<>();
+
+            if(queryParams.containsKey("magasin")) {
+                optFilters.add(PropertyFilter.hasAncestor(
+                    datastore.newKeyFactory().setKind("Magasin").newKey(queryParams.get("magasin"))
+                ));
             }
 
-            sendAsJson(resp, entities, new TypeToken<Collection<Article>>() {
+            if(queryParams.containsKey("minQty")) {
+                optFilters.add(PropertyFilter.gt("quantity", queryParams.get("minQty")));
+            }
+
+            Query<Entity> query;
+
+            if(optFilters.size() > 1) {
+
+                query = Query.newEntityQueryBuilder()
+                    .setKind("Article")
+                    .setOrderBy(StructuredQuery.OrderBy.desc("timestamp"))
+                    .setFilter(CompositeFilter.and(optFilters.get(0), optFilters.get(1)))
+                    .build();
+            } else if(optFilters.size() == 1) {
+                query = Query.newEntityQueryBuilder()
+                    .setKind("Article")
+                    .setOrderBy(StructuredQuery.OrderBy.desc("timestamp"))
+                    .setFilter(CompositeFilter.and(optFilters.get(0)))
+                    .build();
+            } else {
+                query = Query.newEntityQueryBuilder()
+                    .setKind("Article")
+                    .setOrderBy(StructuredQuery.OrderBy.desc("timestamp"))
+                    .build();
+            }
+
+            QueryResults<Entity> results = datastore.run(query);
+
+            ArrayList<Entity> entities = new ArrayList<>();
+            while (results.hasNext()) {
+                Entity entity = results.next();
+                entities.add(entity);
+            }
+
+            sendAsJson(resp, entities, new TypeToken<Collection<Entity>>() {
             }.getType());
 
         }
@@ -117,8 +165,6 @@ public class DataStoreServlet extends HttpServlet {
         Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
         // ----
 
-        KeyFactory keyFactory = datastore.newKeyFactory().setKind("Article");
-
         String pathInfo = req.getPathInfo();
 
         if (pathInfo == null || pathInfo.equals("/")) {
@@ -127,6 +173,12 @@ public class DataStoreServlet extends HttpServlet {
 
             // Check it's actually an Article json
             Article a = _gson.fromJson(payload, Article.class);
+
+            KeyFactory keyFactory = datastore.newKeyFactory().addAncestor(PathElement.of("Magasin", payload.get("magasin").getAsString())).setKind("Article");
+
+            Key articleKey = keyFactory.newKey(payload.get("id").getAsString());
+
+            datastore.delete(articleKey);
 
             IncompleteKey key = keyFactory.newKey(a.getName());
 
@@ -143,7 +195,7 @@ public class DataStoreServlet extends HttpServlet {
             return;
         }
 
-        resp.sendRedirect("/articles");
+        resp.sendRedirect("/magasins");
     }
 
     @Override
@@ -156,18 +208,18 @@ public class DataStoreServlet extends HttpServlet {
         Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
         // ----
 
-        KeyFactory keyFactory = datastore.newKeyFactory().setKind("Article");
-
         if (pathInfo == null || pathInfo.equals("/")) {
 
             JsonObject payload = getPayload(req);
+
+            KeyFactory keyFactory = datastore.newKeyFactory().addAncestor(PathElement.of("Magasin", payload.get("magasin").getAsString())).setKind("Article");
 
             Key articleKey = keyFactory.newKey(payload.get("id").getAsString());
 
             datastore.delete(articleKey);
         }
 
-        resp.sendRedirect("/articles");
+        resp.sendRedirect("/magasins");
     }
 
     private JsonObject getPayload(HttpServletRequest req) throws IOException {

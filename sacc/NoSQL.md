@@ -7,8 +7,8 @@
 Principes ACID :
 
 * **Atomicity** : Transaction réussit ou échoue complètement
-* **Consistency** : une momoaction amène l db d'un état valide à un autre état lui aussi valide. "Valide" concerne la BD et non l'application.
-* **Isolation** : 'état obtenu par l'éxecution de plusieurs transactions en // est le même que celui obtenu par l'execution séquentielle.
+* **Consistency** : une monoaction amène la db d'un état valide à un autre état lui aussi valide. "Valide" concerne la BD et non l'application.
+* **Isolation** : état obtenu par l'éxecution de plusieurs transactions en // est le même que celui obtenu par l'execution séquentielle.
 * **Durability** : Le résultat d'une transaction doit être maintenu pmalgré les pannes.
 
 ## Théorème de CAP
