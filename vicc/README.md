@@ -4,4 +4,5 @@ Teacher in charge : *Guillaume Urvoy-Keller* - [urvoy@i3s.unice.fr](mailto:urvoy
 
 ## Useful links
 
-* [Web course](http://www.i3s.unice.fr/~urvoy/courses/vicc.html)
+* [Web course - Urvoy](http://www.i3s.unice.fr/~urvoy/courses/vicc.html)
+* [Web course - Lopez](http://www.i3s.unice.fr/~lopezpac/teach/vicc.html)
