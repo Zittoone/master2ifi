@@ -3,7 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="http://www.alexiscouvreur.fr/model" nsPrefix="model">
   <eClassifiers xsi:type="ecore:EClass" name="Home">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sensors" upperBound="-1"
-        eType="#//Sensor"/>
+        eType="#//Sensor" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedEntity">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
