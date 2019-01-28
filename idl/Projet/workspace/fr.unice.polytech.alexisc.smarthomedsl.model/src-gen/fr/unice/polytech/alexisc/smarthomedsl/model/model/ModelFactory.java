@@ -49,6 +49,60 @@ public interface ModelFactory extends EFactory {
 	Sensor createSensor();
 
 	/**
+	 * Returns a new object of class '<em>Analog Sensor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Analog Sensor</em>'.
+	 * @generated
+	 */
+	AnalogSensor createAnalogSensor();
+
+	/**
+	 * Returns a new object of class '<em>Digital Sensor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Digital Sensor</em>'.
+	 * @generated
+	 */
+	DigitalSensor createDigitalSensor();
+
+	/**
+	 * Returns a new object of class '<em>Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Predicate</em>'.
+	 * @generated
+	 */
+	Predicate createPredicate();
+
+	/**
+	 * Returns a new object of class '<em>Activity</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Activity</em>'.
+	 * @generated
+	 */
+	Activity createActivity();
+
+	/**
+	 * Returns a new object of class '<em>Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action</em>'.
+	 * @generated
+	 */
+	Action createAction();
+
+	/**
+	 * Returns a new object of class '<em>Room</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Room</em>'.
+	 * @generated
+	 */
+	Room createRoom();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

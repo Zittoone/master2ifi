@@ -4,8 +4,10 @@
 package fr.unice.polytech.alexisc.smarthomedsl.serializer;
 
 import com.google.inject.Inject;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Home;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.ModelPackage;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Room;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Sensor;
 import fr.unice.polytech.alexisc.smarthomedsl.services.SmartHomeGrammarAccess;
 import java.util.Set;
@@ -33,8 +35,14 @@ public class SmartHomeSemanticSequencer extends AbstractDelegatingSemanticSequen
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == ModelPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case ModelPackage.ACTIVITY:
+				sequence_Activity(context, (Activity) semanticObject); 
+				return; 
 			case ModelPackage.HOME:
 				sequence_Home(context, (Home) semanticObject); 
+				return; 
+			case ModelPackage.ROOM:
+				sequence_Room(context, (Room) semanticObject); 
 				return; 
 			case ModelPackage.SENSOR:
 				sequence_Sensor(context, (Sensor) semanticObject); 
@@ -46,12 +54,36 @@ public class SmartHomeSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
+	 *     Activity returns Activity
+	 *
+	 * Constraint:
+	 *     {Activity}
+	 */
+	protected void sequence_Activity(ISerializationContext context, Activity semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Home returns Home
 	 *
 	 * Constraint:
-	 *     (sensors+=Sensor sensors+=Sensor*)?
+	 *     ((rooms+=Room rooms+=Room*)? (activities+=Activity activities+=Activity*)?)
 	 */
 	protected void sequence_Home(ISerializationContext context, Home semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Room returns Room
+	 *
+	 * Constraint:
+	 *     (name=EString (sensors+=Sensor sensors+=Sensor*)?)
+	 */
+	protected void sequence_Room(ISerializationContext context, Room semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -61,15 +93,21 @@ public class SmartHomeSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Sensor returns Sensor
 	 *
 	 * Constraint:
-	 *     name=EString
+	 *     (name=EString location=EString type=EString)
 	 */
 	protected void sequence_Sensor(ISerializationContext context, Sensor semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.NAMED_ENTITY__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.NAMED_ENTITY__NAME));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.SENSOR__LOCATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.SENSOR__LOCATION));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.SENSOR__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.SENSOR__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSensorAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getSensorAccess().getLocationEStringParserRuleCall_4_0(), semanticObject.getLocation());
+		feeder.accept(grammarAccess.getSensorAccess().getTypeEStringParserRuleCall_7_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	

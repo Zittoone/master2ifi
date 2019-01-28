@@ -34,6 +34,8 @@ Workflow {
 			fileExtensions = "shome"
 			referencedResource = "platform:/resource/fr.unice.polytech.alexisc.smarthomedsl.model/model/model.genmodel"
 			
+			
+			
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
 
 			formatter = {
@@ -45,6 +47,7 @@ Workflow {
 			}
 			validator = {
 				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+				
 			}
 		}
 	}

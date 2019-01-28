@@ -2,8 +2,11 @@ package model.aspects;
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
 import fr.inria.diverse.k3.al.annotationprocessor.Main;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Home;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Room;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Sensor;
+import model.aspects.ActivityAspect;
 import model.aspects.HomeAspectHomeAspectProperties;
 import model.aspects.SensorAspect;
 import org.eclipse.emf.common.util.EList;
@@ -21,9 +24,16 @@ public class HomeAspect {
   }
   
   protected static void _privk3_doIt(final HomeAspectHomeAspectProperties _self_, final Home _self) {
-    EList<Sensor> _sensors = _self.getSensors();
-    for (final Sensor s : _sensors) {
-      SensorAspect.exec(s);
+    EList<Room> _rooms = _self.getRooms();
+    for (final Room r : _rooms) {
+      EList<Sensor> _sensors = r.getSensors();
+      for (final Sensor s : _sensors) {
+        SensorAspect.exec(s);
+      }
+    }
+    EList<Activity> _activities = _self.getActivities();
+    for (final Activity a : _activities) {
+      ActivityAspect.exec(a);
     }
   }
 }

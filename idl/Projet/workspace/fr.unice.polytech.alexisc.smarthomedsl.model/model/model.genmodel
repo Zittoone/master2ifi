@@ -8,11 +8,30 @@
   <genPackages prefix="Model" basePackage="fr.unice.polytech.alexisc.smarthomedsl.model"
       disposableProviderFactory="true" ecorePackage="model.ecore#/">
     <genClasses ecoreClass="model.ecore#//Home">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Home/sensors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Home/time"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Home/activities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Home/rooms"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//NamedEntity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//NamedEntity/name"/>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//Sensor"/>
+    <genClasses ecoreClass="model.ecore#//Sensor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Sensor/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Sensor/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Sensor/type"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//AnalogSensor"/>
+    <genClasses ecoreClass="model.ecore#//DigitalSensor"/>
+    <genClasses ecoreClass="model.ecore#//Predicate">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Predicate/sensor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Predicate/value"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Activity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Activity/actions"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Action"/>
+    <genClasses ecoreClass="model.ecore#//Room">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Room/sensors"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

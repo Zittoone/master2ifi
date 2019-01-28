@@ -30,25 +30,37 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cHomeKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cSensorsKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cRoomsKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Assignment cSensorsAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
-		private final RuleCall cSensorsSensorParserRuleCall_3_2_0 = (RuleCall)cSensorsAssignment_3_2.eContents().get(0);
+		private final Assignment cRoomsAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cRoomsRoomParserRuleCall_3_2_0 = (RuleCall)cRoomsAssignment_3_2.eContents().get(0);
 		private final Group cGroup_3_3 = (Group)cGroup_3.eContents().get(3);
 		private final Keyword cCommaKeyword_3_3_0 = (Keyword)cGroup_3_3.eContents().get(0);
-		private final Assignment cSensorsAssignment_3_3_1 = (Assignment)cGroup_3_3.eContents().get(1);
-		private final RuleCall cSensorsSensorParserRuleCall_3_3_1_0 = (RuleCall)cSensorsAssignment_3_3_1.eContents().get(0);
+		private final Assignment cRoomsAssignment_3_3_1 = (Assignment)cGroup_3_3.eContents().get(1);
+		private final RuleCall cRoomsRoomParserRuleCall_3_3_1_0 = (RuleCall)cRoomsAssignment_3_3_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cActivitiesKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Assignment cActivitiesAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
+		private final RuleCall cActivitiesActivityParserRuleCall_4_2_0 = (RuleCall)cActivitiesAssignment_4_2.eContents().get(0);
+		private final Group cGroup_4_3 = (Group)cGroup_4.eContents().get(3);
+		private final Keyword cCommaKeyword_4_3_0 = (Keyword)cGroup_4_3.eContents().get(0);
+		private final Assignment cActivitiesAssignment_4_3_1 = (Assignment)cGroup_4_3.eContents().get(1);
+		private final RuleCall cActivitiesActivityParserRuleCall_4_3_1_0 = (RuleCall)cActivitiesAssignment_4_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4_4 = (Keyword)cGroup_4.eContents().get(4);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Home:
 		//	{Home}
 		//	'Home'
-		//	'{' ('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')?
+		//	'{' ('rooms' '{' rooms+=Room ("," rooms+=Room)* '}')? ('activities' '{' activities+=Activity (","
+		//	activities+=Activity)* '}')?
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Home} 'Home' '{' ('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')? '}'
+		//{Home} 'Home' '{' ('rooms' '{' rooms+=Room ("," rooms+=Room)* '}')? ('activities' '{' activities+=Activity (","
+		//activities+=Activity)* '}')? '}'
 		public Group getGroup() { return cGroup; }
 		
 		//{Home}
@@ -60,38 +72,147 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')?
+		//('rooms' '{' rooms+=Room ("," rooms+=Room)* '}')?
 		public Group getGroup_3() { return cGroup_3; }
 		
-		//'sensors'
-		public Keyword getSensorsKeyword_3_0() { return cSensorsKeyword_3_0; }
+		//'rooms'
+		public Keyword getRoomsKeyword_3_0() { return cRoomsKeyword_3_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_3_1() { return cLeftCurlyBracketKeyword_3_1; }
 		
-		//sensors+=Sensor
-		public Assignment getSensorsAssignment_3_2() { return cSensorsAssignment_3_2; }
+		//rooms+=Room
+		public Assignment getRoomsAssignment_3_2() { return cRoomsAssignment_3_2; }
 		
-		//Sensor
-		public RuleCall getSensorsSensorParserRuleCall_3_2_0() { return cSensorsSensorParserRuleCall_3_2_0; }
+		//Room
+		public RuleCall getRoomsRoomParserRuleCall_3_2_0() { return cRoomsRoomParserRuleCall_3_2_0; }
 		
-		//("," sensors+=Sensor)*
+		//("," rooms+=Room)*
 		public Group getGroup_3_3() { return cGroup_3_3; }
 		
 		//","
 		public Keyword getCommaKeyword_3_3_0() { return cCommaKeyword_3_3_0; }
 		
-		//sensors+=Sensor
-		public Assignment getSensorsAssignment_3_3_1() { return cSensorsAssignment_3_3_1; }
+		//rooms+=Room
+		public Assignment getRoomsAssignment_3_3_1() { return cRoomsAssignment_3_3_1; }
 		
-		//Sensor
-		public RuleCall getSensorsSensorParserRuleCall_3_3_1_0() { return cSensorsSensorParserRuleCall_3_3_1_0; }
+		//Room
+		public RuleCall getRoomsRoomParserRuleCall_3_3_1_0() { return cRoomsRoomParserRuleCall_3_3_1_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3_4() { return cRightCurlyBracketKeyword_3_4; }
 		
+		//('activities' '{' activities+=Activity ("," activities+=Activity)* '}')?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'activities'
+		public Keyword getActivitiesKeyword_4_0() { return cActivitiesKeyword_4_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_4_1() { return cLeftCurlyBracketKeyword_4_1; }
+		
+		//activities+=Activity
+		public Assignment getActivitiesAssignment_4_2() { return cActivitiesAssignment_4_2; }
+		
+		//Activity
+		public RuleCall getActivitiesActivityParserRuleCall_4_2_0() { return cActivitiesActivityParserRuleCall_4_2_0; }
+		
+		//("," activities+=Activity)*
+		public Group getGroup_4_3() { return cGroup_4_3; }
+		
+		//","
+		public Keyword getCommaKeyword_4_3_0() { return cCommaKeyword_4_3_0; }
+		
+		//activities+=Activity
+		public Assignment getActivitiesAssignment_4_3_1() { return cActivitiesAssignment_4_3_1; }
+		
+		//Activity
+		public RuleCall getActivitiesActivityParserRuleCall_4_3_1_0() { return cActivitiesActivityParserRuleCall_4_3_1_0; }
+		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_4_4() { return cRightCurlyBracketKeyword_4_4; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+	}
+	public class RoomElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Room");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRoomAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cRoomKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cSensorsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Assignment cSensorsAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
+		private final RuleCall cSensorsSensorParserRuleCall_4_2_0 = (RuleCall)cSensorsAssignment_4_2.eContents().get(0);
+		private final Group cGroup_4_3 = (Group)cGroup_4.eContents().get(3);
+		private final Keyword cCommaKeyword_4_3_0 = (Keyword)cGroup_4_3.eContents().get(0);
+		private final Assignment cSensorsAssignment_4_3_1 = (Assignment)cGroup_4_3.eContents().get(1);
+		private final RuleCall cSensorsSensorParserRuleCall_4_3_1_0 = (RuleCall)cSensorsAssignment_4_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4_4 = (Keyword)cGroup_4.eContents().get(4);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//Room:
+		//	{Room}
+		//	'Room'
+		//	name=EString
+		//	'{' ('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')?
+		//	'}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Room} 'Room' name=EString '{' ('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')? '}'
+		public Group getGroup() { return cGroup; }
+		
+		//{Room}
+		public Action getRoomAction_0() { return cRoomAction_0; }
+		
+		//'Room'
+		public Keyword getRoomKeyword_1() { return cRoomKeyword_1; }
+		
+		//name=EString
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//EString
+		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		
+		//('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'sensors'
+		public Keyword getSensorsKeyword_4_0() { return cSensorsKeyword_4_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_4_1() { return cLeftCurlyBracketKeyword_4_1; }
+		
+		//sensors+=Sensor
+		public Assignment getSensorsAssignment_4_2() { return cSensorsAssignment_4_2; }
+		
+		//Sensor
+		public RuleCall getSensorsSensorParserRuleCall_4_2_0() { return cSensorsSensorParserRuleCall_4_2_0; }
+		
+		//("," sensors+=Sensor)*
+		public Group getGroup_4_3() { return cGroup_4_3; }
+		
+		//","
+		public Keyword getCommaKeyword_4_3_0() { return cCommaKeyword_4_3_0; }
+		
+		//sensors+=Sensor
+		public Assignment getSensorsAssignment_4_3_1() { return cSensorsAssignment_4_3_1; }
+		
+		//Sensor
+		public RuleCall getSensorsSensorParserRuleCall_4_3_1_0() { return cSensorsSensorParserRuleCall_4_3_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4_4() { return cRightCurlyBracketKeyword_4_4; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 	public class SensorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Sensor");
@@ -100,14 +221,20 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSensorKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cOnKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cLocationAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cLocationEStringParserRuleCall_4_0 = (RuleCall)cLocationAssignment_4.eContents().get(0);
+		private final Keyword cReactsKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cToKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cTypeAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cTypeEStringParserRuleCall_7_0 = (RuleCall)cTypeAssignment_7.eContents().get(0);
 		
 		//Sensor:
 		//	{Sensor}
-		//	'Sensor'
-		//	name=EString;
+		//	'Sensor' name=EString 'on' location=EString 'reacts' 'to' type=EString;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Sensor} 'Sensor' name=EString
+		//{Sensor} 'Sensor' name=EString 'on' location=EString 'reacts' 'to' type=EString
 		public Group getGroup() { return cGroup; }
 		
 		//{Sensor}
@@ -121,6 +248,47 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//EString
 		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
+		
+		//'on'
+		public Keyword getOnKeyword_3() { return cOnKeyword_3; }
+		
+		//location=EString
+		public Assignment getLocationAssignment_4() { return cLocationAssignment_4; }
+		
+		//EString
+		public RuleCall getLocationEStringParserRuleCall_4_0() { return cLocationEStringParserRuleCall_4_0; }
+		
+		//'reacts'
+		public Keyword getReactsKeyword_5() { return cReactsKeyword_5; }
+		
+		//'to'
+		public Keyword getToKeyword_6() { return cToKeyword_6; }
+		
+		//type=EString
+		public Assignment getTypeAssignment_7() { return cTypeAssignment_7; }
+		
+		//EString
+		public RuleCall getTypeEStringParserRuleCall_7_0() { return cTypeEStringParserRuleCall_7_0; }
+	}
+	public class ActivityElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Activity");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cActivityAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cActivityKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//Activity:
+		//	{Activity}
+		//	'Activity';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Activity} 'Activity'
+		public Group getGroup() { return cGroup; }
+		
+		//{Activity}
+		public Action getActivityAction_0() { return cActivityAction_0; }
+		
+		//'Activity'
+		public Keyword getActivityKeyword_1() { return cActivityKeyword_1; }
 	}
 	public class EStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.EString");
@@ -144,7 +312,9 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private final HomeElements pHome;
+	private final RoomElements pRoom;
 	private final SensorElements pSensor;
+	private final ActivityElements pActivity;
 	private final EStringElements pEString;
 	
 	private final Grammar grammar;
@@ -157,7 +327,9 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pHome = new HomeElements();
+		this.pRoom = new RoomElements();
 		this.pSensor = new SensorElements();
+		this.pActivity = new ActivityElements();
 		this.pEString = new EStringElements();
 	}
 	
@@ -191,7 +363,8 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 	//Home:
 	//	{Home}
 	//	'Home'
-	//	'{' ('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')?
+	//	'{' ('rooms' '{' rooms+=Room ("," rooms+=Room)* '}')? ('activities' '{' activities+=Activity (","
+	//	activities+=Activity)* '}')?
 	//	'}';
 	public HomeElements getHomeAccess() {
 		return pHome;
@@ -201,16 +374,40 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		return getHomeAccess().getRule();
 	}
 	
+	//Room:
+	//	{Room}
+	//	'Room'
+	//	name=EString
+	//	'{' ('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')?
+	//	'}';
+	public RoomElements getRoomAccess() {
+		return pRoom;
+	}
+	
+	public ParserRule getRoomRule() {
+		return getRoomAccess().getRule();
+	}
+	
 	//Sensor:
 	//	{Sensor}
-	//	'Sensor'
-	//	name=EString;
+	//	'Sensor' name=EString 'on' location=EString 'reacts' 'to' type=EString;
 	public SensorElements getSensorAccess() {
 		return pSensor;
 	}
 	
 	public ParserRule getSensorRule() {
 		return getSensorAccess().getRule();
+	}
+	
+	//Activity:
+	//	{Activity}
+	//	'Activity';
+	public ActivityElements getActivityAccess() {
+		return pActivity;
+	}
+	
+	public ParserRule getActivityRule() {
+		return getActivityAccess().getRule();
 	}
 	
 	//EString:

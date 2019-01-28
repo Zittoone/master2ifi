@@ -92,9 +92,9 @@ ruleHome returns [EObject current=null]
 			newLeafNode(otherlv_2, grammarAccess.getHomeAccess().getLeftCurlyBracketKeyword_2());
 		}
 		(
-			otherlv_3='sensors'
+			otherlv_3='rooms'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getHomeAccess().getSensorsKeyword_3_0());
+				newLeafNode(otherlv_3, grammarAccess.getHomeAccess().getRoomsKeyword_3_0());
 			}
 			otherlv_4='{'
 			{
@@ -103,18 +103,18 @@ ruleHome returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getHomeAccess().getSensorsSensorParserRuleCall_3_2_0());
+						newCompositeNode(grammarAccess.getHomeAccess().getRoomsRoomParserRuleCall_3_2_0());
 					}
-					lv_sensors_5_0=ruleSensor
+					lv_rooms_5_0=ruleRoom
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getHomeRule());
 						}
 						add(
 							$current,
-							"sensors",
-							lv_sensors_5_0,
-							"fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Sensor");
+							"rooms",
+							lv_rooms_5_0,
+							"fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Room");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -127,18 +127,18 @@ ruleHome returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getHomeAccess().getSensorsSensorParserRuleCall_3_3_1_0());
+							newCompositeNode(grammarAccess.getHomeAccess().getRoomsRoomParserRuleCall_3_3_1_0());
 						}
-						lv_sensors_7_0=ruleSensor
+						lv_rooms_7_0=ruleRoom
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getHomeRule());
 							}
 							add(
 								$current,
-								"sensors",
-								lv_sensors_7_0,
-								"fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Sensor");
+								"rooms",
+								lv_rooms_7_0,
+								"fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Room");
 							afterParserOrEnumRuleCall();
 						}
 					)
@@ -149,9 +149,182 @@ ruleHome returns [EObject current=null]
 				newLeafNode(otherlv_8, grammarAccess.getHomeAccess().getRightCurlyBracketKeyword_3_4());
 			}
 		)?
-		otherlv_9='}'
+		(
+			otherlv_9='activities'
+			{
+				newLeafNode(otherlv_9, grammarAccess.getHomeAccess().getActivitiesKeyword_4_0());
+			}
+			otherlv_10='{'
+			{
+				newLeafNode(otherlv_10, grammarAccess.getHomeAccess().getLeftCurlyBracketKeyword_4_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getHomeAccess().getActivitiesActivityParserRuleCall_4_2_0());
+					}
+					lv_activities_11_0=ruleActivity
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getHomeRule());
+						}
+						add(
+							$current,
+							"activities",
+							lv_activities_11_0,
+							"fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Activity");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				otherlv_12=','
+				{
+					newLeafNode(otherlv_12, grammarAccess.getHomeAccess().getCommaKeyword_4_3_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getHomeAccess().getActivitiesActivityParserRuleCall_4_3_1_0());
+						}
+						lv_activities_13_0=ruleActivity
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getHomeRule());
+							}
+							add(
+								$current,
+								"activities",
+								lv_activities_13_0,
+								"fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Activity");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+			otherlv_14='}'
+			{
+				newLeafNode(otherlv_14, grammarAccess.getHomeAccess().getRightCurlyBracketKeyword_4_4());
+			}
+		)?
+		otherlv_15='}'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getHomeAccess().getRightCurlyBracketKeyword_4());
+			newLeafNode(otherlv_15, grammarAccess.getHomeAccess().getRightCurlyBracketKeyword_5());
+		}
+	)
+;
+
+// Entry rule entryRuleRoom
+entryRuleRoom returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRoomRule()); }
+	iv_ruleRoom=ruleRoom
+	{ $current=$iv_ruleRoom.current; }
+	EOF;
+
+// Rule Room
+ruleRoom returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getRoomAccess().getRoomAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='Room'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRoomAccess().getRoomKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRoomAccess().getNameEStringParserRuleCall_2_0());
+				}
+				lv_name_2_0=ruleEString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRoomRule());
+					}
+					set(
+						$current,
+						"name",
+						lv_name_2_0,
+						"fr.unice.polytech.alexisc.smarthomedsl.SmartHome.EString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3='{'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getRoomAccess().getLeftCurlyBracketKeyword_3());
+		}
+		(
+			otherlv_4='sensors'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getRoomAccess().getSensorsKeyword_4_0());
+			}
+			otherlv_5='{'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getRoomAccess().getLeftCurlyBracketKeyword_4_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getRoomAccess().getSensorsSensorParserRuleCall_4_2_0());
+					}
+					lv_sensors_6_0=ruleSensor
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getRoomRule());
+						}
+						add(
+							$current,
+							"sensors",
+							lv_sensors_6_0,
+							"fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Sensor");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				otherlv_7=','
+				{
+					newLeafNode(otherlv_7, grammarAccess.getRoomAccess().getCommaKeyword_4_3_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getRoomAccess().getSensorsSensorParserRuleCall_4_3_1_0());
+						}
+						lv_sensors_8_0=ruleSensor
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getRoomRule());
+							}
+							add(
+								$current,
+								"sensors",
+								lv_sensors_8_0,
+								"fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Sensor");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+			otherlv_9='}'
+			{
+				newLeafNode(otherlv_9, grammarAccess.getRoomAccess().getRightCurlyBracketKeyword_4_4());
+			}
+		)?
+		otherlv_10='}'
+		{
+			newLeafNode(otherlv_10, grammarAccess.getRoomAccess().getRightCurlyBracketKeyword_5());
 		}
 	)
 ;
@@ -202,6 +375,86 @@ ruleSensor returns [EObject current=null]
 				}
 			)
 		)
+		otherlv_3='on'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getSensorAccess().getOnKeyword_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSensorAccess().getLocationEStringParserRuleCall_4_0());
+				}
+				lv_location_4_0=ruleEString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSensorRule());
+					}
+					set(
+						$current,
+						"location",
+						lv_location_4_0,
+						"fr.unice.polytech.alexisc.smarthomedsl.SmartHome.EString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_5='reacts'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getSensorAccess().getReactsKeyword_5());
+		}
+		otherlv_6='to'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getSensorAccess().getToKeyword_6());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSensorAccess().getTypeEStringParserRuleCall_7_0());
+				}
+				lv_type_7_0=ruleEString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSensorRule());
+					}
+					set(
+						$current,
+						"type",
+						lv_type_7_0,
+						"fr.unice.polytech.alexisc.smarthomedsl.SmartHome.EString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleActivity
+entryRuleActivity returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getActivityRule()); }
+	iv_ruleActivity=ruleActivity
+	{ $current=$iv_ruleActivity.current; }
+	EOF;
+
+// Rule Activity
+ruleActivity returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getActivityAccess().getActivityAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='Activity'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getActivityAccess().getActivityKeyword_1());
+		}
 	)
 ;
 

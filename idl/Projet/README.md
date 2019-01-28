@@ -36,3 +36,8 @@ Sensor -> SensorType -> Magnétique | Préssion | ...
 Scenario {
     
 }
+
+### Compile etc.
+
+1. Clique model.genmode > Generate all
+2. smarthomedsl.smartome > SmartHome.xtext > Run as Generate xtext artifacts...

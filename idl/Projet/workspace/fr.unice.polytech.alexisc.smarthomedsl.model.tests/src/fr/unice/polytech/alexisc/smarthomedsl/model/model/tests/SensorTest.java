@@ -4,7 +4,6 @@ package fr.unice.polytech.alexisc.smarthomedsl.model.model.tests;
 
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.ModelFactory;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Sensor;
-
 import junit.textui.TestRunner;
 
 /**

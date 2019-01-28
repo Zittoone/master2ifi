@@ -141,6 +141,144 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.AnalogSensor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnalogSensorItemProvider analogSensorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.AnalogSensor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnalogSensorAdapter() {
+		if (analogSensorItemProvider == null) {
+			analogSensorItemProvider = new AnalogSensorItemProvider(this);
+		}
+
+		return analogSensorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.DigitalSensor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DigitalSensorItemProvider digitalSensorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.DigitalSensor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDigitalSensorAdapter() {
+		if (digitalSensorItemProvider == null) {
+			digitalSensorItemProvider = new DigitalSensorItemProvider(this);
+		}
+
+		return digitalSensorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Predicate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PredicateItemProvider predicateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Predicate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPredicateAdapter() {
+		if (predicateItemProvider == null) {
+			predicateItemProvider = new PredicateItemProvider(this);
+		}
+
+		return predicateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActivityItemProvider activityItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityAdapter() {
+		if (activityItemProvider == null) {
+			activityItemProvider = new ActivityItemProvider(this);
+		}
+
+		return activityItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Action} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActionItemProvider actionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Action}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActionAdapter() {
+		if (actionItemProvider == null) {
+			actionItemProvider = new ActionItemProvider(this);
+		}
+
+		return actionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Room} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RoomItemProvider roomItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Room}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRoomAdapter() {
+		if (roomItemProvider == null) {
+			roomItemProvider = new RoomItemProvider(this);
+		}
+
+		return roomItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -242,6 +380,12 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		if (homeItemProvider != null) homeItemProvider.dispose();
 		if (namedEntityItemProvider != null) namedEntityItemProvider.dispose();
 		if (sensorItemProvider != null) sensorItemProvider.dispose();
+		if (analogSensorItemProvider != null) analogSensorItemProvider.dispose();
+		if (digitalSensorItemProvider != null) digitalSensorItemProvider.dispose();
+		if (predicateItemProvider != null) predicateItemProvider.dispose();
+		if (activityItemProvider != null) activityItemProvider.dispose();
+		if (actionItemProvider != null) actionItemProvider.dispose();
+		if (roomItemProvider != null) roomItemProvider.dispose();
 	}
 
 }

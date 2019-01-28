@@ -59,6 +59,12 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			case ModelPackage.HOME: return createHome();
 			case ModelPackage.NAMED_ENTITY: return createNamedEntity();
 			case ModelPackage.SENSOR: return createSensor();
+			case ModelPackage.ANALOG_SENSOR: return createAnalogSensor();
+			case ModelPackage.DIGITAL_SENSOR: return createDigitalSensor();
+			case ModelPackage.PREDICATE: return createPredicate();
+			case ModelPackage.ACTIVITY: return createActivity();
+			case ModelPackage.ACTION: return createAction();
+			case ModelPackage.ROOM: return createRoom();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -92,6 +98,66 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public Sensor createSensor() {
 		SensorImpl sensor = new SensorImpl();
 		return sensor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AnalogSensor createAnalogSensor() {
+		AnalogSensorImpl analogSensor = new AnalogSensorImpl();
+		return analogSensor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DigitalSensor createDigitalSensor() {
+		DigitalSensorImpl digitalSensor = new DigitalSensorImpl();
+		return digitalSensor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Predicate createPredicate() {
+		PredicateImpl predicate = new PredicateImpl();
+		return predicate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Activity createActivity() {
+		ActivityImpl activity = new ActivityImpl();
+		return activity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Action createAction() {
+		ActionImpl action = new ActionImpl();
+		return action;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Room createRoom() {
+		RoomImpl room = new RoomImpl();
+		return room;
 	}
 
 	/**

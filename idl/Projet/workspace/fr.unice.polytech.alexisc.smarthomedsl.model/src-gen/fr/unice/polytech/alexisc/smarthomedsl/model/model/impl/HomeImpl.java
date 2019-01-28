@@ -2,12 +2,13 @@
  */
 package fr.unice.polytech.alexisc.smarthomedsl.model.model.impl;
 
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Home;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.ModelPackage;
-import fr.unice.polytech.alexisc.smarthomedsl.model.model.Sensor;
-
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Room;
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -15,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -28,21 +30,51 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.impl.HomeImpl#getSensors <em>Sensors</em>}</li>
+ *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.impl.HomeImpl#getTime <em>Time</em>}</li>
+ *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.impl.HomeImpl#getActivities <em>Activities</em>}</li>
+ *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.impl.HomeImpl#getRooms <em>Rooms</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	/**
-	 * The cached value of the '{@link #getSensors() <em>Sensors</em>}' containment reference list.
+	 * The default value of the '{@link #getTime() <em>Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSensors()
+	 * @see #getTime()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Sensor> sensors;
+	protected static final int TIME_EDEFAULT = 0;
+	/**
+	 * The cached value of the '{@link #getTime() <em>Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTime()
+	 * @generated
+	 * @ordered
+	 */
+	protected int time = TIME_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivities()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Activity> activities;
+
+	/**
+	 * The cached value of the '{@link #getRooms() <em>Rooms</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRooms()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Room> rooms;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,11 +100,44 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Sensor> getSensors() {
-		if (sensors == null) {
-			sensors = new EObjectContainmentEList<Sensor>(Sensor.class, this, ModelPackage.HOME__SENSORS);
+	public int getTime() {
+		return time;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTime(int newTime) {
+		int oldTime = time;
+		time = newTime;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.HOME__TIME, oldTime, time));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Activity> getActivities() {
+		if (activities == null) {
+			activities = new EObjectContainmentEList<Activity>(Activity.class, this, ModelPackage.HOME__ACTIVITIES);
 		}
-		return sensors;
+		return activities;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Room> getRooms() {
+		if (rooms == null) {
+			rooms = new EObjectContainmentEList<Room>(Room.class, this, ModelPackage.HOME__ROOMS);
+		}
+		return rooms;
 	}
 
 	/**
@@ -83,8 +148,10 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.HOME__SENSORS:
-				return ((InternalEList<?>)getSensors()).basicRemove(otherEnd, msgs);
+			case ModelPackage.HOME__ACTIVITIES:
+				return ((InternalEList<?>)getActivities()).basicRemove(otherEnd, msgs);
+			case ModelPackage.HOME__ROOMS:
+				return ((InternalEList<?>)getRooms()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -97,8 +164,12 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.HOME__SENSORS:
-				return getSensors();
+			case ModelPackage.HOME__TIME:
+				return getTime();
+			case ModelPackage.HOME__ACTIVITIES:
+				return getActivities();
+			case ModelPackage.HOME__ROOMS:
+				return getRooms();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,9 +183,16 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.HOME__SENSORS:
-				getSensors().clear();
-				getSensors().addAll((Collection<? extends Sensor>)newValue);
+			case ModelPackage.HOME__TIME:
+				setTime((Integer)newValue);
+				return;
+			case ModelPackage.HOME__ACTIVITIES:
+				getActivities().clear();
+				getActivities().addAll((Collection<? extends Activity>)newValue);
+				return;
+			case ModelPackage.HOME__ROOMS:
+				getRooms().clear();
+				getRooms().addAll((Collection<? extends Room>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -128,8 +206,14 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.HOME__SENSORS:
-				getSensors().clear();
+			case ModelPackage.HOME__TIME:
+				setTime(TIME_EDEFAULT);
+				return;
+			case ModelPackage.HOME__ACTIVITIES:
+				getActivities().clear();
+				return;
+			case ModelPackage.HOME__ROOMS:
+				getRooms().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -143,10 +227,30 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.HOME__SENSORS:
-				return sensors != null && !sensors.isEmpty();
+			case ModelPackage.HOME__TIME:
+				return time != TIME_EDEFAULT;
+			case ModelPackage.HOME__ACTIVITIES:
+				return activities != null && !activities.isEmpty();
+			case ModelPackage.HOME__ROOMS:
+				return rooms != null && !rooms.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (time: ");
+		result.append(time);
+		result.append(')');
+		return result.toString();
 	}
 
 } //HomeImpl
