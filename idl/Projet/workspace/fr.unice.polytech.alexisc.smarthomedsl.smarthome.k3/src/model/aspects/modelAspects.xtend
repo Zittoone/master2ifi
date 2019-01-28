@@ -29,10 +29,10 @@ class NamedEntityAspect {
 @Aspect(className=Sensor)
 class SensorAspect extends NamedEntityAspect {
 
-@Step
-def void exec(){
-	println(_self.name)
-}
+	@Step
+	def void exec(){
+		println(_self.name)
+	}
 
 }
 
