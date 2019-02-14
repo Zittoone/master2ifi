@@ -187,72 +187,49 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Predicate} instances.
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Rule} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PredicateItemProvider predicateItemProvider;
+	protected RuleItemProvider ruleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Predicate}.
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Rule}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPredicateAdapter() {
-		if (predicateItemProvider == null) {
-			predicateItemProvider = new PredicateItemProvider(this);
+	public Adapter createRuleAdapter() {
+		if (ruleItemProvider == null) {
+			ruleItemProvider = new RuleItemProvider(this);
 		}
 
-		return predicateItemProvider;
+		return ruleItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity} instances.
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Pattern} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActivityItemProvider activityItemProvider;
+	protected PatternItemProvider patternItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity}.
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Pattern}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createActivityAdapter() {
-		if (activityItemProvider == null) {
-			activityItemProvider = new ActivityItemProvider(this);
+	public Adapter createPatternAdapter() {
+		if (patternItemProvider == null) {
+			patternItemProvider = new PatternItemProvider(this);
 		}
 
-		return activityItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Action} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ActionItemProvider actionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Action}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createActionAdapter() {
-		if (actionItemProvider == null) {
-			actionItemProvider = new ActionItemProvider(this);
-		}
-
-		return actionItemProvider;
+		return patternItemProvider;
 	}
 
 	/**
@@ -276,6 +253,190 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		}
 
 		return roomItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.SensorCSV} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SensorCSVItemProvider sensorCSVItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.SensorCSV}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSensorCSVAdapter() {
+		if (sensorCSVItemProvider == null) {
+			sensorCSVItemProvider = new SensorCSVItemProvider(this);
+		}
+
+		return sensorCSVItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Person} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PersonItemProvider personItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Person}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPersonAdapter() {
+		if (personItemProvider == null) {
+			personItemProvider = new PersonItemProvider(this);
+		}
+
+		return personItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Tag} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TagItemProvider tagItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Tag}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTagAdapter() {
+		if (tagItemProvider == null) {
+			tagItemProvider = new TagItemProvider(this);
+		}
+
+		return tagItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Operand} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperandItemProvider operandItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Operand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOperandAdapter() {
+		if (operandItemProvider == null) {
+			operandItemProvider = new OperandItemProvider(this);
+		}
+
+		return operandItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Duration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DurationItemProvider durationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Duration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDurationAdapter() {
+		if (durationItemProvider == null) {
+			durationItemProvider = new DurationItemProvider(this);
+		}
+
+		return durationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.StaticSensor} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StaticSensorItemProvider staticSensorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.StaticSensor}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStaticSensorAdapter() {
+		if (staticSensorItemProvider == null) {
+			staticSensorItemProvider = new StaticSensorItemProvider(this);
+		}
+
+		return staticSensorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.PersonPredicate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PersonPredicateItemProvider personPredicateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.PersonPredicate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPersonPredicateAdapter() {
+		if (personPredicateItemProvider == null) {
+			personPredicateItemProvider = new PersonPredicateItemProvider(this);
+		}
+
+		return personPredicateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.SensorPredicate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SensorPredicateItemProvider sensorPredicateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.SensorPredicate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSensorPredicateAdapter() {
+		if (sensorPredicateItemProvider == null) {
+			sensorPredicateItemProvider = new SensorPredicateItemProvider(this);
+		}
+
+		return sensorPredicateItemProvider;
 	}
 
 	/**
@@ -382,10 +543,17 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		if (sensorItemProvider != null) sensorItemProvider.dispose();
 		if (analogSensorItemProvider != null) analogSensorItemProvider.dispose();
 		if (digitalSensorItemProvider != null) digitalSensorItemProvider.dispose();
-		if (predicateItemProvider != null) predicateItemProvider.dispose();
-		if (activityItemProvider != null) activityItemProvider.dispose();
-		if (actionItemProvider != null) actionItemProvider.dispose();
+		if (ruleItemProvider != null) ruleItemProvider.dispose();
+		if (patternItemProvider != null) patternItemProvider.dispose();
 		if (roomItemProvider != null) roomItemProvider.dispose();
+		if (sensorCSVItemProvider != null) sensorCSVItemProvider.dispose();
+		if (personItemProvider != null) personItemProvider.dispose();
+		if (tagItemProvider != null) tagItemProvider.dispose();
+		if (operandItemProvider != null) operandItemProvider.dispose();
+		if (durationItemProvider != null) durationItemProvider.dispose();
+		if (staticSensorItemProvider != null) staticSensorItemProvider.dispose();
+		if (personPredicateItemProvider != null) personPredicateItemProvider.dispose();
+		if (sensorPredicateItemProvider != null) sensorPredicateItemProvider.dispose();
 	}
 
 }

@@ -3,13 +3,11 @@
  */
 package fr.unice.polytech.alexisc.smarthomedsl.validation;
 
-import fr.unice.polytech.alexisc.smarthomedsl.validation.AbstractSmartHomeValidator;
-
 /**
  * This class contains custom validation rules.
  * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 @SuppressWarnings("all")
-public class SmartHomeValidator extends AbstractSmartHomeValidator {
+public class SmartHomeValidator /* implements AbstractSmartHomeValidator  */{
 }

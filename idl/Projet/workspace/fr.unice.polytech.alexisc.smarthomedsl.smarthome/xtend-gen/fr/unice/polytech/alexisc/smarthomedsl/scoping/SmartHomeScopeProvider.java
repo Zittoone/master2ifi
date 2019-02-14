@@ -3,8 +3,6 @@
  */
 package fr.unice.polytech.alexisc.smarthomedsl.scoping;
 
-import fr.unice.polytech.alexisc.smarthomedsl.scoping.AbstractSmartHomeScopeProvider;
-
 /**
  * This class contains custom scoping description.
  * 
@@ -12,5 +10,5 @@ import fr.unice.polytech.alexisc.smarthomedsl.scoping.AbstractSmartHomeScopeProv
  * on how and when to use it.
  */
 @SuppressWarnings("all")
-public class SmartHomeScopeProvider extends AbstractSmartHomeScopeProvider {
+public class SmartHomeScopeProvider /* implements AbstractSmartHomeScopeProvider  */{
 }

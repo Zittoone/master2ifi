@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class AnalogSensorImpl extends SensorImpl implements AnalogSensor {
+public class AnalogSensorImpl extends StaticSensorImpl implements AnalogSensor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

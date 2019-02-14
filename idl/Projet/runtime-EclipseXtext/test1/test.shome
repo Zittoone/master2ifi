@@ -1,0 +1,23 @@
+rooms {
+	Room "bedroom" {
+		sensors{
+			DigitalSensor "sb1" on "Bed" reacts to "Pressure",
+			DigitalSensor "sb2" on "Table" reacts to "Light"
+		}
+	},
+	Room "bathroom" {
+		sensors {
+			DigitalSensor "sb1" on "Shower" reacts to "PIR",
+			DigitalSensor "sb2" on "Cabinet" reacts to "Magnetic",
+			DigitalSensor "sb3" on "Basin" reacts to "PIR",
+			DigitalSensor "sb4" on "Toilet" reacts to "PIR"
+		}
+	}
+}
+activities{
+	Activity "Mal au ventr" {
+		predicates {
+			Predicate "bathroom.sb4" is 1 for 10 minutes
+		}
+	}
+}

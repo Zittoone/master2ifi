@@ -88,20 +88,52 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createDigitalSensorAdapter();
 			}
 			@Override
-			public Adapter casePredicate(Predicate object) {
-				return createPredicateAdapter();
+			public Adapter caseRule(Rule object) {
+				return createRuleAdapter();
 			}
 			@Override
-			public Adapter caseActivity(Activity object) {
-				return createActivityAdapter();
-			}
-			@Override
-			public Adapter caseAction(Action object) {
-				return createActionAdapter();
+			public Adapter casePattern(Pattern object) {
+				return createPatternAdapter();
 			}
 			@Override
 			public Adapter caseRoom(Room object) {
 				return createRoomAdapter();
+			}
+			@Override
+			public Adapter caseSensorCSV(SensorCSV object) {
+				return createSensorCSVAdapter();
+			}
+			@Override
+			public Adapter casePerson(Person object) {
+				return createPersonAdapter();
+			}
+			@Override
+			public Adapter caseTag(Tag object) {
+				return createTagAdapter();
+			}
+			@Override
+			public Adapter caseOperand(Operand object) {
+				return createOperandAdapter();
+			}
+			@Override
+			public Adapter caseDuration(Duration object) {
+				return createDurationAdapter();
+			}
+			@Override
+			public Adapter caseStaticSensor(StaticSensor object) {
+				return createStaticSensorAdapter();
+			}
+			@Override
+			public Adapter casePersonPredicate(PersonPredicate object) {
+				return createPersonPredicateAdapter();
+			}
+			@Override
+			public Adapter caseSensorPredicate(SensorPredicate object) {
+				return createSensorPredicateAdapter();
+			}
+			@Override
+			public Adapter casePredicate(Predicate object) {
+				return createPredicateAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -194,44 +226,30 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Predicate <em>Predicate</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Rule <em>Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.Predicate
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.Rule
 	 * @generated
 	 */
-	public Adapter createPredicateAdapter() {
+	public Adapter createRuleAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity <em>Activity</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Pattern <em>Pattern</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.Pattern
 	 * @generated
 	 */
-	public Adapter createActivityAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Action <em>Action</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.Action
-	 * @generated
-	 */
-	public Adapter createActionAdapter() {
+	public Adapter createPatternAdapter() {
 		return null;
 	}
 
@@ -246,6 +264,132 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRoomAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.SensorCSV <em>Sensor CSV</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.SensorCSV
+	 * @generated
+	 */
+	public Adapter createSensorCSVAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Person <em>Person</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.Person
+	 * @generated
+	 */
+	public Adapter createPersonAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Tag <em>Tag</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.Tag
+	 * @generated
+	 */
+	public Adapter createTagAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Operand <em>Operand</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.Operand
+	 * @generated
+	 */
+	public Adapter createOperandAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Duration <em>Duration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.Duration
+	 * @generated
+	 */
+	public Adapter createDurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.StaticSensor <em>Static Sensor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.StaticSensor
+	 * @generated
+	 */
+	public Adapter createStaticSensorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.PersonPredicate <em>Person Predicate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.PersonPredicate
+	 * @generated
+	 */
+	public Adapter createPersonPredicateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.SensorPredicate <em>Sensor Predicate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.SensorPredicate
+	 * @generated
+	 */
+	public Adapter createSensorPredicateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Predicate <em>Predicate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.Predicate
+	 * @generated
+	 */
+	public Adapter createPredicateAdapter() {
 		return null;
 	}
 

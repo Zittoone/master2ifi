@@ -4,11 +4,18 @@
 package fr.unice.polytech.alexisc.smarthomedsl.serializer;
 
 import com.google.inject.Inject;
-import fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.AnalogSensor;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.DigitalSensor;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Duration;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Home;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.ModelPackage;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Operand;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Pattern;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.PersonPredicate;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Room;
-import fr.unice.polytech.alexisc.smarthomedsl.model.model.Sensor;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Rule;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.SensorCSV;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.SensorPredicate;
 import fr.unice.polytech.alexisc.smarthomedsl.services.SmartHomeGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -35,17 +42,38 @@ public class SmartHomeSemanticSequencer extends AbstractDelegatingSemanticSequen
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == ModelPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case ModelPackage.ACTIVITY:
-				sequence_Activity(context, (Activity) semanticObject); 
+			case ModelPackage.ANALOG_SENSOR:
+				sequence_AnalogSensor(context, (AnalogSensor) semanticObject); 
+				return; 
+			case ModelPackage.DIGITAL_SENSOR:
+				sequence_DigitalSensor(context, (DigitalSensor) semanticObject); 
+				return; 
+			case ModelPackage.DURATION:
+				sequence_Duration(context, (Duration) semanticObject); 
 				return; 
 			case ModelPackage.HOME:
 				sequence_Home(context, (Home) semanticObject); 
 				return; 
+			case ModelPackage.OPERAND:
+				sequence_Operand(context, (Operand) semanticObject); 
+				return; 
+			case ModelPackage.PATTERN:
+				sequence_Pattern(context, (Pattern) semanticObject); 
+				return; 
+			case ModelPackage.PERSON_PREDICATE:
+				sequence_PersonPredicate(context, (PersonPredicate) semanticObject); 
+				return; 
 			case ModelPackage.ROOM:
 				sequence_Room(context, (Room) semanticObject); 
 				return; 
-			case ModelPackage.SENSOR:
-				sequence_Sensor(context, (Sensor) semanticObject); 
+			case ModelPackage.RULE:
+				sequence_Rule(context, (Rule) semanticObject); 
+				return; 
+			case ModelPackage.SENSOR_CSV:
+				sequence_SensorCSV(context, (SensorCSV) semanticObject); 
+				return; 
+			case ModelPackage.SENSOR_PREDICATE:
+				sequence_SensorPredicate(context, (SensorPredicate) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -54,13 +82,70 @@ public class SmartHomeSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     Activity returns Activity
+	 *     AnalogSensor returns AnalogSensor
 	 *
 	 * Constraint:
-	 *     {Activity}
+	 *     (name=EString location=EString type=EString)
 	 */
-	protected void sequence_Activity(ISerializationContext context, Activity semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_AnalogSensor(ISerializationContext context, AnalogSensor semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.NAMED_ENTITY__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.NAMED_ENTITY__NAME));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.STATIC_SENSOR__LOCATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.STATIC_SENSOR__LOCATION));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.STATIC_SENSOR__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.STATIC_SENSOR__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAnalogSensorAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getAnalogSensorAccess().getLocationEStringParserRuleCall_4_0(), semanticObject.getLocation());
+		feeder.accept(grammarAccess.getAnalogSensorAccess().getTypeEStringParserRuleCall_7_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     DigitalSensor returns DigitalSensor
+	 *
+	 * Constraint:
+	 *     (name=EString location=EString type=EString)
+	 */
+	protected void sequence_DigitalSensor(ISerializationContext context, DigitalSensor semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.NAMED_ENTITY__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.NAMED_ENTITY__NAME));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.STATIC_SENSOR__LOCATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.STATIC_SENSOR__LOCATION));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.STATIC_SENSOR__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.STATIC_SENSOR__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDigitalSensorAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getDigitalSensorAccess().getLocationEStringParserRuleCall_4_0(), semanticObject.getLocation());
+		feeder.accept(grammarAccess.getDigitalSensorAccess().getTypeEStringParserRuleCall_7_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Duration returns Duration
+	 *
+	 * Constraint:
+	 *     (duration=INT precision=Precision)
+	 */
+	protected void sequence_Duration(ISerializationContext context, Duration semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.DURATION__DURATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.DURATION__DURATION));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.DURATION__PRECISION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.DURATION__PRECISION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDurationAccess().getDurationINTTerminalRuleCall_1_0(), semanticObject.getDuration());
+		feeder.accept(grammarAccess.getDurationAccess().getPrecisionPrecisionEnumRuleCall_2_0(), semanticObject.getPrecision());
+		feeder.finish();
 	}
 	
 	
@@ -69,7 +154,7 @@ public class SmartHomeSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Home returns Home
 	 *
 	 * Constraint:
-	 *     ((rooms+=Room rooms+=Room*)? (activities+=Activity activities+=Activity*)?)
+	 *     ((rooms+=Room rooms+=Room*)? (activities+=Pattern activities+=Pattern*)?)
 	 */
 	protected void sequence_Home(ISerializationContext context, Home semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -78,10 +163,62 @@ public class SmartHomeSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
+	 *     Operand returns Operand
+	 *
+	 * Constraint:
+	 *     {Operand}
+	 */
+	protected void sequence_Operand(ISerializationContext context, Operand semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Pattern returns Pattern
+	 *
+	 * Constraint:
+	 *     (name=EString (rules+=Rule rules+=Rule*)?)
+	 */
+	protected void sequence_Pattern(ISerializationContext context, Pattern semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PersonPredicate returns PersonPredicate
+	 *
+	 * Constraint:
+	 *     (person=[Person|EString] activity=Activity)
+	 */
+	protected void sequence_PersonPredicate(ISerializationContext context, PersonPredicate semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.PERSON_PREDICATE__PERSON) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.PERSON_PREDICATE__PERSON));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.PERSON_PREDICATE__ACTIVITY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.PERSON_PREDICATE__ACTIVITY));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPersonPredicateAccess().getPersonPersonEStringParserRuleCall_1_0_1(), semanticObject.eGet(ModelPackage.Literals.PERSON_PREDICATE__PERSON, false));
+		feeder.accept(grammarAccess.getPersonPredicateAccess().getActivityActivityEnumRuleCall_2_0(), semanticObject.getActivity());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Room returns Room
 	 *
 	 * Constraint:
-	 *     (name=EString (sensors+=Sensor sensors+=Sensor*)?)
+	 *     (
+	 *         name=EString 
+	 *         (
+	 *             (sensors+=AnalogSensor | sensors+=DigitalSensor | sensors+=SensorCSV) 
+	 *             sensors+=AnalogSensor? 
+	 *             ((sensors+=DigitalSensor | sensors+=SensorCSV)? sensors+=AnalogSensor?)*
+	 *         )?
+	 *     )
 	 */
 	protected void sequence_Room(ISerializationContext context, Room semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -90,24 +227,57 @@ public class SmartHomeSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     Sensor returns Sensor
+	 *     Rule returns Rule
 	 *
 	 * Constraint:
-	 *     (name=EString location=EString type=EString)
+	 *     (predicate=[Predicate|EString] duration=Duration?)
 	 */
-	protected void sequence_Sensor(ISerializationContext context, Sensor semanticObject) {
+	protected void sequence_Rule(ISerializationContext context, Rule semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     SensorCSV returns SensorCSV
+	 *
+	 * Constraint:
+	 *     (name=EString file=EString)
+	 */
+	protected void sequence_SensorCSV(ISerializationContext context, SensorCSV semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.NAMED_ENTITY__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.NAMED_ENTITY__NAME));
-			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.SENSOR__LOCATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.SENSOR__LOCATION));
-			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.SENSOR__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.SENSOR__TYPE));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.SENSOR_CSV__FILE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.SENSOR_CSV__FILE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSensorAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getSensorAccess().getLocationEStringParserRuleCall_4_0(), semanticObject.getLocation());
-		feeder.accept(grammarAccess.getSensorAccess().getTypeEStringParserRuleCall_7_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getSensorCSVAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getSensorCSVAccess().getFileEStringParserRuleCall_4_0(), semanticObject.getFile());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     SensorPredicate returns SensorPredicate
+	 *
+	 * Constraint:
+	 *     (sensor=[Sensor|EString] operator=Operator value=INT)
+	 */
+	protected void sequence_SensorPredicate(ISerializationContext context, SensorPredicate semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.SENSOR_PREDICATE__SENSOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.SENSOR_PREDICATE__SENSOR));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.SENSOR_PREDICATE__OPERATOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.SENSOR_PREDICATE__OPERATOR));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.SENSOR_PREDICATE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.SENSOR_PREDICATE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSensorPredicateAccess().getSensorSensorEStringParserRuleCall_1_0_1(), semanticObject.eGet(ModelPackage.Literals.SENSOR_PREDICATE__SENSOR, false));
+		feeder.accept(grammarAccess.getSensorPredicateAccess().getOperatorOperatorEnumRuleCall_2_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getSensorPredicateAccess().getValueINTTerminalRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

@@ -9,6 +9,9 @@ import java.util.List;
 import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.EnumLiteralDeclaration;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -17,6 +20,7 @@ import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
+import org.eclipse.xtext.service.AbstractElementFinder.AbstractEnumRuleElementFinder;
 import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -27,113 +31,98 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Home");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cHomeAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cHomeKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cRoomsKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Assignment cRoomsAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
-		private final RuleCall cRoomsRoomParserRuleCall_3_2_0 = (RuleCall)cRoomsAssignment_3_2.eContents().get(0);
-		private final Group cGroup_3_3 = (Group)cGroup_3.eContents().get(3);
-		private final Keyword cCommaKeyword_3_3_0 = (Keyword)cGroup_3_3.eContents().get(0);
-		private final Assignment cRoomsAssignment_3_3_1 = (Assignment)cGroup_3_3.eContents().get(1);
-		private final RuleCall cRoomsRoomParserRuleCall_3_3_1_0 = (RuleCall)cRoomsAssignment_3_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cActivitiesKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
-		private final Assignment cActivitiesAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cActivitiesActivityParserRuleCall_4_2_0 = (RuleCall)cActivitiesAssignment_4_2.eContents().get(0);
-		private final Group cGroup_4_3 = (Group)cGroup_4.eContents().get(3);
-		private final Keyword cCommaKeyword_4_3_0 = (Keyword)cGroup_4_3.eContents().get(0);
-		private final Assignment cActivitiesAssignment_4_3_1 = (Assignment)cGroup_4_3.eContents().get(1);
-		private final RuleCall cActivitiesActivityParserRuleCall_4_3_1_0 = (RuleCall)cActivitiesAssignment_4_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4_4 = (Keyword)cGroup_4.eContents().get(4);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cRoomsKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cRoomsAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRoomsRoomParserRuleCall_1_2_0 = (RuleCall)cRoomsAssignment_1_2.eContents().get(0);
+		private final Group cGroup_1_3 = (Group)cGroup_1.eContents().get(3);
+		private final Keyword cCommaKeyword_1_3_0 = (Keyword)cGroup_1_3.eContents().get(0);
+		private final Assignment cRoomsAssignment_1_3_1 = (Assignment)cGroup_1_3.eContents().get(1);
+		private final RuleCall cRoomsRoomParserRuleCall_1_3_1_0 = (RuleCall)cRoomsAssignment_1_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cPatternsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Assignment cActivitiesAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cActivitiesPatternParserRuleCall_2_2_0 = (RuleCall)cActivitiesAssignment_2_2.eContents().get(0);
+		private final Group cGroup_2_3 = (Group)cGroup_2.eContents().get(3);
+		private final Keyword cCommaKeyword_2_3_0 = (Keyword)cGroup_2_3.eContents().get(0);
+		private final Assignment cActivitiesAssignment_2_3_1 = (Assignment)cGroup_2_3.eContents().get(1);
+		private final RuleCall cActivitiesPatternParserRuleCall_2_3_1_0 = (RuleCall)cActivitiesAssignment_2_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2_4 = (Keyword)cGroup_2.eContents().get(4);
 		
 		//Home:
-		//	{Home}
-		//	'Home'
-		//	'{' ('rooms' '{' rooms+=Room ("," rooms+=Room)* '}')? ('activities' '{' activities+=Activity (","
-		//	activities+=Activity)* '}')?
-		//	'}';
+		//	{Home} ('rooms' '{' rooms+=Room ("," rooms+=Room)* '}')? ('patterns' '{' activities+=Pattern (","
+		//	activities+=Pattern)* '}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Home} 'Home' '{' ('rooms' '{' rooms+=Room ("," rooms+=Room)* '}')? ('activities' '{' activities+=Activity (","
-		//activities+=Activity)* '}')? '}'
+		//{Home} ('rooms' '{' rooms+=Room ("," rooms+=Room)* '}')? ('patterns' '{' activities+=Pattern ("," activities+=Pattern)*
+		//'}')?
 		public Group getGroup() { return cGroup; }
 		
 		//{Home}
 		public Action getHomeAction_0() { return cHomeAction_0; }
 		
-		//'Home'
-		public Keyword getHomeKeyword_1() { return cHomeKeyword_1; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
-		
 		//('rooms' '{' rooms+=Room ("," rooms+=Room)* '}')?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//'rooms'
-		public Keyword getRoomsKeyword_3_0() { return cRoomsKeyword_3_0; }
+		public Keyword getRoomsKeyword_1_0() { return cRoomsKeyword_1_0; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3_1() { return cLeftCurlyBracketKeyword_3_1; }
+		public Keyword getLeftCurlyBracketKeyword_1_1() { return cLeftCurlyBracketKeyword_1_1; }
 		
 		//rooms+=Room
-		public Assignment getRoomsAssignment_3_2() { return cRoomsAssignment_3_2; }
+		public Assignment getRoomsAssignment_1_2() { return cRoomsAssignment_1_2; }
 		
 		//Room
-		public RuleCall getRoomsRoomParserRuleCall_3_2_0() { return cRoomsRoomParserRuleCall_3_2_0; }
+		public RuleCall getRoomsRoomParserRuleCall_1_2_0() { return cRoomsRoomParserRuleCall_1_2_0; }
 		
 		//("," rooms+=Room)*
-		public Group getGroup_3_3() { return cGroup_3_3; }
+		public Group getGroup_1_3() { return cGroup_1_3; }
 		
 		//","
-		public Keyword getCommaKeyword_3_3_0() { return cCommaKeyword_3_3_0; }
+		public Keyword getCommaKeyword_1_3_0() { return cCommaKeyword_1_3_0; }
 		
 		//rooms+=Room
-		public Assignment getRoomsAssignment_3_3_1() { return cRoomsAssignment_3_3_1; }
+		public Assignment getRoomsAssignment_1_3_1() { return cRoomsAssignment_1_3_1; }
 		
 		//Room
-		public RuleCall getRoomsRoomParserRuleCall_3_3_1_0() { return cRoomsRoomParserRuleCall_3_3_1_0; }
+		public RuleCall getRoomsRoomParserRuleCall_1_3_1_0() { return cRoomsRoomParserRuleCall_1_3_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_3_4() { return cRightCurlyBracketKeyword_3_4; }
+		public Keyword getRightCurlyBracketKeyword_1_4() { return cRightCurlyBracketKeyword_1_4; }
 		
-		//('activities' '{' activities+=Activity ("," activities+=Activity)* '}')?
-		public Group getGroup_4() { return cGroup_4; }
+		//('patterns' '{' activities+=Pattern ("," activities+=Pattern)* '}')?
+		public Group getGroup_2() { return cGroup_2; }
 		
-		//'activities'
-		public Keyword getActivitiesKeyword_4_0() { return cActivitiesKeyword_4_0; }
+		//'patterns'
+		public Keyword getPatternsKeyword_2_0() { return cPatternsKeyword_2_0; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_4_1() { return cLeftCurlyBracketKeyword_4_1; }
+		public Keyword getLeftCurlyBracketKeyword_2_1() { return cLeftCurlyBracketKeyword_2_1; }
 		
-		//activities+=Activity
-		public Assignment getActivitiesAssignment_4_2() { return cActivitiesAssignment_4_2; }
+		//activities+=Pattern
+		public Assignment getActivitiesAssignment_2_2() { return cActivitiesAssignment_2_2; }
 		
-		//Activity
-		public RuleCall getActivitiesActivityParserRuleCall_4_2_0() { return cActivitiesActivityParserRuleCall_4_2_0; }
+		//Pattern
+		public RuleCall getActivitiesPatternParserRuleCall_2_2_0() { return cActivitiesPatternParserRuleCall_2_2_0; }
 		
-		//("," activities+=Activity)*
-		public Group getGroup_4_3() { return cGroup_4_3; }
+		//("," activities+=Pattern)*
+		public Group getGroup_2_3() { return cGroup_2_3; }
 		
 		//","
-		public Keyword getCommaKeyword_4_3_0() { return cCommaKeyword_4_3_0; }
+		public Keyword getCommaKeyword_2_3_0() { return cCommaKeyword_2_3_0; }
 		
-		//activities+=Activity
-		public Assignment getActivitiesAssignment_4_3_1() { return cActivitiesAssignment_4_3_1; }
+		//activities+=Pattern
+		public Assignment getActivitiesAssignment_2_3_1() { return cActivitiesAssignment_2_3_1; }
 		
-		//Activity
-		public RuleCall getActivitiesActivityParserRuleCall_4_3_1_0() { return cActivitiesActivityParserRuleCall_4_3_1_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_4_4() { return cRightCurlyBracketKeyword_4_4; }
+		//Pattern
+		public RuleCall getActivitiesPatternParserRuleCall_2_3_1_0() { return cActivitiesPatternParserRuleCall_2_3_1_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_2_4() { return cRightCurlyBracketKeyword_2_4; }
 	}
 	public class RoomElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Room");
@@ -147,11 +136,17 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSensorsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		private final Assignment cSensorsAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cSensorsSensorParserRuleCall_4_2_0 = (RuleCall)cSensorsAssignment_4_2.eContents().get(0);
+		private final Alternatives cSensorsAlternatives_4_2_0 = (Alternatives)cSensorsAssignment_4_2.eContents().get(0);
+		private final RuleCall cSensorsAnalogSensorParserRuleCall_4_2_0_0 = (RuleCall)cSensorsAlternatives_4_2_0.eContents().get(0);
+		private final RuleCall cSensorsDigitalSensorParserRuleCall_4_2_0_1 = (RuleCall)cSensorsAlternatives_4_2_0.eContents().get(1);
+		private final RuleCall cSensorsSensorCSVParserRuleCall_4_2_0_2 = (RuleCall)cSensorsAlternatives_4_2_0.eContents().get(2);
 		private final Group cGroup_4_3 = (Group)cGroup_4.eContents().get(3);
 		private final Keyword cCommaKeyword_4_3_0 = (Keyword)cGroup_4_3.eContents().get(0);
 		private final Assignment cSensorsAssignment_4_3_1 = (Assignment)cGroup_4_3.eContents().get(1);
-		private final RuleCall cSensorsSensorParserRuleCall_4_3_1_0 = (RuleCall)cSensorsAssignment_4_3_1.eContents().get(0);
+		private final Alternatives cSensorsAlternatives_4_3_1_0 = (Alternatives)cSensorsAssignment_4_3_1.eContents().get(0);
+		private final RuleCall cSensorsAnalogSensorParserRuleCall_4_3_1_0_0 = (RuleCall)cSensorsAlternatives_4_3_1_0.eContents().get(0);
+		private final RuleCall cSensorsDigitalSensorParserRuleCall_4_3_1_0_1 = (RuleCall)cSensorsAlternatives_4_3_1_0.eContents().get(1);
+		private final RuleCall cSensorsSensorCSVParserRuleCall_4_3_1_0_2 = (RuleCall)cSensorsAlternatives_4_3_1_0.eContents().get(2);
 		private final Keyword cRightCurlyBracketKeyword_4_4 = (Keyword)cGroup_4.eContents().get(4);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
@@ -159,11 +154,13 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		//	{Room}
 		//	'Room'
 		//	name=EString
-		//	'{' ('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')?
+		//	'{' ('sensors' '{' sensors+=(AnalogSensor | DigitalSensor | SensorCSV) ("," sensors+=(AnalogSensor | DigitalSensor |
+		//	SensorCSV))* '}')?
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Room} 'Room' name=EString '{' ('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')? '}'
+		//{Room} 'Room' name=EString '{' ('sensors' '{' sensors+=(AnalogSensor | DigitalSensor | SensorCSV) (","
+		//sensors+=(AnalogSensor | DigitalSensor | SensorCSV))* '}')? '}'
 		public Group getGroup() { return cGroup; }
 		
 		//{Room}
@@ -181,7 +178,8 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
-		//('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')?
+		//('sensors' '{' sensors+=(AnalogSensor | DigitalSensor | SensorCSV) ("," sensors+=(AnalogSensor | DigitalSensor |
+		//SensorCSV))* '}')?
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//'sensors'
@@ -190,23 +188,41 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_4_1() { return cLeftCurlyBracketKeyword_4_1; }
 		
-		//sensors+=Sensor
+		//sensors+=(AnalogSensor | DigitalSensor | SensorCSV)
 		public Assignment getSensorsAssignment_4_2() { return cSensorsAssignment_4_2; }
 		
-		//Sensor
-		public RuleCall getSensorsSensorParserRuleCall_4_2_0() { return cSensorsSensorParserRuleCall_4_2_0; }
+		//(AnalogSensor | DigitalSensor | SensorCSV)
+		public Alternatives getSensorsAlternatives_4_2_0() { return cSensorsAlternatives_4_2_0; }
 		
-		//("," sensors+=Sensor)*
+		//AnalogSensor
+		public RuleCall getSensorsAnalogSensorParserRuleCall_4_2_0_0() { return cSensorsAnalogSensorParserRuleCall_4_2_0_0; }
+		
+		//DigitalSensor
+		public RuleCall getSensorsDigitalSensorParserRuleCall_4_2_0_1() { return cSensorsDigitalSensorParserRuleCall_4_2_0_1; }
+		
+		//SensorCSV
+		public RuleCall getSensorsSensorCSVParserRuleCall_4_2_0_2() { return cSensorsSensorCSVParserRuleCall_4_2_0_2; }
+		
+		//("," sensors+=(AnalogSensor | DigitalSensor | SensorCSV))*
 		public Group getGroup_4_3() { return cGroup_4_3; }
 		
 		//","
 		public Keyword getCommaKeyword_4_3_0() { return cCommaKeyword_4_3_0; }
 		
-		//sensors+=Sensor
+		//sensors+=(AnalogSensor | DigitalSensor | SensorCSV)
 		public Assignment getSensorsAssignment_4_3_1() { return cSensorsAssignment_4_3_1; }
 		
-		//Sensor
-		public RuleCall getSensorsSensorParserRuleCall_4_3_1_0() { return cSensorsSensorParserRuleCall_4_3_1_0; }
+		//(AnalogSensor | DigitalSensor | SensorCSV)
+		public Alternatives getSensorsAlternatives_4_3_1_0() { return cSensorsAlternatives_4_3_1_0; }
+		
+		//AnalogSensor
+		public RuleCall getSensorsAnalogSensorParserRuleCall_4_3_1_0_0() { return cSensorsAnalogSensorParserRuleCall_4_3_1_0_0; }
+		
+		//DigitalSensor
+		public RuleCall getSensorsDigitalSensorParserRuleCall_4_3_1_0_1() { return cSensorsDigitalSensorParserRuleCall_4_3_1_0_1; }
+		
+		//SensorCSV
+		public RuleCall getSensorsSensorCSVParserRuleCall_4_3_1_0_2() { return cSensorsSensorCSVParserRuleCall_4_3_1_0_2; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4_4() { return cRightCurlyBracketKeyword_4_4; }
@@ -214,11 +230,11 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
-	public class SensorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Sensor");
+	public class AnalogSensorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.AnalogSensor");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cSensorAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cSensorKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Action cAnalogSensorAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cAnalogSensorKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cOnKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -229,19 +245,19 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTypeAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final RuleCall cTypeEStringParserRuleCall_7_0 = (RuleCall)cTypeAssignment_7.eContents().get(0);
 		
-		//Sensor:
-		//	{Sensor}
-		//	'Sensor' name=EString 'on' location=EString 'reacts' 'to' type=EString;
+		//AnalogSensor:
+		//	{AnalogSensor}
+		//	'AnalogSensor' name=EString 'on' location=EString 'reacts' 'to' type=EString;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Sensor} 'Sensor' name=EString 'on' location=EString 'reacts' 'to' type=EString
+		//{AnalogSensor} 'AnalogSensor' name=EString 'on' location=EString 'reacts' 'to' type=EString
 		public Group getGroup() { return cGroup; }
 		
-		//{Sensor}
-		public Action getSensorAction_0() { return cSensorAction_0; }
+		//{AnalogSensor}
+		public Action getAnalogSensorAction_0() { return cAnalogSensorAction_0; }
 		
-		//'Sensor'
-		public Keyword getSensorKeyword_1() { return cSensorKeyword_1; }
+		//'AnalogSensor'
+		public Keyword getAnalogSensorKeyword_1() { return cAnalogSensorKeyword_1; }
 		
 		//name=EString
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
@@ -270,25 +286,343 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		//EString
 		public RuleCall getTypeEStringParserRuleCall_7_0() { return cTypeEStringParserRuleCall_7_0; }
 	}
-	public class ActivityElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Activity");
+	public class DigitalSensorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.DigitalSensor");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cActivityAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cActivityKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Action cDigitalSensorAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cDigitalSensorKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cOnKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cLocationAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cLocationEStringParserRuleCall_4_0 = (RuleCall)cLocationAssignment_4.eContents().get(0);
+		private final Keyword cReactsKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cToKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cTypeAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cTypeEStringParserRuleCall_7_0 = (RuleCall)cTypeAssignment_7.eContents().get(0);
 		
-		//Activity:
-		//	{Activity}
-		//	'Activity';
+		//DigitalSensor:
+		//	{DigitalSensor}
+		//	'DigitalSensor' name=EString 'on' location=EString 'reacts' 'to' type=EString;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Activity} 'Activity'
+		//{DigitalSensor} 'DigitalSensor' name=EString 'on' location=EString 'reacts' 'to' type=EString
 		public Group getGroup() { return cGroup; }
 		
-		//{Activity}
-		public Action getActivityAction_0() { return cActivityAction_0; }
+		//{DigitalSensor}
+		public Action getDigitalSensorAction_0() { return cDigitalSensorAction_0; }
+		
+		//'DigitalSensor'
+		public Keyword getDigitalSensorKeyword_1() { return cDigitalSensorKeyword_1; }
+		
+		//name=EString
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//EString
+		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
+		
+		//'on'
+		public Keyword getOnKeyword_3() { return cOnKeyword_3; }
+		
+		//location=EString
+		public Assignment getLocationAssignment_4() { return cLocationAssignment_4; }
+		
+		//EString
+		public RuleCall getLocationEStringParserRuleCall_4_0() { return cLocationEStringParserRuleCall_4_0; }
+		
+		//'reacts'
+		public Keyword getReactsKeyword_5() { return cReactsKeyword_5; }
+		
+		//'to'
+		public Keyword getToKeyword_6() { return cToKeyword_6; }
+		
+		//type=EString
+		public Assignment getTypeAssignment_7() { return cTypeAssignment_7; }
+		
+		//EString
+		public RuleCall getTypeEStringParserRuleCall_7_0() { return cTypeEStringParserRuleCall_7_0; }
+	}
+	public class SensorCSVElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.SensorCSV");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cSensorCSVAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cSensorCSVKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cFromKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cFileAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cFileEStringParserRuleCall_4_0 = (RuleCall)cFileAssignment_4.eContents().get(0);
+		
+		//SensorCSV:
+		//	{SensorCSV}
+		//	'SensorCSV' name=EString 'from' file=EString;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{SensorCSV} 'SensorCSV' name=EString 'from' file=EString
+		public Group getGroup() { return cGroup; }
+		
+		//{SensorCSV}
+		public Action getSensorCSVAction_0() { return cSensorCSVAction_0; }
+		
+		//'SensorCSV'
+		public Keyword getSensorCSVKeyword_1() { return cSensorCSVKeyword_1; }
+		
+		//name=EString
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//EString
+		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
+		
+		//'from'
+		public Keyword getFromKeyword_3() { return cFromKeyword_3; }
+		
+		//file=EString
+		public Assignment getFileAssignment_4() { return cFileAssignment_4; }
+		
+		//EString
+		public RuleCall getFileEStringParserRuleCall_4_0() { return cFileEStringParserRuleCall_4_0; }
+	}
+	public class PatternElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Pattern");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPatternAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cActivityKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cRulesKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Assignment cRulesAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
+		private final RuleCall cRulesRuleParserRuleCall_4_2_0 = (RuleCall)cRulesAssignment_4_2.eContents().get(0);
+		private final Group cGroup_4_3 = (Group)cGroup_4.eContents().get(3);
+		private final Keyword cAndKeyword_4_3_0 = (Keyword)cGroup_4_3.eContents().get(0);
+		private final Assignment cRulesAssignment_4_3_1 = (Assignment)cGroup_4_3.eContents().get(1);
+		private final RuleCall cRulesRuleParserRuleCall_4_3_1_0 = (RuleCall)cRulesAssignment_4_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4_4 = (Keyword)cGroup_4.eContents().get(4);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//Pattern:
+		//	{Pattern}
+		//	'Activity'
+		//	name=EString
+		//	'{' ('rules' '{' rules+=Rule ("and" rules+=Rule)* '}')?
+		//	'}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Pattern} 'Activity' name=EString '{' ('rules' '{' rules+=Rule ("and" rules+=Rule)* '}')? '}'
+		public Group getGroup() { return cGroup; }
+		
+		//{Pattern}
+		public Action getPatternAction_0() { return cPatternAction_0; }
 		
 		//'Activity'
 		public Keyword getActivityKeyword_1() { return cActivityKeyword_1; }
+		
+		//name=EString
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//EString
+		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		
+		//('rules' '{' rules+=Rule ("and" rules+=Rule)* '}')?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'rules'
+		public Keyword getRulesKeyword_4_0() { return cRulesKeyword_4_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_4_1() { return cLeftCurlyBracketKeyword_4_1; }
+		
+		//rules+=Rule
+		public Assignment getRulesAssignment_4_2() { return cRulesAssignment_4_2; }
+		
+		//Rule
+		public RuleCall getRulesRuleParserRuleCall_4_2_0() { return cRulesRuleParserRuleCall_4_2_0; }
+		
+		//("and" rules+=Rule)*
+		public Group getGroup_4_3() { return cGroup_4_3; }
+		
+		//"and"
+		public Keyword getAndKeyword_4_3_0() { return cAndKeyword_4_3_0; }
+		
+		//rules+=Rule
+		public Assignment getRulesAssignment_4_3_1() { return cRulesAssignment_4_3_1; }
+		
+		//Rule
+		public RuleCall getRulesRuleParserRuleCall_4_3_1_0() { return cRulesRuleParserRuleCall_4_3_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4_4() { return cRightCurlyBracketKeyword_4_4; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+	}
+	public class RuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Rule");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRuleAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cPredicateAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cPredicatePredicateCrossReference_1_0 = (CrossReference)cPredicateAssignment_1.eContents().get(0);
+		private final RuleCall cPredicatePredicateEStringParserRuleCall_1_0_1 = (RuleCall)cPredicatePredicateCrossReference_1_0.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cForKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cDurationAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cDurationDurationParserRuleCall_2_1_0 = (RuleCall)cDurationAssignment_2_1.eContents().get(0);
+		
+		//Rule:
+		//	{Rule} predicate=[Predicate|EString] ('for' duration=Duration)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Rule} predicate=[Predicate|EString] ('for' duration=Duration)?
+		public Group getGroup() { return cGroup; }
+		
+		//{Rule}
+		public Action getRuleAction_0() { return cRuleAction_0; }
+		
+		//predicate=[Predicate|EString]
+		public Assignment getPredicateAssignment_1() { return cPredicateAssignment_1; }
+		
+		//[Predicate|EString]
+		public CrossReference getPredicatePredicateCrossReference_1_0() { return cPredicatePredicateCrossReference_1_0; }
+		
+		//EString
+		public RuleCall getPredicatePredicateEStringParserRuleCall_1_0_1() { return cPredicatePredicateEStringParserRuleCall_1_0_1; }
+		
+		//('for' duration=Duration)?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'for'
+		public Keyword getForKeyword_2_0() { return cForKeyword_2_0; }
+		
+		//duration=Duration
+		public Assignment getDurationAssignment_2_1() { return cDurationAssignment_2_1; }
+		
+		//Duration
+		public RuleCall getDurationDurationParserRuleCall_2_1_0() { return cDurationDurationParserRuleCall_2_1_0; }
+	}
+	public class SensorPredicateElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.SensorPredicate");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cSensorPredicateAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cSensorAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cSensorSensorCrossReference_1_0 = (CrossReference)cSensorAssignment_1.eContents().get(0);
+		private final RuleCall cSensorSensorEStringParserRuleCall_1_0_1 = (RuleCall)cSensorSensorCrossReference_1_0.eContents().get(1);
+		private final Assignment cOperatorAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOperatorOperatorEnumRuleCall_2_0 = (RuleCall)cOperatorAssignment_2.eContents().get(0);
+		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cValueINTTerminalRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
+		
+		//SensorPredicate:
+		//	{SensorPredicate} sensor=[Sensor|EString] operator=Operator value=INT;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{SensorPredicate} sensor=[Sensor|EString] operator=Operator value=INT
+		public Group getGroup() { return cGroup; }
+		
+		//{SensorPredicate}
+		public Action getSensorPredicateAction_0() { return cSensorPredicateAction_0; }
+		
+		//sensor=[Sensor|EString]
+		public Assignment getSensorAssignment_1() { return cSensorAssignment_1; }
+		
+		//[Sensor|EString]
+		public CrossReference getSensorSensorCrossReference_1_0() { return cSensorSensorCrossReference_1_0; }
+		
+		//EString
+		public RuleCall getSensorSensorEStringParserRuleCall_1_0_1() { return cSensorSensorEStringParserRuleCall_1_0_1; }
+		
+		//operator=Operator
+		public Assignment getOperatorAssignment_2() { return cOperatorAssignment_2; }
+		
+		//Operator
+		public RuleCall getOperatorOperatorEnumRuleCall_2_0() { return cOperatorOperatorEnumRuleCall_2_0; }
+		
+		//value=INT
+		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+		
+		//INT
+		public RuleCall getValueINTTerminalRuleCall_3_0() { return cValueINTTerminalRuleCall_3_0; }
+	}
+	public class PersonPredicateElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.PersonPredicate");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPersonPredicateAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cPersonAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cPersonPersonCrossReference_1_0 = (CrossReference)cPersonAssignment_1.eContents().get(0);
+		private final RuleCall cPersonPersonEStringParserRuleCall_1_0_1 = (RuleCall)cPersonPersonCrossReference_1_0.eContents().get(1);
+		private final Assignment cActivityAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cActivityActivityEnumRuleCall_2_0 = (RuleCall)cActivityAssignment_2.eContents().get(0);
+		
+		//PersonPredicate:
+		//	{PersonPredicate} person=[Person|EString] activity=Activity;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{PersonPredicate} person=[Person|EString] activity=Activity
+		public Group getGroup() { return cGroup; }
+		
+		//{PersonPredicate}
+		public Action getPersonPredicateAction_0() { return cPersonPredicateAction_0; }
+		
+		//person=[Person|EString]
+		public Assignment getPersonAssignment_1() { return cPersonAssignment_1; }
+		
+		//[Person|EString]
+		public CrossReference getPersonPersonCrossReference_1_0() { return cPersonPersonCrossReference_1_0; }
+		
+		//EString
+		public RuleCall getPersonPersonEStringParserRuleCall_1_0_1() { return cPersonPersonEStringParserRuleCall_1_0_1; }
+		
+		//activity=Activity
+		public Assignment getActivityAssignment_2() { return cActivityAssignment_2; }
+		
+		//Activity
+		public RuleCall getActivityActivityEnumRuleCall_2_0() { return cActivityActivityEnumRuleCall_2_0; }
+	}
+	public class OperandElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Operand");
+		private final Action cOperandAction = (Action)rule.eContents().get(1);
+		
+		//Operand:
+		//	{Operand};
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Operand}
+		public Action getOperandAction() { return cOperandAction; }
+	}
+	public class DurationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Duration");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cDurationAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cDurationAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDurationINTTerminalRuleCall_1_0 = (RuleCall)cDurationAssignment_1.eContents().get(0);
+		private final Assignment cPrecisionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPrecisionPrecisionEnumRuleCall_2_0 = (RuleCall)cPrecisionAssignment_2.eContents().get(0);
+		
+		//Duration:
+		//	{Duration} duration=INT precision=Precision;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Duration} duration=INT precision=Precision
+		public Group getGroup() { return cGroup; }
+		
+		//{Duration}
+		public Action getDurationAction_0() { return cDurationAction_0; }
+		
+		//duration=INT
+		public Assignment getDurationAssignment_1() { return cDurationAssignment_1; }
+		
+		//INT
+		public RuleCall getDurationINTTerminalRuleCall_1_0() { return cDurationINTTerminalRuleCall_1_0; }
+		
+		//precision=Precision
+		public Assignment getPrecisionAssignment_2() { return cPrecisionAssignment_2; }
+		
+		//Precision
+		public RuleCall getPrecisionPrecisionEnumRuleCall_2_0() { return cPrecisionPrecisionEnumRuleCall_2_0; }
 	}
 	public class EStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.EString");
@@ -310,11 +644,130 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getIDTerminalRuleCall_1() { return cIDTerminalRuleCall_1; }
 	}
 	
+	public class OperatorElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Operator");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cEqualEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cEqualEqualsSignKeyword_0_0 = (Keyword)cEqualEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cInferiorEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cInferiorLessThanSignKeyword_1_0 = (Keyword)cInferiorEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cSuperiorEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cSuperiorGreaterThanSignKeyword_2_0 = (Keyword)cSuperiorEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum Operator:
+		//	equal='=' |
+		//	inferior='<' |
+		//	superior='>';
+		public EnumRule getRule() { return rule; }
+		
+		//equal='=' | inferior='<' | superior='>'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//equal='='
+		public EnumLiteralDeclaration getEqualEnumLiteralDeclaration_0() { return cEqualEnumLiteralDeclaration_0; }
+		
+		//'='
+		public Keyword getEqualEqualsSignKeyword_0_0() { return cEqualEqualsSignKeyword_0_0; }
+		
+		//inferior='<'
+		public EnumLiteralDeclaration getInferiorEnumLiteralDeclaration_1() { return cInferiorEnumLiteralDeclaration_1; }
+		
+		//'<'
+		public Keyword getInferiorLessThanSignKeyword_1_0() { return cInferiorLessThanSignKeyword_1_0; }
+		
+		//superior='>'
+		public EnumLiteralDeclaration getSuperiorEnumLiteralDeclaration_2() { return cSuperiorEnumLiteralDeclaration_2; }
+		
+		//'>'
+		public Keyword getSuperiorGreaterThanSignKeyword_2_0() { return cSuperiorGreaterThanSignKeyword_2_0; }
+	}
+	public class PrecisionElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Precision");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cSEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cSSecondsKeyword_0_0 = (Keyword)cSEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cMsEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cMsMillisecondsKeyword_1_0 = (Keyword)cMsEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cMEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cMMinutesKeyword_2_0 = (Keyword)cMEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum Precision:
+		//	s='seconds' |
+		//	ms='milliseconds' |
+		//	m='minutes';
+		public EnumRule getRule() { return rule; }
+		
+		//s='seconds' | ms='milliseconds' | m='minutes'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//s='seconds'
+		public EnumLiteralDeclaration getSEnumLiteralDeclaration_0() { return cSEnumLiteralDeclaration_0; }
+		
+		//'seconds'
+		public Keyword getSSecondsKeyword_0_0() { return cSSecondsKeyword_0_0; }
+		
+		//ms='milliseconds'
+		public EnumLiteralDeclaration getMsEnumLiteralDeclaration_1() { return cMsEnumLiteralDeclaration_1; }
+		
+		//'milliseconds'
+		public Keyword getMsMillisecondsKeyword_1_0() { return cMsMillisecondsKeyword_1_0; }
+		
+		//m='minutes'
+		public EnumLiteralDeclaration getMEnumLiteralDeclaration_2() { return cMEnumLiteralDeclaration_2; }
+		
+		//'minutes'
+		public Keyword getMMinutesKeyword_2_0() { return cMMinutesKeyword_2_0; }
+	}
+	public class ActivityElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "fr.unice.polytech.alexisc.smarthomedsl.SmartHome.Activity");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cLayingEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cLayingLayingKeyword_0_0 = (Keyword)cLayingEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cSittingEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cSittingSittingKeyword_1_0 = (Keyword)cSittingEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cStandingEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cStandingStandingKeyword_2_0 = (Keyword)cStandingEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum Activity:
+		//	laying | sitting | standing;
+		public EnumRule getRule() { return rule; }
+		
+		//laying | sitting | standing
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//laying
+		public EnumLiteralDeclaration getLayingEnumLiteralDeclaration_0() { return cLayingEnumLiteralDeclaration_0; }
+		
+		//"laying"
+		public Keyword getLayingLayingKeyword_0_0() { return cLayingLayingKeyword_0_0; }
+		
+		//sitting
+		public EnumLiteralDeclaration getSittingEnumLiteralDeclaration_1() { return cSittingEnumLiteralDeclaration_1; }
+		
+		//"sitting"
+		public Keyword getSittingSittingKeyword_1_0() { return cSittingSittingKeyword_1_0; }
+		
+		//standing
+		public EnumLiteralDeclaration getStandingEnumLiteralDeclaration_2() { return cStandingEnumLiteralDeclaration_2; }
+		
+		//"standing"
+		public Keyword getStandingStandingKeyword_2_0() { return cStandingStandingKeyword_2_0; }
+	}
 	
 	private final HomeElements pHome;
 	private final RoomElements pRoom;
-	private final SensorElements pSensor;
-	private final ActivityElements pActivity;
+	private final AnalogSensorElements pAnalogSensor;
+	private final DigitalSensorElements pDigitalSensor;
+	private final SensorCSVElements pSensorCSV;
+	private final PatternElements pPattern;
+	private final RuleElements pRule;
+	private final SensorPredicateElements pSensorPredicate;
+	private final PersonPredicateElements pPersonPredicate;
+	private final OperandElements pOperand;
+	private final DurationElements pDuration;
+	private final OperatorElements eOperator;
+	private final PrecisionElements ePrecision;
+	private final ActivityElements eActivity;
 	private final EStringElements pEString;
 	
 	private final Grammar grammar;
@@ -328,8 +781,18 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pHome = new HomeElements();
 		this.pRoom = new RoomElements();
-		this.pSensor = new SensorElements();
-		this.pActivity = new ActivityElements();
+		this.pAnalogSensor = new AnalogSensorElements();
+		this.pDigitalSensor = new DigitalSensorElements();
+		this.pSensorCSV = new SensorCSVElements();
+		this.pPattern = new PatternElements();
+		this.pRule = new RuleElements();
+		this.pSensorPredicate = new SensorPredicateElements();
+		this.pPersonPredicate = new PersonPredicateElements();
+		this.pOperand = new OperandElements();
+		this.pDuration = new DurationElements();
+		this.eOperator = new OperatorElements();
+		this.ePrecision = new PrecisionElements();
+		this.eActivity = new ActivityElements();
 		this.pEString = new EStringElements();
 	}
 	
@@ -361,11 +824,8 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Home:
-	//	{Home}
-	//	'Home'
-	//	'{' ('rooms' '{' rooms+=Room ("," rooms+=Room)* '}')? ('activities' '{' activities+=Activity (","
-	//	activities+=Activity)* '}')?
-	//	'}';
+	//	{Home} ('rooms' '{' rooms+=Room ("," rooms+=Room)* '}')? ('patterns' '{' activities+=Pattern (","
+	//	activities+=Pattern)* '}')?;
 	public HomeElements getHomeAccess() {
 		return pHome;
 	}
@@ -378,7 +838,8 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 	//	{Room}
 	//	'Room'
 	//	name=EString
-	//	'{' ('sensors' '{' sensors+=Sensor ("," sensors+=Sensor)* '}')?
+	//	'{' ('sensors' '{' sensors+=(AnalogSensor | DigitalSensor | SensorCSV) ("," sensors+=(AnalogSensor | DigitalSensor |
+	//	SensorCSV))* '}')?
 	//	'}';
 	public RoomElements getRoomAccess() {
 		return pRoom;
@@ -388,25 +849,134 @@ public class SmartHomeGrammarAccess extends AbstractGrammarElementFinder {
 		return getRoomAccess().getRule();
 	}
 	
-	//Sensor:
-	//	{Sensor}
-	//	'Sensor' name=EString 'on' location=EString 'reacts' 'to' type=EString;
-	public SensorElements getSensorAccess() {
-		return pSensor;
+	//AnalogSensor:
+	//	{AnalogSensor}
+	//	'AnalogSensor' name=EString 'on' location=EString 'reacts' 'to' type=EString;
+	public AnalogSensorElements getAnalogSensorAccess() {
+		return pAnalogSensor;
 	}
 	
-	public ParserRule getSensorRule() {
-		return getSensorAccess().getRule();
+	public ParserRule getAnalogSensorRule() {
+		return getAnalogSensorAccess().getRule();
 	}
 	
-	//Activity:
-	//	{Activity}
-	//	'Activity';
+	//DigitalSensor:
+	//	{DigitalSensor}
+	//	'DigitalSensor' name=EString 'on' location=EString 'reacts' 'to' type=EString;
+	public DigitalSensorElements getDigitalSensorAccess() {
+		return pDigitalSensor;
+	}
+	
+	public ParserRule getDigitalSensorRule() {
+		return getDigitalSensorAccess().getRule();
+	}
+	
+	//SensorCSV:
+	//	{SensorCSV}
+	//	'SensorCSV' name=EString 'from' file=EString;
+	public SensorCSVElements getSensorCSVAccess() {
+		return pSensorCSV;
+	}
+	
+	public ParserRule getSensorCSVRule() {
+		return getSensorCSVAccess().getRule();
+	}
+	
+	//Pattern:
+	//	{Pattern}
+	//	'Activity'
+	//	name=EString
+	//	'{' ('rules' '{' rules+=Rule ("and" rules+=Rule)* '}')?
+	//	'}';
+	public PatternElements getPatternAccess() {
+		return pPattern;
+	}
+	
+	public ParserRule getPatternRule() {
+		return getPatternAccess().getRule();
+	}
+	
+	//Rule:
+	//	{Rule} predicate=[Predicate|EString] ('for' duration=Duration)?;
+	public RuleElements getRuleAccess() {
+		return pRule;
+	}
+	
+	public ParserRule getRuleRule() {
+		return getRuleAccess().getRule();
+	}
+	
+	//SensorPredicate:
+	//	{SensorPredicate} sensor=[Sensor|EString] operator=Operator value=INT;
+	public SensorPredicateElements getSensorPredicateAccess() {
+		return pSensorPredicate;
+	}
+	
+	public ParserRule getSensorPredicateRule() {
+		return getSensorPredicateAccess().getRule();
+	}
+	
+	//PersonPredicate:
+	//	{PersonPredicate} person=[Person|EString] activity=Activity;
+	public PersonPredicateElements getPersonPredicateAccess() {
+		return pPersonPredicate;
+	}
+	
+	public ParserRule getPersonPredicateRule() {
+		return getPersonPredicateAccess().getRule();
+	}
+	
+	//Operand:
+	//	{Operand};
+	public OperandElements getOperandAccess() {
+		return pOperand;
+	}
+	
+	public ParserRule getOperandRule() {
+		return getOperandAccess().getRule();
+	}
+	
+	//Duration:
+	//	{Duration} duration=INT precision=Precision;
+	public DurationElements getDurationAccess() {
+		return pDuration;
+	}
+	
+	public ParserRule getDurationRule() {
+		return getDurationAccess().getRule();
+	}
+	
+	//enum Operator:
+	//	equal='=' |
+	//	inferior='<' |
+	//	superior='>';
+	public OperatorElements getOperatorAccess() {
+		return eOperator;
+	}
+	
+	public EnumRule getOperatorRule() {
+		return getOperatorAccess().getRule();
+	}
+	
+	//enum Precision:
+	//	s='seconds' |
+	//	ms='milliseconds' |
+	//	m='minutes';
+	public PrecisionElements getPrecisionAccess() {
+		return ePrecision;
+	}
+	
+	public EnumRule getPrecisionRule() {
+		return getPrecisionAccess().getRule();
+	}
+	
+	//enum Activity:
+	//	laying | sitting | standing;
 	public ActivityElements getActivityAccess() {
-		return pActivity;
+		return eActivity;
 	}
 	
-	public ParserRule getActivityRule() {
+	public EnumRule getActivityRule() {
 		return getActivityAccess().getRule();
 	}
 	

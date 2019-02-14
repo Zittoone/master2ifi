@@ -13,5 +13,5 @@ package fr.unice.polytech.alexisc.smarthomedsl.model.model;
  * @model
  * @generated
  */
-public interface AnalogSensor extends Sensor {
+public interface AnalogSensor extends StaticSensor {
 } // AnalogSensor

@@ -9,6 +9,9 @@ import fr.unice.polytech.alexisc.smarthomedsl.model.model.Sensor
 import fr.unice.polytech.alexisc.smarthomedsl.services.SmartHomeGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Room
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Pattern
 
 class SmartHomeFormatter extends AbstractFormatter2 {
 	
@@ -16,8 +19,12 @@ class SmartHomeFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(Home home, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (Sensor sensor : home.getSensors()) {
-			sensor.format;
+		for (Room room : home.getRooms()) {
+			room.format;
+		}
+		
+		for (Pattern activity : home.getActivities()) {
+			activity.format;
 		}
 	}
 	

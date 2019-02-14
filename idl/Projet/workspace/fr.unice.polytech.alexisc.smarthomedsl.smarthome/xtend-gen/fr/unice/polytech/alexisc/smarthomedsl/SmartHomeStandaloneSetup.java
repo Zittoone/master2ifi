@@ -3,14 +3,13 @@
  */
 package fr.unice.polytech.alexisc.smarthomedsl;
 
-import fr.unice.polytech.alexisc.smarthomedsl.SmartHomeStandaloneSetupGenerated;
-
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.
  */
 @SuppressWarnings("all")
-public class SmartHomeStandaloneSetup extends SmartHomeStandaloneSetupGenerated {
+public class SmartHomeStandaloneSetup /* implements SmartHomeStandaloneSetupGenerated  */{
   public static void doSetup() {
-    new SmartHomeStandaloneSetup().createInjectorAndDoEMFRegistration();
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method createInjectorAndDoEMFRegistration() is undefined for the type SmartHomeStandaloneSetup");
   }
 }

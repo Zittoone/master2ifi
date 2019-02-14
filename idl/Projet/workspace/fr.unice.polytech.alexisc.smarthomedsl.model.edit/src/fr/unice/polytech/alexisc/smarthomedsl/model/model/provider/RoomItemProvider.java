@@ -144,12 +144,22 @@ public class RoomItemProvider extends NamedEntityItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.ROOM__SENSORS,
+				 ModelFactory.eINSTANCE.createStaticSensor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.ROOM__SENSORS,
 				 ModelFactory.eINSTANCE.createAnalogSensor()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.ROOM__SENSORS,
 				 ModelFactory.eINSTANCE.createDigitalSensor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.ROOM__SENSORS,
+				 ModelFactory.eINSTANCE.createSensorCSV()));
 	}
 
 }

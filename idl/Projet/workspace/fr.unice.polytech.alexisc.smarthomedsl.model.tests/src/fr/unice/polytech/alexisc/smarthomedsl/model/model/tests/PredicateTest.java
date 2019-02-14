@@ -2,12 +2,9 @@
  */
 package fr.unice.polytech.alexisc.smarthomedsl.model.model.tests;
 
-import fr.unice.polytech.alexisc.smarthomedsl.model.model.ModelFactory;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Predicate;
 
 import junit.framework.TestCase;
-
-import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +12,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PredicateTest extends TestCase {
+public abstract class PredicateTest extends TestCase {
 
 	/**
 	 * The fixture for this Predicate test case.
@@ -24,15 +21,6 @@ public class PredicateTest extends TestCase {
 	 * @generated
 	 */
 	protected Predicate fixture = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(PredicateTest.class);
-	}
 
 	/**
 	 * Constructs a new Predicate test case with the given name.
@@ -62,28 +50,6 @@ public class PredicateTest extends TestCase {
 	 */
 	protected Predicate getFixture() {
 		return fixture;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		setFixture(ModelFactory.eINSTANCE.createPredicate());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		setFixture(null);
 	}
 
 } //PredicateTest

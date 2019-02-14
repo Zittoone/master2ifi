@@ -7,31 +7,76 @@
   <foreignModel>model.ecore</foreignModel>
   <genPackages prefix="Model" basePackage="fr.unice.polytech.alexisc.smarthomedsl.model"
       disposableProviderFactory="true" ecorePackage="model.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//Precision">
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//Precision/s"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//Precision/ms"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//Precision/m"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//Operator">
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//Operator/inferior"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//Operator/superior"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//Operator/equal"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//Activity">
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//Activity/standing"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//Activity/laying"/>
+    </genEnums>
     <genClasses ecoreClass="model.ecore#//Home">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Home/time"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Home/activities"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Home/rooms"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Home/persons"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//NamedEntity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//NamedEntity/name"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Sensor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Sensor/value"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Sensor/location"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Sensor/type"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//AnalogSensor"/>
     <genClasses ecoreClass="model.ecore#//DigitalSensor"/>
-    <genClasses ecoreClass="model.ecore#//Predicate">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Predicate/sensor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Predicate/value"/>
+    <genClasses ecoreClass="model.ecore#//Rule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Rule/duration"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Rule/predicate"/>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//Activity">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Activity/actions"/>
+    <genClasses ecoreClass="model.ecore#//Pattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Pattern/predicates"/>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//Action"/>
     <genClasses ecoreClass="model.ecore#//Room">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Room/sensors"/>
     </genClasses>
+    <genClasses ecoreClass="model.ecore#//SensorCSV">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//SensorCSV/file"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Person">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Person/belt"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Person/leftAnkle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Person/rightAnkle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Person/chest"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Tag">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Tag/x"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Tag/y"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Tag/z"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Operand"/>
+    <genClasses ecoreClass="model.ecore#//Duration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Duration/duration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Duration/precision"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//StaticSensor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//StaticSensor/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//StaticSensor/type"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//PersonPredicate">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//PersonPredicate/person"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//PersonPredicate/activity"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//SensorPredicate">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//SensorPredicate/sensor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//SensorPredicate/operator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//SensorPredicate/value"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Predicate"/>
   </genPackages>
 </genmodel:GenModel>

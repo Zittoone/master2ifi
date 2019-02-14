@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Home#getTime <em>Time</em>}</li>
  *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Home#getActivities <em>Activities</em>}</li>
  *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Home#getRooms <em>Rooms</em>}</li>
+ *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Home#getPersons <em>Persons</em>}</li>
  * </ul>
  *
  * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.ModelPackage#getHome()
@@ -53,7 +54,7 @@ public interface Home extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Activities</b></em>' containment reference list.
-	 * The list contents are of type {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity}.
+	 * The list contents are of type {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Pattern}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Activities</em>' containment reference list isn't clear,
@@ -65,7 +66,7 @@ public interface Home extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Activity> getActivities();
+	EList<Pattern> getActivities();
 
 	/**
 	 * Returns the value of the '<em><b>Rooms</b></em>' containment reference list.
@@ -82,5 +83,21 @@ public interface Home extends EObject {
 	 * @generated
 	 */
 	EList<Room> getRooms();
+
+	/**
+	 * Returns the value of the '<em><b>Persons</b></em>' containment reference list.
+	 * The list contents are of type {@link fr.unice.polytech.alexisc.smarthomedsl.model.model.Person}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Persons</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Persons</em>' containment reference list.
+	 * @see fr.unice.polytech.alexisc.smarthomedsl.model.model.ModelPackage#getHome_Persons()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Person> getPersons();
 
 } // Home

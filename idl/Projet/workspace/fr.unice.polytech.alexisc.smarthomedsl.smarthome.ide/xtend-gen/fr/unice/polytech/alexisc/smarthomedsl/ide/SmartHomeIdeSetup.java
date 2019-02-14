@@ -3,12 +3,8 @@
  */
 package fr.unice.polytech.alexisc.smarthomedsl.ide;
 
-import com.google.inject.Guice;
 import com.google.inject.Injector;
-import fr.unice.polytech.alexisc.smarthomedsl.SmartHomeRuntimeModule;
 import fr.unice.polytech.alexisc.smarthomedsl.SmartHomeStandaloneSetup;
-import fr.unice.polytech.alexisc.smarthomedsl.ide.SmartHomeIdeModule;
-import org.eclipse.xtext.util.Modules2;
 
 /**
  * Initialization support for running Xtext languages as language servers.
@@ -17,8 +13,7 @@ import org.eclipse.xtext.util.Modules2;
 public class SmartHomeIdeSetup extends SmartHomeStandaloneSetup {
   @Override
   public Injector createInjector() {
-    SmartHomeRuntimeModule _smartHomeRuntimeModule = new SmartHomeRuntimeModule();
-    SmartHomeIdeModule _smartHomeIdeModule = new SmartHomeIdeModule();
-    return Guice.createInjector(Modules2.mixin(_smartHomeRuntimeModule, _smartHomeIdeModule));
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from SmartHomeRuntimeModule to Module");
   }
 }

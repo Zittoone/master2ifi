@@ -7,3 +7,15 @@
 /.ActivityAspect.java._trace
 /.ActivityAspectActivityAspectContext.java._trace
 /.ActivityAspectActivityAspectProperties.java._trace
+/.RoomAspect.java._trace
+/.RoomAspectRoomAspectContext.java._trace
+/.RoomAspectRoomAspectProperties.java._trace
+/.PredicateAspect.java._trace
+/.PredicateAspectPredicateAspectContext.java._trace
+/.PredicateAspectPredicateAspectProperties.java._trace
+/.PersonPredicate.java._trace
+/.PersonPredicatePersonPredicateAspectContext.java._trace
+/.PersonPredicatePersonPredicateAspectProperties.java._trace
+/.SensorPredicate.java._trace
+/.SensorPredicateSensorPredicateAspectContext.java._trace
+/.SensorPredicateSensorPredicateAspectProperties.java._trace

@@ -46,8 +46,6 @@ public class SensorItemProvider extends NamedEntityItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addValuePropertyDescriptor(object);
-			addLocationPropertyDescriptor(object);
-			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -70,50 +68,6 @@ public class SensorItemProvider extends NamedEntityItemProvider {
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Location feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLocationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Sensor_location_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Sensor_location_feature", "_UI_Sensor_type"),
-				 ModelPackage.Literals.SENSOR__LOCATION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Sensor_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Sensor_type_feature", "_UI_Sensor_type"),
-				 ModelPackage.Literals.SENSOR__TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -157,8 +111,6 @@ public class SensorItemProvider extends NamedEntityItemProvider {
 
 		switch (notification.getFeatureID(Sensor.class)) {
 			case ModelPackage.SENSOR__VALUE:
-			case ModelPackage.SENSOR__LOCATION:
-			case ModelPackage.SENSOR__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

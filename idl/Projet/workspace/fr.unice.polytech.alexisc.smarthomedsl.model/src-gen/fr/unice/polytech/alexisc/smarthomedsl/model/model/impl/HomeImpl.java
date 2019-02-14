@@ -2,10 +2,12 @@
  */
 package fr.unice.polytech.alexisc.smarthomedsl.model.model.impl;
 
-import fr.unice.polytech.alexisc.smarthomedsl.model.model.Activity;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Home;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.ModelPackage;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Pattern;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Person;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Room;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -33,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.impl.HomeImpl#getTime <em>Time</em>}</li>
  *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.impl.HomeImpl#getActivities <em>Activities</em>}</li>
  *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.impl.HomeImpl#getRooms <em>Rooms</em>}</li>
+ *   <li>{@link fr.unice.polytech.alexisc.smarthomedsl.model.model.impl.HomeImpl#getPersons <em>Persons</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,6 +50,7 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	 * @ordered
 	 */
 	protected static final int TIME_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getTime() <em>Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -56,6 +60,7 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	 * @ordered
 	 */
 	protected int time = TIME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -64,7 +69,7 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Activity> activities;
+	protected EList<Pattern> activities;
 
 	/**
 	 * The cached value of the '{@link #getRooms() <em>Rooms</em>}' containment reference list.
@@ -75,6 +80,16 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	 * @ordered
 	 */
 	protected EList<Room> rooms;
+
+	/**
+	 * The cached value of the '{@link #getPersons() <em>Persons</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPersons()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Person> persons;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,9 +136,9 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Activity> getActivities() {
+	public EList<Pattern> getActivities() {
 		if (activities == null) {
-			activities = new EObjectContainmentEList<Activity>(Activity.class, this, ModelPackage.HOME__ACTIVITIES);
+			activities = new EObjectContainmentEList<Pattern>(Pattern.class, this, ModelPackage.HOME__ACTIVITIES);
 		}
 		return activities;
 	}
@@ -145,6 +160,18 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Person> getPersons() {
+		if (persons == null) {
+			persons = new EObjectContainmentEList<Person>(Person.class, this, ModelPackage.HOME__PERSONS);
+		}
+		return persons;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -152,6 +179,8 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 				return ((InternalEList<?>)getActivities()).basicRemove(otherEnd, msgs);
 			case ModelPackage.HOME__ROOMS:
 				return ((InternalEList<?>)getRooms()).basicRemove(otherEnd, msgs);
+			case ModelPackage.HOME__PERSONS:
+				return ((InternalEList<?>)getPersons()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -170,6 +199,8 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 				return getActivities();
 			case ModelPackage.HOME__ROOMS:
 				return getRooms();
+			case ModelPackage.HOME__PERSONS:
+				return getPersons();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -188,11 +219,15 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 				return;
 			case ModelPackage.HOME__ACTIVITIES:
 				getActivities().clear();
-				getActivities().addAll((Collection<? extends Activity>)newValue);
+				getActivities().addAll((Collection<? extends Pattern>)newValue);
 				return;
 			case ModelPackage.HOME__ROOMS:
 				getRooms().clear();
 				getRooms().addAll((Collection<? extends Room>)newValue);
+				return;
+			case ModelPackage.HOME__PERSONS:
+				getPersons().clear();
+				getPersons().addAll((Collection<? extends Person>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -215,6 +250,9 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 			case ModelPackage.HOME__ROOMS:
 				getRooms().clear();
 				return;
+			case ModelPackage.HOME__PERSONS:
+				getPersons().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -233,6 +271,8 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 				return activities != null && !activities.isEmpty();
 			case ModelPackage.HOME__ROOMS:
 				return rooms != null && !rooms.isEmpty();
+			case ModelPackage.HOME__PERSONS:
+				return persons != null && !persons.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

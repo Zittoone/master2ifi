@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/fr.unice.polytech.alexisc.smarthomedsl.model/src-gen"
+    creationIcons="false" editDirectory="/fr.unice.polytech.alexisc.smarthomedsl.model.edit/src-gen"
+    editorDirectory="/fr.unice.polytech.alexisc.smarthomedsl.model.editor/src-gen"
+    modelPluginID="fr.unice.polytech.alexisc.smarthomedsl.model" modelName="Smarthome"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>smarthome.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Smarthome" basePackage="fr.unice.polytech.alexisc.smarthomedsl.model"
+      disposableProviderFactory="true" ecorePackage="smarthome.ecore#/">
+    <genClasses ecoreClass="smarthome.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute smarthome.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="smarthome.ecore#//Scenario"/>
+    <genClasses ecoreClass="smarthome.ecore#//Sensor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute smarthome.ecore#//Sensor/location"/>
+    </genClasses>
+    <genClasses ecoreClass="smarthome.ecore#//Place">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference smarthome.ecore#//Place/sensors"/>
+    </genClasses>
+    <genClasses ecoreClass="smarthome.ecore#//Record">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute smarthome.ecore#//Record/startTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute smarthome.ecore#//Record/endTime"/>
+    </genClasses>
+    <genClasses ecoreClass="smarthome.ecore#//Activity"/>
+  </genPackages>
+</genmodel:GenModel>

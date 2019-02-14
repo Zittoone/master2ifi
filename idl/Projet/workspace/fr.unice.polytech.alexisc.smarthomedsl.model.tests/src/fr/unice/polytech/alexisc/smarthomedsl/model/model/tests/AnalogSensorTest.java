@@ -13,7 +13,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AnalogSensorTest extends SensorTest {
+public class AnalogSensorTest extends StaticSensorTest {
 
 	/**
 	 * <!-- begin-user-doc -->

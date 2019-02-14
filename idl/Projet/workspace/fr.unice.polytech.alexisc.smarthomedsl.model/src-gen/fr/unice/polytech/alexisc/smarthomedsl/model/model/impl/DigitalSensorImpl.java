@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class DigitalSensorImpl extends SensorImpl implements DigitalSensor {
+public class DigitalSensorImpl extends StaticSensorImpl implements DigitalSensor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,0 +1,25 @@
+Home {
+	rooms {
+		Room "bedroom" {
+			sensors{
+				Sensor "sb1" on "Bed" reacts to "Pressure",
+				Sensor "sb2" on "Table" reacts to "Light"
+			}
+		},
+		Room "bathroom" {
+			sensors {
+				Sensor "sb1" on "Shower" reacts to "PIR",
+				Sensor "sb2" on "Cabinet" reacts to "Magnetic",
+				Sensor "sb3" on "Basin" reacts to "PIR",
+				Sensor "sb4" on "Toilet" reacts to "PIR"
+			}
+		}
+	}
+	activities{
+		Activity "Trop chaud" {
+			predicates {
+				Predicate "bathroom.sb1" is 1
+			}
+		}
+	}
+}

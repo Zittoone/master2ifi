@@ -104,6 +104,7 @@ public class HomeItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ModelPackage.Literals.HOME__ACTIVITIES);
 			childrenFeatures.add(ModelPackage.Literals.HOME__ROOMS);
+			childrenFeatures.add(ModelPackage.Literals.HOME__PERSONS);
 		}
 		return childrenFeatures;
 	}
@@ -162,6 +163,7 @@ public class HomeItemProvider
 				return;
 			case ModelPackage.HOME__ACTIVITIES:
 			case ModelPackage.HOME__ROOMS:
+			case ModelPackage.HOME__PERSONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -182,12 +184,17 @@ public class HomeItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.HOME__ACTIVITIES,
-				 ModelFactory.eINSTANCE.createActivity()));
+				 ModelFactory.eINSTANCE.createPattern()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.HOME__ROOMS,
 				 ModelFactory.eINSTANCE.createRoom()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.HOME__PERSONS,
+				 ModelFactory.eINSTANCE.createPerson()));
 	}
 
 	/**

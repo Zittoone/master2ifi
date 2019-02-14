@@ -17,8 +17,24 @@ Mon DSL permet de définir :
 
 * Des capteurs
 * Des scénarios
+* Des personnes
 
 La fusion des deux permet la détection d'évènement
+
+Je veux pouvoir détecter des patterns humains (capteurs sur la personne au niveau de la ceiture et un sur chaque cheville) en corrélation avec des capteurs statiques sur des objets.
+
+Par ex:
+
+- je veux pouvoir détecter le fait d'être devant l'ordinateur trop longtemps
+- je veux pouvoir détecter 
+
+## Détection de l'activité d'une personne
+
+à partir des 3 capteurs de position : 1 au niveau de la ceinture et un sur chaque cheville je peux déterminer la position d'une personne :
+
+Debout : différence hauteur ceinture et jambes = 1
+Assis : différence hauteur ceinture et jambes = 0.5
+Allongé : différenece hauteur ceinture et jambes = 0
 
 ## Déroulement du développement
 

@@ -1,0 +1,5 @@
+	// BeginInjectInto model.aspects.NamedEntityAspect#void exec() from model.aspects.RoomAspect
+		if (_self instanceof fr.unice.polytech.alexisc.smarthomedsl.model.model.Room){
+			model.aspects.RoomAspect.exec((fr.unice.polytech.alexisc.smarthomedsl.model.model.Room)_self);
+		} else
+		// EndInjectInto model.aspects.NamedEntityAspect#void exec() from model.aspects.RoomAspect

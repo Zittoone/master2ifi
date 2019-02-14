@@ -5,8 +5,10 @@ package fr.unice.polytech.alexisc.smarthomedsl.formatting2;
 
 import com.google.inject.Inject;
 import fr.unice.polytech.alexisc.smarthomedsl.model.model.Home;
-import fr.unice.polytech.alexisc.smarthomedsl.services.SmartHomeGrammarAccess;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Pattern;
+import fr.unice.polytech.alexisc.smarthomedsl.model.model.Room;
 import java.util.Arrays;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.AbstractFormatter2;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
@@ -17,11 +19,17 @@ import org.eclipse.xtext.xbase.lib.Extension;
 public class SmartHomeFormatter extends AbstractFormatter2 {
   @Inject
   @Extension
-  private SmartHomeGrammarAccess _smartHomeGrammarAccess;
+  private /* SmartHomeGrammarAccess */Object _smartHomeGrammarAccess;
   
   protected void _format(final Home home, @Extension final IFormattableDocument document) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getSensors() is undefined for the type Home");
+    EList<Room> _rooms = home.getRooms();
+    for (final Room room : _rooms) {
+      document.<Room>format(room);
+    }
+    EList<Pattern> _activities = home.getActivities();
+    for (final Pattern activity : _activities) {
+      document.<Pattern>format(activity);
+    }
   }
   
   public void format(final Object home, final IFormattableDocument document) {

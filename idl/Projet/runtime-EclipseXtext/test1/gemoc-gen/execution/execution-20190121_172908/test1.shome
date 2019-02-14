@@ -1,0 +1,7 @@
+Home{
+	sensors {
+		Sensor s1
+		,
+		Sensor s2
+	}
+}

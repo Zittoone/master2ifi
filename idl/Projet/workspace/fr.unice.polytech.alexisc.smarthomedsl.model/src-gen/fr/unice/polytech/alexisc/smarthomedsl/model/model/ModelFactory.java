@@ -67,31 +67,22 @@ public interface ModelFactory extends EFactory {
 	DigitalSensor createDigitalSensor();
 
 	/**
-	 * Returns a new object of class '<em>Predicate</em>'.
+	 * Returns a new object of class '<em>Rule</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Predicate</em>'.
+	 * @return a new object of class '<em>Rule</em>'.
 	 * @generated
 	 */
-	Predicate createPredicate();
+	Rule createRule();
 
 	/**
-	 * Returns a new object of class '<em>Activity</em>'.
+	 * Returns a new object of class '<em>Pattern</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Activity</em>'.
+	 * @return a new object of class '<em>Pattern</em>'.
 	 * @generated
 	 */
-	Activity createActivity();
-
-	/**
-	 * Returns a new object of class '<em>Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Action</em>'.
-	 * @generated
-	 */
-	Action createAction();
+	Pattern createPattern();
 
 	/**
 	 * Returns a new object of class '<em>Room</em>'.
@@ -101,6 +92,78 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	Room createRoom();
+
+	/**
+	 * Returns a new object of class '<em>Sensor CSV</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sensor CSV</em>'.
+	 * @generated
+	 */
+	SensorCSV createSensorCSV();
+
+	/**
+	 * Returns a new object of class '<em>Person</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Person</em>'.
+	 * @generated
+	 */
+	Person createPerson();
+
+	/**
+	 * Returns a new object of class '<em>Tag</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tag</em>'.
+	 * @generated
+	 */
+	Tag createTag();
+
+	/**
+	 * Returns a new object of class '<em>Operand</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operand</em>'.
+	 * @generated
+	 */
+	Operand createOperand();
+
+	/**
+	 * Returns a new object of class '<em>Duration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Duration</em>'.
+	 * @generated
+	 */
+	Duration createDuration();
+
+	/**
+	 * Returns a new object of class '<em>Static Sensor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Static Sensor</em>'.
+	 * @generated
+	 */
+	StaticSensor createStaticSensor();
+
+	/**
+	 * Returns a new object of class '<em>Person Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Person Predicate</em>'.
+	 * @generated
+	 */
+	PersonPredicate createPersonPredicate();
+
+	/**
+	 * Returns a new object of class '<em>Sensor Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sensor Predicate</em>'.
+	 * @generated
+	 */
+	SensorPredicate createSensorPredicate();
 
 	/**
 	 * Returns the package supported by this factory.
