@@ -59,8 +59,6 @@ public class SmarthomeFactoryImpl extends EFactoryImpl implements SmarthomeFacto
 		switch (eClass.getClassifierID()) {
 		case SmarthomePackage.HOME:
 			return createHome();
-		case SmarthomePackage.VALUE:
-			return createValue();
 		case SmarthomePackage.ANALOG_SENSOR:
 			return createAnalogSensor();
 		case SmarthomePackage.DIGITAL_SENSOR:
@@ -132,16 +130,6 @@ public class SmarthomeFactoryImpl extends EFactoryImpl implements SmarthomeFacto
 	public Home createHome() {
 		HomeImpl home = new HomeImpl();
 		return home;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Value createValue() {
-		ValueImpl value = new ValueImpl();
-		return value;
 	}
 
 	/**

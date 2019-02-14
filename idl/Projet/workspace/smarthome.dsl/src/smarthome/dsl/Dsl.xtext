@@ -49,28 +49,17 @@ Pattern returns Pattern:
 EString returns ecore::EString:
 	STRING | ID;
 
-Value returns Value:
-	{Value}
-	'Value'
-	'{'
-		('value' value=EDouble)?
-	'}';
-
 AnalogSensor returns AnalogSensor:
 	{AnalogSensor}
 	'AnalogSensor'
 	name=EString
-	'{'
-		('value' value=Value)?
-	'}';
+;
 
 DigitalSensor returns DigitalSensor:
 	{DigitalSensor}
 	'DigitalSensor'
 	name=EString
-	'{'
-		('value' value=Value)?
-	'}';
+;
 
 EDouble returns ecore::EDouble:
 	'-'? INT? '.' INT (('E'|'e') '-'? INT)?;
@@ -97,7 +86,7 @@ SensorPredicate returns SensorPredicate:
 	'{'
 		('operator' operator=Operator)?
 		('sensor' sensor=[Sensor|EString])?
-		('value' value=Value)?
+		('value' value=EDouble)?
 	'}';
 
 PersonPredicate returns PersonPredicate:

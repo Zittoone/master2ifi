@@ -616,69 +616,6 @@ ruleEString returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
 	)
 ;
 
-// Entry rule entryRuleValue
-entryRuleValue returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getValueRule()); }
-	iv_ruleValue=ruleValue
-	{ $current=$iv_ruleValue.current; }
-	EOF;
-
-// Rule Value
-ruleValue returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getValueAccess().getValueAction_0(),
-					$current);
-			}
-		)
-		otherlv_1='Value'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getValueAccess().getValueKeyword_1());
-		}
-		otherlv_2='{'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getValueAccess().getLeftCurlyBracketKeyword_2());
-		}
-		(
-			otherlv_3='value'
-			{
-				newLeafNode(otherlv_3, grammarAccess.getValueAccess().getValueKeyword_3_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getValueAccess().getValueEDoubleParserRuleCall_3_1_0());
-					}
-					lv_value_4_0=ruleEDouble
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getValueRule());
-						}
-						set(
-							$current,
-							"value",
-							lv_value_4_0,
-							"smarthome.dsl.Dsl.EDouble");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
-		otherlv_5='}'
-		{
-			newLeafNode(otherlv_5, grammarAccess.getValueAccess().getRightCurlyBracketKeyword_4());
-		}
-	)
-;
-
 // Entry rule entryRuleAnalogSensor
 entryRuleAnalogSensor returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getAnalogSensorRule()); }
@@ -725,39 +662,6 @@ ruleAnalogSensor returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_3='{'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getAnalogSensorAccess().getLeftCurlyBracketKeyword_3());
-		}
-		(
-			otherlv_4='value'
-			{
-				newLeafNode(otherlv_4, grammarAccess.getAnalogSensorAccess().getValueKeyword_4_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getAnalogSensorAccess().getValueValueParserRuleCall_4_1_0());
-					}
-					lv_value_5_0=ruleValue
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getAnalogSensorRule());
-						}
-						set(
-							$current,
-							"value",
-							lv_value_5_0,
-							"smarthome.dsl.Dsl.Value");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
-		otherlv_6='}'
-		{
-			newLeafNode(otherlv_6, grammarAccess.getAnalogSensorAccess().getRightCurlyBracketKeyword_5());
-		}
 	)
 ;
 
@@ -807,39 +711,6 @@ ruleDigitalSensor returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_3='{'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getDigitalSensorAccess().getLeftCurlyBracketKeyword_3());
-		}
-		(
-			otherlv_4='value'
-			{
-				newLeafNode(otherlv_4, grammarAccess.getDigitalSensorAccess().getValueKeyword_4_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getDigitalSensorAccess().getValueValueParserRuleCall_4_1_0());
-					}
-					lv_value_5_0=ruleValue
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getDigitalSensorRule());
-						}
-						set(
-							$current,
-							"value",
-							lv_value_5_0,
-							"smarthome.dsl.Dsl.Value");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
-		otherlv_6='}'
-		{
-			newLeafNode(otherlv_6, grammarAccess.getDigitalSensorAccess().getRightCurlyBracketKeyword_5());
-		}
 	)
 ;
 
@@ -1093,9 +964,9 @@ ruleSensorPredicate returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSensorPredicateAccess().getValueValueParserRuleCall_5_1_0());
+						newCompositeNode(grammarAccess.getSensorPredicateAccess().getValueEDoubleParserRuleCall_5_1_0());
 					}
-					lv_value_8_0=ruleValue
+					lv_value_8_0=ruleEDouble
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getSensorPredicateRule());
@@ -1104,7 +975,7 @@ ruleSensorPredicate returns [EObject current=null]
 							$current,
 							"value",
 							lv_value_8_0,
-							"smarthome.dsl.Dsl.Value");
+							"smarthome.dsl.Dsl.EDouble");
 						afterParserOrEnumRuleCall();
 					}
 				)

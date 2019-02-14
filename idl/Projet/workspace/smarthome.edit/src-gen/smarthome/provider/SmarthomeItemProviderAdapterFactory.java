@@ -96,29 +96,6 @@ public class SmarthomeItemProviderAdapterFactory extends SmarthomeAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link smarthome.Value} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ValueItemProvider valueItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link smarthome.Value}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createValueAdapter() {
-		if (valueItemProvider == null) {
-			valueItemProvider = new ValueItemProvider(this);
-		}
-
-		return valueItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link smarthome.AnalogSensor} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -449,8 +426,6 @@ public class SmarthomeItemProviderAdapterFactory extends SmarthomeAdapterFactory
 	public void dispose() {
 		if (homeItemProvider != null)
 			homeItemProvider.dispose();
-		if (valueItemProvider != null)
-			valueItemProvider.dispose();
 		if (analogSensorItemProvider != null)
 			analogSensorItemProvider.dispose();
 		if (digitalSensorItemProvider != null)

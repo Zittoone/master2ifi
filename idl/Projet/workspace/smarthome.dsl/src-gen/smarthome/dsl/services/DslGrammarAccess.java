@@ -431,52 +431,6 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getIDTerminalRuleCall_1() { return cIDTerminalRuleCall_1; }
 	}
-	public class ValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "smarthome.dsl.Dsl.Value");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cValueAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cValueKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cValueKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cValueAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cValueEDoubleParserRuleCall_3_1_0 = (RuleCall)cValueAssignment_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		
-		//Value:
-		//	{Value}
-		//	'Value'
-		//	'{' ('value' value=EDouble)?
-		//	'}';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{Value} 'Value' '{' ('value' value=EDouble)? '}'
-		public Group getGroup() { return cGroup; }
-		
-		//{Value}
-		public Action getValueAction_0() { return cValueAction_0; }
-		
-		//'Value'
-		public Keyword getValueKeyword_1() { return cValueKeyword_1; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
-		
-		//('value' value=EDouble)?
-		public Group getGroup_3() { return cGroup_3; }
-		
-		//'value'
-		public Keyword getValueKeyword_3_0() { return cValueKeyword_3_0; }
-		
-		//value=EDouble
-		public Assignment getValueAssignment_3_1() { return cValueAssignment_3_1; }
-		
-		//EDouble
-		public RuleCall getValueEDoubleParserRuleCall_3_1_0() { return cValueEDoubleParserRuleCall_3_1_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
-	}
 	public class AnalogSensorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "smarthome.dsl.Dsl.AnalogSensor");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -484,22 +438,14 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAnalogSensorKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cValueKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cValueAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cValueValueParserRuleCall_4_1_0 = (RuleCall)cValueAssignment_4_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//AnalogSensor:
 		//	{AnalogSensor}
 		//	'AnalogSensor'
-		//	name=EString
-		//	'{' ('value' value=Value)?
-		//	'}';
+		//	name=EString;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{AnalogSensor} 'AnalogSensor' name=EString '{' ('value' value=Value)? '}'
+		//{AnalogSensor} 'AnalogSensor' name=EString
 		public Group getGroup() { return cGroup; }
 		
 		//{AnalogSensor}
@@ -513,24 +459,6 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//EString
 		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
-		
-		//('value' value=Value)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//'value'
-		public Keyword getValueKeyword_4_0() { return cValueKeyword_4_0; }
-		
-		//value=Value
-		public Assignment getValueAssignment_4_1() { return cValueAssignment_4_1; }
-		
-		//Value
-		public RuleCall getValueValueParserRuleCall_4_1_0() { return cValueValueParserRuleCall_4_1_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 	public class DigitalSensorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "smarthome.dsl.Dsl.DigitalSensor");
@@ -539,22 +467,14 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cDigitalSensorKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cValueKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cValueAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cValueValueParserRuleCall_4_1_0 = (RuleCall)cValueAssignment_4_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//DigitalSensor:
 		//	{DigitalSensor}
 		//	'DigitalSensor'
-		//	name=EString
-		//	'{' ('value' value=Value)?
-		//	'}';
+		//	name=EString;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{DigitalSensor} 'DigitalSensor' name=EString '{' ('value' value=Value)? '}'
+		//{DigitalSensor} 'DigitalSensor' name=EString
 		public Group getGroup() { return cGroup; }
 		
 		//{DigitalSensor}
@@ -568,24 +488,6 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//EString
 		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
-		
-		//('value' value=Value)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//'value'
-		public Keyword getValueKeyword_4_0() { return cValueKeyword_4_0; }
-		
-		//value=Value
-		public Assignment getValueAssignment_4_1() { return cValueAssignment_4_1; }
-		
-		//Value
-		public RuleCall getValueValueParserRuleCall_4_1_0() { return cValueValueParserRuleCall_4_1_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 	public class EDoubleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "smarthome.dsl.Dsl.EDouble");
@@ -814,18 +716,18 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cValueKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cValueAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cValueValueParserRuleCall_5_1_0 = (RuleCall)cValueAssignment_5_1.eContents().get(0);
+		private final RuleCall cValueEDoubleParserRuleCall_5_1_0 = (RuleCall)cValueAssignment_5_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//SensorPredicate:
 		//	{SensorPredicate}
 		//	'SensorPredicate'
-		//	'{' ('operator' operator=Operator)? ('sensor' sensor=[Sensor|EString])? ('value' value=Value)?
+		//	'{' ('operator' operator=Operator)? ('sensor' sensor=[Sensor|EString])? ('value' value=EDouble)?
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{SensorPredicate} 'SensorPredicate' '{' ('operator' operator=Operator)? ('sensor' sensor=[Sensor|EString])? ('value'
-		//value=Value)? '}'
+		//value=EDouble)? '}'
 		public Group getGroup() { return cGroup; }
 		
 		//{SensorPredicate}
@@ -864,17 +766,17 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//EString
 		public RuleCall getSensorSensorEStringParserRuleCall_4_1_0_1() { return cSensorSensorEStringParserRuleCall_4_1_0_1; }
 		
-		//('value' value=Value)?
+		//('value' value=EDouble)?
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//'value'
 		public Keyword getValueKeyword_5_0() { return cValueKeyword_5_0; }
 		
-		//value=Value
+		//value=EDouble
 		public Assignment getValueAssignment_5_1() { return cValueAssignment_5_1; }
 		
-		//Value
-		public RuleCall getValueValueParserRuleCall_5_1_0() { return cValueValueParserRuleCall_5_1_0; }
+		//EDouble
+		public RuleCall getValueEDoubleParserRuleCall_5_1_0() { return cValueEDoubleParserRuleCall_5_1_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
@@ -1078,7 +980,6 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	private final PersonElements pPerson;
 	private final PatternElements pPattern;
 	private final EStringElements pEString;
-	private final ValueElements pValue;
 	private final AnalogSensorElements pAnalogSensor;
 	private final DigitalSensorElements pDigitalSensor;
 	private final EDoubleElements pEDouble;
@@ -1107,7 +1008,6 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPerson = new PersonElements();
 		this.pPattern = new PatternElements();
 		this.pEString = new EStringElements();
-		this.pValue = new ValueElements();
 		this.pAnalogSensor = new AnalogSensorElements();
 		this.pDigitalSensor = new DigitalSensorElements();
 		this.pEDouble = new EDoubleElements();
@@ -1232,25 +1132,10 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		return getEStringAccess().getRule();
 	}
 	
-	//Value:
-	//	{Value}
-	//	'Value'
-	//	'{' ('value' value=EDouble)?
-	//	'}';
-	public ValueElements getValueAccess() {
-		return pValue;
-	}
-	
-	public ParserRule getValueRule() {
-		return getValueAccess().getRule();
-	}
-	
 	//AnalogSensor:
 	//	{AnalogSensor}
 	//	'AnalogSensor'
-	//	name=EString
-	//	'{' ('value' value=Value)?
-	//	'}';
+	//	name=EString;
 	public AnalogSensorElements getAnalogSensorAccess() {
 		return pAnalogSensor;
 	}
@@ -1262,9 +1147,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	//DigitalSensor:
 	//	{DigitalSensor}
 	//	'DigitalSensor'
-	//	name=EString
-	//	'{' ('value' value=Value)?
-	//	'}';
+	//	name=EString;
 	public DigitalSensorElements getDigitalSensorAccess() {
 		return pDigitalSensor;
 	}
@@ -1313,7 +1196,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	//SensorPredicate:
 	//	{SensorPredicate}
 	//	'SensorPredicate'
-	//	'{' ('operator' operator=Operator)? ('sensor' sensor=[Sensor|EString])? ('value' value=Value)?
+	//	'{' ('operator' operator=Operator)? ('sensor' sensor=[Sensor|EString])? ('value' value=EDouble)?
 	//	'}';
 	public SensorPredicateElements getSensorPredicateAccess() {
 		return pSensorPredicate;

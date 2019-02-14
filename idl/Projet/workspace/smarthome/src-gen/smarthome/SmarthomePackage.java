@@ -150,43 +150,6 @@ public interface SmarthomePackage extends EPackage {
 	int NAMED_ENTITY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link smarthome.impl.ValueImpl <em>Value</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see smarthome.impl.ValueImpl
-	 * @see smarthome.impl.SmarthomePackageImpl#getValue()
-	 * @generated
-	 */
-	int VALUE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE__VALUE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link smarthome.impl.SensorImpl <em>Sensor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,7 +157,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getSensor()
 	 * @generated
 	 */
-	int SENSOR = 3;
+	int SENSOR = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -206,22 +169,13 @@ public interface SmarthomePackage extends EPackage {
 	int SENSOR__NAME = NAMED_ENTITY__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR__VALUE = NAMED_ENTITY_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Sensor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_FEATURE_COUNT = NAMED_ENTITY_FEATURE_COUNT + 1;
+	int SENSOR_FEATURE_COUNT = NAMED_ENTITY_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Sensor</em>' class.
@@ -240,7 +194,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getAnalogSensor()
 	 * @generated
 	 */
-	int ANALOG_SENSOR = 4;
+	int ANALOG_SENSOR = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -250,15 +204,6 @@ public interface SmarthomePackage extends EPackage {
 	 * @ordered
 	 */
 	int ANALOG_SENSOR__NAME = SENSOR__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANALOG_SENSOR__VALUE = SENSOR__VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Analog Sensor</em>' class.
@@ -286,7 +231,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getDigitalSensor()
 	 * @generated
 	 */
-	int DIGITAL_SENSOR = 5;
+	int DIGITAL_SENSOR = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -296,15 +241,6 @@ public interface SmarthomePackage extends EPackage {
 	 * @ordered
 	 */
 	int DIGITAL_SENSOR__NAME = SENSOR__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIGITAL_SENSOR__VALUE = SENSOR__VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Digital Sensor</em>' class.
@@ -332,7 +268,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getCSVSensor()
 	 * @generated
 	 */
-	int CSV_SENSOR = 6;
+	int CSV_SENSOR = 5;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' attribute.
@@ -369,7 +305,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getRoom()
 	 * @generated
 	 */
-	int ROOM = 7;
+	int ROOM = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -415,7 +351,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getPattern()
 	 * @generated
 	 */
-	int PATTERN = 8;
+	int PATTERN = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -461,7 +397,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getRule()
 	 * @generated
 	 */
-	int RULE = 9;
+	int RULE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Predicates</b></em>' reference list.
@@ -507,7 +443,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getPerson()
 	 * @generated
 	 */
-	int PERSON = 10;
+	int PERSON = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -544,7 +480,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getPredicate()
 	 * @generated
 	 */
-	int PREDICATE = 11;
+	int PREDICATE = 10;
 
 	/**
 	 * The number of structural features of the '<em>Predicate</em>' class.
@@ -572,7 +508,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getSensorPredicate()
 	 * @generated
 	 */
-	int SENSOR_PREDICATE = 12;
+	int SENSOR_PREDICATE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Sensor</b></em>' reference.
@@ -593,7 +529,7 @@ public interface SmarthomePackage extends EPackage {
 	int SENSOR_PREDICATE__OPERATOR = PREDICATE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -627,7 +563,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getPersonPredicate()
 	 * @generated
 	 */
-	int PERSON_PREDICATE = 13;
+	int PERSON_PREDICATE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Person</b></em>' reference.
@@ -673,7 +609,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getDuration()
 	 * @generated
 	 */
-	int DURATION = 14;
+	int DURATION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Time</b></em>' attribute.
@@ -719,7 +655,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getActivity()
 	 * @generated
 	 */
-	int ACTIVITY = 15;
+	int ACTIVITY = 14;
 
 	/**
 	 * The meta object id for the '{@link smarthome.Operator <em>Operator</em>}' enum.
@@ -729,7 +665,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getOperator()
 	 * @generated
 	 */
-	int OPERATOR = 16;
+	int OPERATOR = 15;
 
 	/**
 	 * The meta object id for the '{@link smarthome.Precision <em>Precision</em>}' enum.
@@ -739,7 +675,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getPrecision()
 	 * @generated
 	 */
-	int PRECISION = 17;
+	int PRECISION = 16;
 
 	/**
 	 * Returns the meta object for class '{@link smarthome.Home <em>Home</em>}'.
@@ -806,27 +742,6 @@ public interface SmarthomePackage extends EPackage {
 	EAttribute getNamedEntity_Name();
 
 	/**
-	 * Returns the meta object for class '{@link smarthome.Value <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Value</em>'.
-	 * @see smarthome.Value
-	 * @generated
-	 */
-	EClass getValue();
-
-	/**
-	 * Returns the meta object for the attribute '{@link smarthome.Value#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see smarthome.Value#getValue()
-	 * @see #getValue()
-	 * @generated
-	 */
-	EAttribute getValue_Value();
-
-	/**
 	 * Returns the meta object for class '{@link smarthome.Sensor <em>Sensor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -835,17 +750,6 @@ public interface SmarthomePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSensor();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link smarthome.Sensor#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see smarthome.Sensor#getValue()
-	 * @see #getSensor()
-	 * @generated
-	 */
-	EReference getSensor_Value();
 
 	/**
 	 * Returns the meta object for class '{@link smarthome.AnalogSensor <em>Analog Sensor</em>}'.
@@ -1015,15 +919,15 @@ public interface SmarthomePackage extends EPackage {
 	EAttribute getSensorPredicate_Operator();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link smarthome.SensorPredicate#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link smarthome.SensorPredicate#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @return the meta object for the attribute '<em>Value</em>'.
 	 * @see smarthome.SensorPredicate#getValue()
 	 * @see #getSensorPredicate()
 	 * @generated
 	 */
-	EReference getSensorPredicate_Value();
+	EAttribute getSensorPredicate_Value();
 
 	/**
 	 * Returns the meta object for class '{@link smarthome.PersonPredicate <em>Person Predicate</em>}'.
@@ -1195,24 +1099,6 @@ public interface SmarthomePackage extends EPackage {
 		EAttribute NAMED_ENTITY__NAME = eINSTANCE.getNamedEntity_Name();
 
 		/**
-		 * The meta object literal for the '{@link smarthome.impl.ValueImpl <em>Value</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see smarthome.impl.ValueImpl
-		 * @see smarthome.impl.SmarthomePackageImpl#getValue()
-		 * @generated
-		 */
-		EClass VALUE = eINSTANCE.getValue();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VALUE__VALUE = eINSTANCE.getValue_Value();
-
-		/**
 		 * The meta object literal for the '{@link smarthome.impl.SensorImpl <em>Sensor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1221,14 +1107,6 @@ public interface SmarthomePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SENSOR = eINSTANCE.getSensor();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SENSOR__VALUE = eINSTANCE.getSensor_Value();
 
 		/**
 		 * The meta object literal for the '{@link smarthome.impl.AnalogSensorImpl <em>Analog Sensor</em>}' class.
@@ -1377,12 +1255,12 @@ public interface SmarthomePackage extends EPackage {
 		EAttribute SENSOR_PREDICATE__OPERATOR = eINSTANCE.getSensorPredicate_Operator();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SENSOR_PREDICATE__VALUE = eINSTANCE.getSensorPredicate_Value();
+		EAttribute SENSOR_PREDICATE__VALUE = eINSTANCE.getSensorPredicate_Value();
 
 		/**
 		 * The meta object literal for the '{@link smarthome.impl.PersonPredicateImpl <em>Person Predicate</em>}' class.

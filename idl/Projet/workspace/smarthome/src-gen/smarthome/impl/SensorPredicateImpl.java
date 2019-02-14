@@ -3,8 +3,6 @@
 package smarthome.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -14,7 +12,6 @@ import smarthome.Operator;
 import smarthome.Sensor;
 import smarthome.SensorPredicate;
 import smarthome.SmarthomePackage;
-import smarthome.Value;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,14 +60,24 @@ public class SensorPredicateImpl extends PredicateImpl implements SensorPredicat
 	protected Operator operator = OPERATOR_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected Value value;
+	protected static final double VALUE_EDEFAULT = 0.0;
+
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected double value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,7 +165,7 @@ public class SensorPredicateImpl extends PredicateImpl implements SensorPredicat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Value getValue() {
+	public double getValue() {
 		return value;
 	}
 
@@ -167,54 +174,12 @@ public class SensorPredicateImpl extends PredicateImpl implements SensorPredicat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(Value newValue, NotificationChain msgs) {
-		Value oldValue = value;
+	public void setValue(double newValue) {
+		double oldValue = value;
 		value = newValue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					SmarthomePackage.SENSOR_PREDICATE__VALUE, oldValue, newValue);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValue(Value newValue) {
-		if (newValue != value) {
-			NotificationChain msgs = null;
-			if (value != null)
-				msgs = ((InternalEObject) value).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - SmarthomePackage.SENSOR_PREDICATE__VALUE, null, msgs);
-			if (newValue != null)
-				msgs = ((InternalEObject) newValue).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - SmarthomePackage.SENSOR_PREDICATE__VALUE, null, msgs);
-			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SmarthomePackage.SENSOR_PREDICATE__VALUE, newValue,
-					newValue));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case SmarthomePackage.SENSOR_PREDICATE__VALUE:
-			return basicSetValue(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SmarthomePackage.SENSOR_PREDICATE__VALUE, oldValue,
+					value));
 	}
 
 	/**
@@ -252,7 +217,7 @@ public class SensorPredicateImpl extends PredicateImpl implements SensorPredicat
 			setOperator((Operator) newValue);
 			return;
 		case SmarthomePackage.SENSOR_PREDICATE__VALUE:
-			setValue((Value) newValue);
+			setValue((Double) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -273,7 +238,7 @@ public class SensorPredicateImpl extends PredicateImpl implements SensorPredicat
 			setOperator(OPERATOR_EDEFAULT);
 			return;
 		case SmarthomePackage.SENSOR_PREDICATE__VALUE:
-			setValue((Value) null);
+			setValue(VALUE_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -292,7 +257,7 @@ public class SensorPredicateImpl extends PredicateImpl implements SensorPredicat
 		case SmarthomePackage.SENSOR_PREDICATE__OPERATOR:
 			return operator != OPERATOR_EDEFAULT;
 		case SmarthomePackage.SENSOR_PREDICATE__VALUE:
-			return value != null;
+			return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -310,6 +275,8 @@ public class SensorPredicateImpl extends PredicateImpl implements SensorPredicat
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (operator: ");
 		result.append(operator);
+		result.append(", value: ");
+		result.append(value);
 		result.append(')');
 		return result.toString();
 	}

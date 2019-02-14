@@ -29,7 +29,6 @@ import smarthome.Sensor;
 import smarthome.SensorPredicate;
 import smarthome.SmarthomeFactory;
 import smarthome.SmarthomePackage;
-import smarthome.Value;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,13 +50,6 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 	 * @generated
 	 */
 	private EClass namedEntityEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass valueEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -286,35 +278,8 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getValue() {
-		return valueEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getValue_Value() {
-		return (EAttribute) valueEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSensor() {
 		return sensorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSensor_Value() {
-		return (EReference) sensorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -466,8 +431,8 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSensorPredicate_Value() {
-		return (EReference) sensorPredicateEClass.getEStructuralFeatures().get(2);
+	public EAttribute getSensorPredicate_Value() {
+		return (EAttribute) sensorPredicateEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -588,11 +553,7 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 		namedEntityEClass = createEClass(NAMED_ENTITY);
 		createEAttribute(namedEntityEClass, NAMED_ENTITY__NAME);
 
-		valueEClass = createEClass(VALUE);
-		createEAttribute(valueEClass, VALUE__VALUE);
-
 		sensorEClass = createEClass(SENSOR);
-		createEReference(sensorEClass, SENSOR__VALUE);
 
 		analogSensorEClass = createEClass(ANALOG_SENSOR);
 
@@ -618,7 +579,7 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 		sensorPredicateEClass = createEClass(SENSOR_PREDICATE);
 		createEReference(sensorPredicateEClass, SENSOR_PREDICATE__SENSOR);
 		createEAttribute(sensorPredicateEClass, SENSOR_PREDICATE__OPERATOR);
-		createEReference(sensorPredicateEClass, SENSOR_PREDICATE__VALUE);
+		createEAttribute(sensorPredicateEClass, SENSOR_PREDICATE__VALUE);
 
 		personPredicateEClass = createEClass(PERSON_PREDICATE);
 		createEReference(personPredicateEClass, PERSON_PREDICATE__PERSON);
@@ -689,14 +650,7 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 		initEAttribute(getNamedEntity_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedEntity.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getValue_Value(), ecorePackage.getEDouble(), "value", null, 0, 1, Value.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(sensorEClass, Sensor.class, "Sensor", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSensor_Value(), this.getValue(), null, "value", null, 0, 1, Sensor.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 
 		initEClass(analogSensorEClass, AnalogSensor.class, "AnalogSensor", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -739,9 +693,9 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSensorPredicate_Operator(), this.getOperator(), "operator", null, 0, 1, SensorPredicate.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSensorPredicate_Value(), this.getValue(), null, "value", null, 0, 1, SensorPredicate.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSensorPredicate_Value(), ecorePackage.getEDouble(), "value", null, 0, 1,
+				SensorPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(personPredicateEClass, PersonPredicate.class, "PersonPredicate", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

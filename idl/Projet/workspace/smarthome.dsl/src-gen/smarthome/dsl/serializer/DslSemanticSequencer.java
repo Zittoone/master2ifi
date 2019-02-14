@@ -25,7 +25,6 @@ import smarthome.Room;
 import smarthome.Rule;
 import smarthome.SensorPredicate;
 import smarthome.SmarthomePackage;
-import smarthome.Value;
 import smarthome.dsl.services.DslGrammarAccess;
 
 @SuppressWarnings("all")
@@ -72,9 +71,6 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case SmarthomePackage.SENSOR_PREDICATE:
 				sequence_SensorPredicate(context, (SensorPredicate) semanticObject); 
 				return; 
-			case SmarthomePackage.VALUE:
-				sequence_Value(context, (Value) semanticObject); 
-				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -86,10 +82,16 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AnalogSensor returns AnalogSensor
 	 *
 	 * Constraint:
-	 *     (name=EString value=Value?)
+	 *     name=EString
 	 */
 	protected void sequence_AnalogSensor(ISerializationContext context, AnalogSensor semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SmarthomePackage.Literals.NAMED_ENTITY__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SmarthomePackage.Literals.NAMED_ENTITY__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAnalogSensorAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -99,10 +101,16 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     DigitalSensor returns DigitalSensor
 	 *
 	 * Constraint:
-	 *     (name=EString value=Value?)
+	 *     name=EString
 	 */
 	protected void sequence_DigitalSensor(ISerializationContext context, DigitalSensor semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SmarthomePackage.Literals.NAMED_ENTITY__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SmarthomePackage.Literals.NAMED_ENTITY__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDigitalSensorAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -203,21 +211,9 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     SensorPredicate returns SensorPredicate
 	 *
 	 * Constraint:
-	 *     (operator=Operator? sensor=[Sensor|EString]? value=Value?)
+	 *     (operator=Operator? sensor=[Sensor|EString]? value=EDouble?)
 	 */
 	protected void sequence_SensorPredicate(ISerializationContext context, SensorPredicate semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Value returns Value
-	 *
-	 * Constraint:
-	 *     value=EDouble?
-	 */
-	protected void sequence_Value(ISerializationContext context, Value semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -52,12 +52,8 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPatternAccess().getGroup(), "rule__Pattern__Group__0");
 					put(grammarAccess.getPatternAccess().getGroup_4(), "rule__Pattern__Group_4__0");
 					put(grammarAccess.getPatternAccess().getGroup_4_3(), "rule__Pattern__Group_4_3__0");
-					put(grammarAccess.getValueAccess().getGroup(), "rule__Value__Group__0");
-					put(grammarAccess.getValueAccess().getGroup_3(), "rule__Value__Group_3__0");
 					put(grammarAccess.getAnalogSensorAccess().getGroup(), "rule__AnalogSensor__Group__0");
-					put(grammarAccess.getAnalogSensorAccess().getGroup_4(), "rule__AnalogSensor__Group_4__0");
 					put(grammarAccess.getDigitalSensorAccess().getGroup(), "rule__DigitalSensor__Group__0");
-					put(grammarAccess.getDigitalSensorAccess().getGroup_4(), "rule__DigitalSensor__Group_4__0");
 					put(grammarAccess.getEDoubleAccess().getGroup(), "rule__EDouble__Group__0");
 					put(grammarAccess.getEDoubleAccess().getGroup_4(), "rule__EDouble__Group_4__0");
 					put(grammarAccess.getRuleAccess().getGroup(), "rule__Rule__Group__0");
@@ -88,11 +84,8 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPatternAccess().getNameAssignment_2(), "rule__Pattern__NameAssignment_2");
 					put(grammarAccess.getPatternAccess().getRulesAssignment_4_2(), "rule__Pattern__RulesAssignment_4_2");
 					put(grammarAccess.getPatternAccess().getRulesAssignment_4_3_1(), "rule__Pattern__RulesAssignment_4_3_1");
-					put(grammarAccess.getValueAccess().getValueAssignment_3_1(), "rule__Value__ValueAssignment_3_1");
 					put(grammarAccess.getAnalogSensorAccess().getNameAssignment_2(), "rule__AnalogSensor__NameAssignment_2");
-					put(grammarAccess.getAnalogSensorAccess().getValueAssignment_4_1(), "rule__AnalogSensor__ValueAssignment_4_1");
 					put(grammarAccess.getDigitalSensorAccess().getNameAssignment_2(), "rule__DigitalSensor__NameAssignment_2");
-					put(grammarAccess.getDigitalSensorAccess().getValueAssignment_4_1(), "rule__DigitalSensor__ValueAssignment_4_1");
 					put(grammarAccess.getRuleAccess().getPredicatesAssignment_3_2(), "rule__Rule__PredicatesAssignment_3_2");
 					put(grammarAccess.getRuleAccess().getPredicatesAssignment_3_3_1(), "rule__Rule__PredicatesAssignment_3_3_1");
 					put(grammarAccess.getRuleAccess().getDurationAssignment_4_1(), "rule__Rule__DurationAssignment_4_1");

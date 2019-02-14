@@ -77,29 +77,29 @@ public interface SensorPredicate extends Predicate {
 	void setOperator(Operator value);
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' containment reference.
-	 * @see #setValue(Value)
+	 * @return the value of the '<em>Value</em>' attribute.
+	 * @see #setValue(double)
 	 * @see smarthome.SmarthomePackage#getSensorPredicate_Value()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	Value getValue();
+	double getValue();
 
 	/**
-	 * Sets the value of the '{@link smarthome.SensorPredicate#getValue <em>Value</em>}' containment reference.
+	 * Sets the value of the '{@link smarthome.SensorPredicate#getValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' containment reference.
+	 * @param value the new value of the '<em>Value</em>' attribute.
 	 * @see #getValue()
 	 * @generated
 	 */
-	void setValue(Value value);
+	void setValue(double value);
 
 } // SensorPredicate
