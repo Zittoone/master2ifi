@@ -4,6 +4,7 @@ package smarthome.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,12 +12,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import smarthome.Home;
+import smarthome.NamedEntity;
 import smarthome.Pattern;
 import smarthome.Person;
 import smarthome.Room;
@@ -33,6 +37,8 @@ import smarthome.SmarthomePackage;
  *   <li>{@link smarthome.impl.HomeImpl#getRooms <em>Rooms</em>}</li>
  *   <li>{@link smarthome.impl.HomeImpl#getPersons <em>Persons</em>}</li>
  *   <li>{@link smarthome.impl.HomeImpl#getPatterns <em>Patterns</em>}</li>
+ *   <li>{@link smarthome.impl.HomeImpl#getFileEvents <em>File Events</em>}</li>
+ *   <li>{@link smarthome.impl.HomeImpl#getMonitoredEntities <em>Monitored Entities</em>}</li>
  * </ul>
  *
  * @generated
@@ -67,6 +73,36 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	 * @ordered
 	 */
 	protected EList<Pattern> patterns;
+
+	/**
+	 * The default value of the '{@link #getFileEvents() <em>File Events</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFileEvents()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FILE_EVENTS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFileEvents() <em>File Events</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFileEvents()
+	 * @generated
+	 * @ordered
+	 */
+	protected String fileEvents = FILE_EVENTS_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getMonitoredEntities() <em>Monitored Entities</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMonitoredEntities()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<NamedEntity> monitoredEntities;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,6 +164,41 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getFileEvents() {
+		return fileEvents;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFileEvents(String newFileEvents) {
+		String oldFileEvents = fileEvents;
+		fileEvents = newFileEvents;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SmarthomePackage.HOME__FILE_EVENTS, oldFileEvents,
+					fileEvents));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<NamedEntity> getMonitoredEntities() {
+		if (monitoredEntities == null) {
+			monitoredEntities = new EObjectResolvingEList<NamedEntity>(NamedEntity.class, this,
+					SmarthomePackage.HOME__MONITORED_ENTITIES);
+		}
+		return monitoredEntities;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -155,6 +226,10 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 			return getPersons();
 		case SmarthomePackage.HOME__PATTERNS:
 			return getPatterns();
+		case SmarthomePackage.HOME__FILE_EVENTS:
+			return getFileEvents();
+		case SmarthomePackage.HOME__MONITORED_ENTITIES:
+			return getMonitoredEntities();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -180,6 +255,13 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 			getPatterns().clear();
 			getPatterns().addAll((Collection<? extends Pattern>) newValue);
 			return;
+		case SmarthomePackage.HOME__FILE_EVENTS:
+			setFileEvents((String) newValue);
+			return;
+		case SmarthomePackage.HOME__MONITORED_ENTITIES:
+			getMonitoredEntities().clear();
+			getMonitoredEntities().addAll((Collection<? extends NamedEntity>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -201,6 +283,12 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 		case SmarthomePackage.HOME__PATTERNS:
 			getPatterns().clear();
 			return;
+		case SmarthomePackage.HOME__FILE_EVENTS:
+			setFileEvents(FILE_EVENTS_EDEFAULT);
+			return;
+		case SmarthomePackage.HOME__MONITORED_ENTITIES:
+			getMonitoredEntities().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -219,8 +307,29 @@ public class HomeImpl extends MinimalEObjectImpl.Container implements Home {
 			return persons != null && !persons.isEmpty();
 		case SmarthomePackage.HOME__PATTERNS:
 			return patterns != null && !patterns.isEmpty();
+		case SmarthomePackage.HOME__FILE_EVENTS:
+			return FILE_EVENTS_EDEFAULT == null ? fileEvents != null : !FILE_EVENTS_EDEFAULT.equals(fileEvents);
+		case SmarthomePackage.HOME__MONITORED_ENTITIES:
+			return monitoredEntities != null && !monitoredEntities.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (fileEvents: ");
+		result.append(fileEvents);
+		result.append(')');
+		return result.toString();
 	}
 
 } //HomeImpl

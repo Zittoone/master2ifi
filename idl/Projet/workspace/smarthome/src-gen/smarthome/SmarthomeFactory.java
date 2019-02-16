@@ -58,6 +58,15 @@ public interface SmarthomeFactory extends EFactory {
 	CSVSensor createCSVSensor();
 
 	/**
+	 * Returns a new object of class '<em>Tag</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tag</em>'.
+	 * @generated
+	 */
+	Tag createTag();
+
+	/**
 	 * Returns a new object of class '<em>Room</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -119,6 +128,15 @@ public interface SmarthomeFactory extends EFactory {
 	 * @generated
 	 */
 	Duration createDuration();
+
+	/**
+	 * Returns a new object of class '<em>Mode</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mode</em>'.
+	 * @generated
+	 */
+	Mode createMode();
 
 	/**
 	 * Returns the package supported by this factory.

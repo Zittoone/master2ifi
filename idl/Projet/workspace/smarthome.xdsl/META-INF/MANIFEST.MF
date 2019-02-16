@@ -17,6 +17,7 @@ Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.7.0";visibility:="privat
  org.eclipse.gemoc.xdsmlframework.api;bundle-version="0.0.0";visibility:="reexport",
  org.eclipse.gemoc.execution.sequential.javaxdsml.api;bundle-version="0.0.0";visibility:="reexport",
  org.eclipse.gemoc.executionframework.engine;bundle-version="0.0.0";visibility:="reexport",
+ smarthome.k3project;bundle-version="0.0.0";visibility:="private",
  smarthome;bundle-version=0.0.0;visibility:=private
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

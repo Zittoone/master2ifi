@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Pattern extends NamedEntity {
 	/**
-	 * Returns the value of the '<em><b>Rules</b></em>' reference list.
+	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.
 	 * The list contents are of type {@link smarthome.Rule}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -30,9 +30,9 @@ public interface Pattern extends NamedEntity {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rules</em>' reference list.
+	 * @return the value of the '<em>Rules</em>' containment reference list.
 	 * @see smarthome.SmarthomePackage#getPattern_Rules()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Rule> getRules();

@@ -12,12 +12,14 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -54,8 +56,40 @@ public class HomeItemProvider extends ItemProviderAdapter implements IEditingDom
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addFileEventsPropertyDescriptor(object);
+			addMonitoredEntitiesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the File Events feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFileEventsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Home_fileEvents_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Home_fileEvents_feature", "_UI_Home_type"),
+						SmarthomePackage.Literals.HOME__FILE_EVENTS, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Monitored Entities feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMonitoredEntitiesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Home_monitoredEntities_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Home_monitoredEntities_feature",
+								"_UI_Home_type"),
+						SmarthomePackage.Literals.HOME__MONITORED_ENTITIES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -119,7 +153,9 @@ public class HomeItemProvider extends ItemProviderAdapter implements IEditingDom
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Home_type");
+		String label = ((Home) object).getFileEvents();
+		return label == null || label.length() == 0 ? getString("_UI_Home_type")
+				: getString("_UI_Home_type") + " " + label;
 	}
 
 	/**
@@ -134,6 +170,9 @@ public class HomeItemProvider extends ItemProviderAdapter implements IEditingDom
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Home.class)) {
+		case SmarthomePackage.HOME__FILE_EVENTS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case SmarthomePackage.HOME__ROOMS:
 		case SmarthomePackage.HOME__PERSONS:
 		case SmarthomePackage.HOME__PATTERNS:

@@ -10,6 +10,9 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
+import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 import smarthome.dsl.services.DslGrammarAccess;
@@ -18,10 +21,12 @@ import smarthome.dsl.services.DslGrammarAccess;
 public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected DslGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_Rule_ForKeyword_3_0_0_or_SinceKeyword_3_0_1;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (DslGrammarAccess) access;
+		match_Rule_ForKeyword_3_0_0_or_SinceKeyword_3_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRuleAccess().getForKeyword_3_0_0()), new TokenAlias(false, false, grammarAccess.getRuleAccess().getSinceKeyword_3_0_1()));
 	}
 	
 	@Override
@@ -36,8 +41,22 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			acceptNodes(getLastNavigableState(), syntaxNodes);
+			if (match_Rule_ForKeyword_3_0_0_or_SinceKeyword_3_0_1.equals(syntax))
+				emit_Rule_ForKeyword_3_0_0_or_SinceKeyword_3_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     'for' | 'since'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) '{' (ambiguity) duration=Duration
+	 *     predicates+=Predicate ')' (ambiguity) duration=Duration
+	 */
+	protected void emit_Rule_ForKeyword_3_0_0_or_SinceKeyword_3_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 }

@@ -95,13 +95,31 @@ public interface SmarthomePackage extends EPackage {
 	int HOME__PATTERNS = 2;
 
 	/**
+	 * The feature id for the '<em><b>File Events</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME__FILE_EVENTS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Monitored Entities</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME__MONITORED_ENTITIES = 4;
+
+	/**
 	 * The number of structural features of the '<em>Home</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOME_FEATURE_COUNT = 3;
+	int HOME_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Home</em>' class.
@@ -298,6 +316,43 @@ public interface SmarthomePackage extends EPackage {
 	int CSV_SENSOR_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link smarthome.impl.TagImpl <em>Tag</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see smarthome.impl.TagImpl
+	 * @see smarthome.impl.SmarthomePackageImpl#getTag()
+	 * @generated
+	 */
+	int TAG = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAG__NAME = NAMED_ENTITY__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Tag</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAG_FEATURE_COUNT = NAMED_ENTITY_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Tag</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAG_OPERATION_COUNT = NAMED_ENTITY_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link smarthome.impl.RoomImpl <em>Room</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -305,7 +360,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getRoom()
 	 * @generated
 	 */
-	int ROOM = 6;
+	int ROOM = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -351,7 +406,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getPattern()
 	 * @generated
 	 */
-	int PATTERN = 7;
+	int PATTERN = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -363,7 +418,7 @@ public interface SmarthomePackage extends EPackage {
 	int PATTERN__NAME = NAMED_ENTITY__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Rules</b></em>' reference list.
+	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -397,10 +452,10 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getRule()
 	 * @generated
 	 */
-	int RULE = 8;
+	int RULE = 9;
 
 	/**
-	 * The feature id for the '<em><b>Predicates</b></em>' reference list.
+	 * The feature id for the '<em><b>Predicates</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -443,7 +498,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getPerson()
 	 * @generated
 	 */
-	int PERSON = 9;
+	int PERSON = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -455,13 +510,49 @@ public interface SmarthomePackage extends EPackage {
 	int PERSON__NAME = NAMED_ENTITY__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Ankle Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON__ANKLE_LEFT = NAMED_ENTITY_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Ankle Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON__ANKLE_RIGHT = NAMED_ENTITY_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Belt</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON__BELT = NAMED_ENTITY_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Chest</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON__CHEST = NAMED_ENTITY_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Person</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERSON_FEATURE_COUNT = NAMED_ENTITY_FEATURE_COUNT + 0;
+	int PERSON_FEATURE_COUNT = NAMED_ENTITY_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Person</em>' class.
@@ -480,7 +571,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getPredicate()
 	 * @generated
 	 */
-	int PREDICATE = 10;
+	int PREDICATE = 11;
 
 	/**
 	 * The number of structural features of the '<em>Predicate</em>' class.
@@ -508,7 +599,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getSensorPredicate()
 	 * @generated
 	 */
-	int SENSOR_PREDICATE = 11;
+	int SENSOR_PREDICATE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Sensor</b></em>' reference.
@@ -563,7 +654,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getPersonPredicate()
 	 * @generated
 	 */
-	int PERSON_PREDICATE = 12;
+	int PERSON_PREDICATE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Person</b></em>' reference.
@@ -609,7 +700,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getDuration()
 	 * @generated
 	 */
-	int DURATION = 13;
+	int DURATION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Time</b></em>' attribute.
@@ -648,6 +739,34 @@ public interface SmarthomePackage extends EPackage {
 	int DURATION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link smarthome.impl.ModeImpl <em>Mode</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see smarthome.impl.ModeImpl
+	 * @see smarthome.impl.SmarthomePackageImpl#getMode()
+	 * @generated
+	 */
+	int MODE = 15;
+
+	/**
+	 * The number of structural features of the '<em>Mode</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Mode</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link smarthome.Activity <em>Activity</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -655,7 +774,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getActivity()
 	 * @generated
 	 */
-	int ACTIVITY = 14;
+	int ACTIVITY = 16;
 
 	/**
 	 * The meta object id for the '{@link smarthome.Operator <em>Operator</em>}' enum.
@@ -665,7 +784,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getOperator()
 	 * @generated
 	 */
-	int OPERATOR = 15;
+	int OPERATOR = 17;
 
 	/**
 	 * The meta object id for the '{@link smarthome.Precision <em>Precision</em>}' enum.
@@ -675,7 +794,7 @@ public interface SmarthomePackage extends EPackage {
 	 * @see smarthome.impl.SmarthomePackageImpl#getPrecision()
 	 * @generated
 	 */
-	int PRECISION = 16;
+	int PRECISION = 18;
 
 	/**
 	 * Returns the meta object for class '{@link smarthome.Home <em>Home</em>}'.
@@ -719,6 +838,28 @@ public interface SmarthomePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getHome_Patterns();
+
+	/**
+	 * Returns the meta object for the attribute '{@link smarthome.Home#getFileEvents <em>File Events</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>File Events</em>'.
+	 * @see smarthome.Home#getFileEvents()
+	 * @see #getHome()
+	 * @generated
+	 */
+	EAttribute getHome_FileEvents();
+
+	/**
+	 * Returns the meta object for the reference list '{@link smarthome.Home#getMonitoredEntities <em>Monitored Entities</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Monitored Entities</em>'.
+	 * @see smarthome.Home#getMonitoredEntities()
+	 * @see #getHome()
+	 * @generated
+	 */
+	EReference getHome_MonitoredEntities();
 
 	/**
 	 * Returns the meta object for class '{@link smarthome.NamedEntity <em>Named Entity</em>}'.
@@ -793,6 +934,16 @@ public interface SmarthomePackage extends EPackage {
 	EAttribute getCSVSensor_File();
 
 	/**
+	 * Returns the meta object for class '{@link smarthome.Tag <em>Tag</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tag</em>'.
+	 * @see smarthome.Tag
+	 * @generated
+	 */
+	EClass getTag();
+
+	/**
 	 * Returns the meta object for class '{@link smarthome.Room <em>Room</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -824,10 +975,10 @@ public interface SmarthomePackage extends EPackage {
 	EClass getPattern();
 
 	/**
-	 * Returns the meta object for the reference list '{@link smarthome.Pattern#getRules <em>Rules</em>}'.
+	 * Returns the meta object for the containment reference list '{@link smarthome.Pattern#getRules <em>Rules</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Rules</em>'.
+	 * @return the meta object for the containment reference list '<em>Rules</em>'.
 	 * @see smarthome.Pattern#getRules()
 	 * @see #getPattern()
 	 * @generated
@@ -845,10 +996,10 @@ public interface SmarthomePackage extends EPackage {
 	EClass getRule();
 
 	/**
-	 * Returns the meta object for the reference list '{@link smarthome.Rule#getPredicates <em>Predicates</em>}'.
+	 * Returns the meta object for the containment reference list '{@link smarthome.Rule#getPredicates <em>Predicates</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Predicates</em>'.
+	 * @return the meta object for the containment reference list '<em>Predicates</em>'.
 	 * @see smarthome.Rule#getPredicates()
 	 * @see #getRule()
 	 * @generated
@@ -875,6 +1026,50 @@ public interface SmarthomePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPerson();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link smarthome.Person#getAnkleLeft <em>Ankle Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Ankle Left</em>'.
+	 * @see smarthome.Person#getAnkleLeft()
+	 * @see #getPerson()
+	 * @generated
+	 */
+	EReference getPerson_AnkleLeft();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link smarthome.Person#getAnkleRight <em>Ankle Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Ankle Right</em>'.
+	 * @see smarthome.Person#getAnkleRight()
+	 * @see #getPerson()
+	 * @generated
+	 */
+	EReference getPerson_AnkleRight();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link smarthome.Person#getBelt <em>Belt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Belt</em>'.
+	 * @see smarthome.Person#getBelt()
+	 * @see #getPerson()
+	 * @generated
+	 */
+	EReference getPerson_Belt();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link smarthome.Person#getChest <em>Chest</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Chest</em>'.
+	 * @see smarthome.Person#getChest()
+	 * @see #getPerson()
+	 * @generated
+	 */
+	EReference getPerson_Chest();
 
 	/**
 	 * Returns the meta object for class '{@link smarthome.Predicate <em>Predicate</em>}'.
@@ -994,6 +1189,16 @@ public interface SmarthomePackage extends EPackage {
 	EAttribute getDuration_Precision();
 
 	/**
+	 * Returns the meta object for class '{@link smarthome.Mode <em>Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mode</em>'.
+	 * @see smarthome.Mode
+	 * @generated
+	 */
+	EClass getMode();
+
+	/**
 	 * Returns the meta object for enum '{@link smarthome.Activity <em>Activity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1081,6 +1286,22 @@ public interface SmarthomePackage extends EPackage {
 		EReference HOME__PATTERNS = eINSTANCE.getHome_Patterns();
 
 		/**
+		 * The meta object literal for the '<em><b>File Events</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute HOME__FILE_EVENTS = eINSTANCE.getHome_FileEvents();
+
+		/**
+		 * The meta object literal for the '<em><b>Monitored Entities</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HOME__MONITORED_ENTITIES = eINSTANCE.getHome_MonitoredEntities();
+
+		/**
 		 * The meta object literal for the '{@link smarthome.impl.NamedEntityImpl <em>Named Entity</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1147,6 +1368,16 @@ public interface SmarthomePackage extends EPackage {
 		EAttribute CSV_SENSOR__FILE = eINSTANCE.getCSVSensor_File();
 
 		/**
+		 * The meta object literal for the '{@link smarthome.impl.TagImpl <em>Tag</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see smarthome.impl.TagImpl
+		 * @see smarthome.impl.SmarthomePackageImpl#getTag()
+		 * @generated
+		 */
+		EClass TAG = eINSTANCE.getTag();
+
+		/**
 		 * The meta object literal for the '{@link smarthome.impl.RoomImpl <em>Room</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1175,7 +1406,7 @@ public interface SmarthomePackage extends EPackage {
 		EClass PATTERN = eINSTANCE.getPattern();
 
 		/**
-		 * The meta object literal for the '<em><b>Rules</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1193,7 +1424,7 @@ public interface SmarthomePackage extends EPackage {
 		EClass RULE = eINSTANCE.getRule();
 
 		/**
-		 * The meta object literal for the '<em><b>Predicates</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Predicates</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1217,6 +1448,38 @@ public interface SmarthomePackage extends EPackage {
 		 * @generated
 		 */
 		EClass PERSON = eINSTANCE.getPerson();
+
+		/**
+		 * The meta object literal for the '<em><b>Ankle Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PERSON__ANKLE_LEFT = eINSTANCE.getPerson_AnkleLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Ankle Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PERSON__ANKLE_RIGHT = eINSTANCE.getPerson_AnkleRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Belt</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PERSON__BELT = eINSTANCE.getPerson_Belt();
+
+		/**
+		 * The meta object literal for the '<em><b>Chest</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PERSON__CHEST = eINSTANCE.getPerson_Chest();
 
 		/**
 		 * The meta object literal for the '{@link smarthome.impl.PredicateImpl <em>Predicate</em>}' class.
@@ -1313,6 +1576,16 @@ public interface SmarthomePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DURATION__PRECISION = eINSTANCE.getDuration_Precision();
+
+		/**
+		 * The meta object literal for the '{@link smarthome.impl.ModeImpl <em>Mode</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see smarthome.impl.ModeImpl
+		 * @see smarthome.impl.SmarthomePackageImpl#getMode()
+		 * @generated
+		 */
+		EClass MODE = eINSTANCE.getMode();
 
 		/**
 		 * The meta object literal for the '{@link smarthome.Activity <em>Activity</em>}' enum.

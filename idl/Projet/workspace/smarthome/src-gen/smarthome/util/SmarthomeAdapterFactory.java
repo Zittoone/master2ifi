@@ -97,6 +97,11 @@ public class SmarthomeAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseTag(Tag object) {
+			return createTagAdapter();
+		}
+
+		@Override
 		public Adapter caseRoom(Room object) {
 			return createRoomAdapter();
 		}
@@ -134,6 +139,11 @@ public class SmarthomeAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseDuration(Duration object) {
 			return createDurationAdapter();
+		}
+
+		@Override
+		public Adapter caseMode(Mode object) {
+			return createModeAdapter();
 		}
 
 		@Override
@@ -236,6 +246,20 @@ public class SmarthomeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCSVSensorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link smarthome.Tag <em>Tag</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see smarthome.Tag
+	 * @generated
+	 */
+	public Adapter createTagAdapter() {
 		return null;
 	}
 
@@ -348,6 +372,20 @@ public class SmarthomeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link smarthome.Mode <em>Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see smarthome.Mode
+	 * @generated
+	 */
+	public Adapter createModeAdapter() {
 		return null;
 	}
 

@@ -16,6 +16,7 @@ import smarthome.CSVSensor;
 import smarthome.DigitalSensor;
 import smarthome.Duration;
 import smarthome.Home;
+import smarthome.Mode;
 import smarthome.NamedEntity;
 import smarthome.Operator;
 import smarthome.Pattern;
@@ -29,6 +30,7 @@ import smarthome.Sensor;
 import smarthome.SensorPredicate;
 import smarthome.SmarthomeFactory;
 import smarthome.SmarthomePackage;
+import smarthome.Tag;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,6 +80,13 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 	 * @generated
 	 */
 	private EClass csvSensorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tagEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -134,6 +143,13 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 	 * @generated
 	 */
 	private EClass durationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -260,6 +276,24 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getHome_FileEvents() {
+		return (EAttribute) homeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getHome_MonitoredEntities() {
+		return (EReference) homeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNamedEntity() {
 		return namedEntityEClass;
 	}
@@ -316,6 +350,15 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 	 */
 	public EAttribute getCSVSensor_File() {
 		return (EAttribute) csvSensorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTag() {
+		return tagEClass;
 	}
 
 	/**
@@ -388,6 +431,42 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 	 */
 	public EClass getPerson() {
 		return personEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPerson_AnkleLeft() {
+		return (EReference) personEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPerson_AnkleRight() {
+		return (EReference) personEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPerson_Belt() {
+		return (EReference) personEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPerson_Chest() {
+		return (EReference) personEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -494,6 +573,15 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMode() {
+		return modeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getActivity() {
 		return activityEEnum;
 	}
@@ -549,6 +637,8 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 		createEReference(homeEClass, HOME__ROOMS);
 		createEReference(homeEClass, HOME__PERSONS);
 		createEReference(homeEClass, HOME__PATTERNS);
+		createEAttribute(homeEClass, HOME__FILE_EVENTS);
+		createEReference(homeEClass, HOME__MONITORED_ENTITIES);
 
 		namedEntityEClass = createEClass(NAMED_ENTITY);
 		createEAttribute(namedEntityEClass, NAMED_ENTITY__NAME);
@@ -562,6 +652,8 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 		csvSensorEClass = createEClass(CSV_SENSOR);
 		createEAttribute(csvSensorEClass, CSV_SENSOR__FILE);
 
+		tagEClass = createEClass(TAG);
+
 		roomEClass = createEClass(ROOM);
 		createEReference(roomEClass, ROOM__SENSORS);
 
@@ -573,6 +665,10 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 		createEReference(ruleEClass, RULE__DURATION);
 
 		personEClass = createEClass(PERSON);
+		createEReference(personEClass, PERSON__ANKLE_LEFT);
+		createEReference(personEClass, PERSON__ANKLE_RIGHT);
+		createEReference(personEClass, PERSON__BELT);
+		createEReference(personEClass, PERSON__CHEST);
 
 		predicateEClass = createEClass(PREDICATE);
 
@@ -588,6 +684,8 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 		durationEClass = createEClass(DURATION);
 		createEAttribute(durationEClass, DURATION__TIME);
 		createEAttribute(durationEClass, DURATION__PRECISION);
+
+		modeEClass = createEClass(MODE);
 
 		// Create enums
 		activityEEnum = createEEnum(ACTIVITY);
@@ -627,6 +725,7 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 		sensorEClass.getESuperTypes().add(this.getNamedEntity());
 		analogSensorEClass.getESuperTypes().add(this.getSensor());
 		digitalSensorEClass.getESuperTypes().add(this.getSensor());
+		tagEClass.getESuperTypes().add(this.getNamedEntity());
 		roomEClass.getESuperTypes().add(this.getNamedEntity());
 		patternEClass.getESuperTypes().add(this.getNamedEntity());
 		personEClass.getESuperTypes().add(this.getNamedEntity());
@@ -644,10 +743,15 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 		initEReference(getHome_Patterns(), this.getPattern(), null, "patterns", null, 0, -1, Home.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getHome_FileEvents(), ecorePackage.getEString(), "fileEvents", null, 0, 1, Home.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHome_MonitoredEntities(), this.getNamedEntity(), null, "monitoredEntities", null, 0, -1,
+				Home.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedEntityEClass, NamedEntity.class, "NamedEntity", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNamedEntity_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedEntity.class,
+		initEAttribute(getNamedEntity_Name(), ecorePackage.getEString(), "name", "", 0, 1, NamedEntity.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sensorEClass, Sensor.class, "Sensor", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -663,6 +767,8 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 		initEAttribute(getCSVSensor_File(), ecorePackage.getEString(), "file", null, 0, 1, CSVSensor.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(tagEClass, Tag.class, "Tag", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(roomEClass, Room.class, "Room", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRoom_Sensors(), this.getSensor(), null, "sensors", null, 0, -1, Room.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
@@ -670,18 +776,30 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 
 		initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPattern_Rules(), this.getRule(), null, "rules", null, 0, -1, Pattern.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
 		initEClass(ruleEClass, Rule.class, "Rule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRule_Predicates(), this.getPredicate(), null, "predicates", null, 0, -1, Rule.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRule_Duration(), this.getDuration(), null, "duration", null, 0, 1, Rule.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
 		initEClass(personEClass, Person.class, "Person", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPerson_AnkleLeft(), this.getTag(), null, "ankleLeft", null, 0, 1, Person.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getPerson_AnkleRight(), this.getTag(), null, "ankleRight", null, 0, 1, Person.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPerson_Belt(), this.getTag(), null, "belt", null, 0, 1, Person.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getPerson_Chest(), this.getTag(), null, "chest", null, 0, 1, Person.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(predicateEClass, Predicate.class, "Predicate", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -711,6 +829,8 @@ public class SmarthomePackageImpl extends EPackageImpl implements SmarthomePacka
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDuration_Precision(), this.getPrecision(), "precision", null, 0, 1, Duration.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modeEClass, Mode.class, "Mode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(activityEEnum, Activity.class, "Activity");

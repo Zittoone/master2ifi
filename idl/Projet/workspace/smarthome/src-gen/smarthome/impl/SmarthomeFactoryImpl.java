@@ -65,6 +65,8 @@ public class SmarthomeFactoryImpl extends EFactoryImpl implements SmarthomeFacto
 			return createDigitalSensor();
 		case SmarthomePackage.CSV_SENSOR:
 			return createCSVSensor();
+		case SmarthomePackage.TAG:
+			return createTag();
 		case SmarthomePackage.ROOM:
 			return createRoom();
 		case SmarthomePackage.PATTERN:
@@ -79,6 +81,8 @@ public class SmarthomeFactoryImpl extends EFactoryImpl implements SmarthomeFacto
 			return createPersonPredicate();
 		case SmarthomePackage.DURATION:
 			return createDuration();
+		case SmarthomePackage.MODE:
+			return createMode();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -167,6 +171,16 @@ public class SmarthomeFactoryImpl extends EFactoryImpl implements SmarthomeFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Tag createTag() {
+		TagImpl tag = new TagImpl();
+		return tag;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Room createRoom() {
 		RoomImpl room = new RoomImpl();
 		return room;
@@ -230,6 +244,16 @@ public class SmarthomeFactoryImpl extends EFactoryImpl implements SmarthomeFacto
 	public Duration createDuration() {
 		DurationImpl duration = new DurationImpl();
 		return duration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Mode createMode() {
+		ModeImpl mode = new ModeImpl();
+		return mode;
 	}
 
 	/**

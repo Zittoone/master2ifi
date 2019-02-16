@@ -6,12 +6,15 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Home returns Home:
 	{Home}
-	'Home'
-	'{'
+		('eventFile' fileEvents=EString)
 		('rooms' '{' rooms+=Room ( "," rooms+=Room)* '}' )?
 		('persons' '{' persons+=Person ( "," persons+=Person)* '}' )?
 		('patterns' '{' patterns+=Pattern ( "," patterns+=Pattern)* '}' )?
-	'}';
+		('monitor' monitoredEntities+=[NamedEntity | EString]( "," monitoredEntities+=[NamedEntity | EString])* )?
+		
+		('start')
+		
+;
 
 //TODO:
 // Add loadfile
@@ -19,7 +22,6 @@ Home returns Home:
 // Input validation ?
 // Run a first iteration
 // Debugging visualizer
-
 
 
 Sensor returns Sensor:
@@ -34,9 +36,9 @@ Predicate returns Predicate:
 Room returns Room:
 	{Room}
 	'Room'
-	name=EString
+	name=EString 
 	'{'
-		('sensors' '{' sensors+=Sensor ( "," sensors+=Sensor)* '}' )?
+		(sensors+=Sensor ( "," sensors+=Sensor)*)?
 	'}';
 
 Person returns Person:
@@ -47,9 +49,9 @@ Person returns Person:
 Pattern returns Pattern:
 	{Pattern}
 	'Pattern'
-	name=EString
+	name=EString 
 	'{'
-		( rules+=[Rule|EString] ( "and" rules+=[Rule|EString])* )?
+		( rules+=Rule ( "," rules+=Rule)* )?
 	'}';
 
 EString returns ecore::EString:
@@ -58,13 +60,13 @@ EString returns ecore::EString:
 AnalogSensor returns AnalogSensor:
 	{AnalogSensor}
 	'AnalogSensor'
-	name=EString
+	name=EString 
 ;
 
 DigitalSensor returns DigitalSensor:
 	{DigitalSensor}
 	'DigitalSensor'
-	name=EString
+	name=EString 
 ;
 
 EDouble returns ecore::EDouble:
@@ -72,24 +74,22 @@ EDouble returns ecore::EDouble:
 
 Rule returns Rule:
 	{Rule}
-	'Rule'
 	'{'
-		('(' predicates+=[Predicate|EString] ( "and" predicates+=[Predicate|EString])* ')' )?
-		('for' duration=Duration)?
-	'}';
+		('(' predicates+=Predicate ( "and" predicates+=Predicate)* ')' )?
+		(('for' | 'since') duration=Duration)?
+	'}'
+;
 
 Duration returns Duration:
 	{Duration}
-	'Duration'
-	'{'
-		('time' time=EInt)?
-		('precision' precision=Precision)?
-	'}';
+	time=EInt precision=Precision
+;
 
 SensorPredicate returns SensorPredicate:
 	{SensorPredicate}
 	sensor=[Sensor|EString] operator=Operator value=EDouble
 ;
+
 
 PersonPredicate returns PersonPredicate:
 	{PersonPredicate}
@@ -97,7 +97,7 @@ PersonPredicate returns PersonPredicate:
 ;
 
 enum Operator returns Operator:
-				superior = '>>' | inferior = '<' | equal = '=';
+				superior = '>' | inferior = '<' | equal = '=';
 
 enum Activity returns Activity:
 				standing = 'standing' | laying = 'laying' | sitting = 'sitting';
@@ -106,4 +106,4 @@ EInt returns ecore::EInt:
 	'-'? INT;
 
 enum Precision returns Precision:
-				ms = 'ms' | s = 's' | m = 'm';
+				ms = 'millis' | s = 'seconds' | m = 'minutes';

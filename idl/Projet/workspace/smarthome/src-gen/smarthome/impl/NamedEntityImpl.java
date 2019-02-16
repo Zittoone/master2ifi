@@ -3,7 +3,6 @@
 package smarthome.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -34,7 +33,7 @@ public abstract class NamedEntityImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.

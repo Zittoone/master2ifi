@@ -119,10 +119,19 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Duration returns Duration
 	 *
 	 * Constraint:
-	 *     (time=EInt? precision=Precision?)
+	 *     (time=EInt precision=Precision)
 	 */
 	protected void sequence_Duration(ISerializationContext context, Duration semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SmarthomePackage.Literals.DURATION__TIME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SmarthomePackage.Literals.DURATION__TIME));
+			if (transientValues.isValueTransient(semanticObject, SmarthomePackage.Literals.DURATION__PRECISION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SmarthomePackage.Literals.DURATION__PRECISION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDurationAccess().getTimeEIntParserRuleCall_1_0(), semanticObject.getTime());
+		feeder.accept(grammarAccess.getDurationAccess().getPrecisionPrecisionEnumRuleCall_2_0(), semanticObject.getPrecision());
+		feeder.finish();
 	}
 	
 	
@@ -131,7 +140,13 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Home returns Home
 	 *
 	 * Constraint:
-	 *     ((rooms+=Room rooms+=Room*)? (persons+=Person persons+=Person*)? (patterns+=Pattern patterns+=Pattern*)?)
+	 *     (
+	 *         fileEvents=EString 
+	 *         (rooms+=Room rooms+=Room*)? 
+	 *         (persons+=Person persons+=Person*)? 
+	 *         (patterns+=Pattern patterns+=Pattern*)? 
+	 *         (monitoredEntities+=[NamedEntity|EString] monitoredEntities+=[NamedEntity|EString]*)?
+	 *     )
 	 */
 	protected void sequence_Home(ISerializationContext context, Home semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -143,7 +158,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Pattern returns Pattern
 	 *
 	 * Constraint:
-	 *     (name=EString (rules+=[Rule|EString] rules+=[Rule|EString]*)?)
+	 *     (name=EString (rules+=Rule rules+=Rule*)?)
 	 */
 	protected void sequence_Pattern(ISerializationContext context, Pattern semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -156,10 +171,19 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     PersonPredicate returns PersonPredicate
 	 *
 	 * Constraint:
-	 *     (activity=Activity? person=[Person|EString]?)
+	 *     (person=[Person|EString] activity=Activity)
 	 */
 	protected void sequence_PersonPredicate(ISerializationContext context, PersonPredicate semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SmarthomePackage.Literals.PERSON_PREDICATE__PERSON) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SmarthomePackage.Literals.PERSON_PREDICATE__PERSON));
+			if (transientValues.isValueTransient(semanticObject, SmarthomePackage.Literals.PERSON_PREDICATE__ACTIVITY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SmarthomePackage.Literals.PERSON_PREDICATE__ACTIVITY));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPersonPredicateAccess().getPersonPersonEStringParserRuleCall_1_0_1(), semanticObject.eGet(SmarthomePackage.Literals.PERSON_PREDICATE__PERSON, false));
+		feeder.accept(grammarAccess.getPersonPredicateAccess().getActivityActivityEnumRuleCall_3_0(), semanticObject.getActivity());
+		feeder.finish();
 	}
 	
 	
@@ -198,7 +222,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Rule returns Rule
 	 *
 	 * Constraint:
-	 *     ((predicates+=[Predicate|EString] predicates+=[Predicate|EString]*)? duration=Duration?)
+	 *     ((predicates+=Predicate predicates+=Predicate*)? duration=Duration?)
 	 */
 	protected void sequence_Rule(ISerializationContext context, Rule semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -211,10 +235,22 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     SensorPredicate returns SensorPredicate
 	 *
 	 * Constraint:
-	 *     (operator=Operator? sensor=[Sensor|EString]? value=EDouble?)
+	 *     (sensor=[Sensor|EString] operator=Operator value=EDouble)
 	 */
 	protected void sequence_SensorPredicate(ISerializationContext context, SensorPredicate semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SmarthomePackage.Literals.SENSOR_PREDICATE__SENSOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SmarthomePackage.Literals.SENSOR_PREDICATE__SENSOR));
+			if (transientValues.isValueTransient(semanticObject, SmarthomePackage.Literals.SENSOR_PREDICATE__OPERATOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SmarthomePackage.Literals.SENSOR_PREDICATE__OPERATOR));
+			if (transientValues.isValueTransient(semanticObject, SmarthomePackage.Literals.SENSOR_PREDICATE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SmarthomePackage.Literals.SENSOR_PREDICATE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSensorPredicateAccess().getSensorSensorEStringParserRuleCall_1_0_1(), semanticObject.eGet(SmarthomePackage.Literals.SENSOR_PREDICATE__SENSOR, false));
+		feeder.accept(grammarAccess.getSensorPredicateAccess().getOperatorOperatorEnumRuleCall_2_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getSensorPredicateAccess().getValueEDoubleParserRuleCall_3_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	

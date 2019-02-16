@@ -2,6 +2,7 @@ package smarthome.aspects;
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
 import fr.inria.diverse.k3.al.annotationprocessor.Step;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import smarthome.NamedEntity;
 import smarthome.aspects.NamedEntityAspectNamedEntityAspectProperties;
 
@@ -9,10 +10,40 @@ import smarthome.aspects.NamedEntityAspectNamedEntityAspectProperties;
 @SuppressWarnings("all")
 public abstract class NamedEntityAspect {
   @Step
+  public static void debug(final NamedEntity _self) {
+    final smarthome.aspects.NamedEntityAspectNamedEntityAspectProperties _self_ = smarthome.aspects.NamedEntityAspectNamedEntityAspectContext.getSelf(_self);
+     if (_self instanceof smarthome.Person){
+    					smarthome.aspects.PersonAspect.debug((smarthome.Person)_self);
+    } else  if (_self instanceof smarthome.Room){
+    					smarthome.aspects.RoomAspect.debug((smarthome.Room)_self);
+    } else  if (_self instanceof smarthome.Pattern){
+    					smarthome.aspects.PatternAspect.debug((smarthome.Pattern)_self);
+    } else  if (_self instanceof smarthome.Sensor){
+    					smarthome.aspects.SensorAspect.debug((smarthome.Sensor)_self);
+    } else  if (_self instanceof smarthome.NamedEntity){
+    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    						@Override
+    						public void execute() {
+    							smarthome.aspects.NamedEntityAspect._privk3_debug(_self_, (smarthome.NamedEntity)_self);
+    						}
+    					};
+    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    					if (stepManager != null) {
+    						stepManager.executeStep(_self,command,"NamedEntity","debug");
+    					} else {
+    						command.execute();
+    					}
+    					;
+    } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); };
+  }
+  
+  @Step
   public static String toString(final NamedEntity _self) {
     final smarthome.aspects.NamedEntityAspectNamedEntityAspectProperties _self_ = smarthome.aspects.NamedEntityAspectNamedEntityAspectContext.getSelf(_self);
     Object result = null;
-     if (_self instanceof smarthome.NamedEntity){
+     if (_self instanceof smarthome.Sensor){
+    					result = smarthome.aspects.SensorAspect.toString((smarthome.Sensor)_self);
+    } else  if (_self instanceof smarthome.NamedEntity){
     					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
     						@Override
     						public void execute() {
@@ -31,8 +62,38 @@ public abstract class NamedEntityAspect {
     return (java.lang.String)result;
   }
   
+  @Step
+  public static String getName(final NamedEntity _self) {
+    final smarthome.aspects.NamedEntityAspectNamedEntityAspectProperties _self_ = smarthome.aspects.NamedEntityAspectNamedEntityAspectContext.getSelf(_self);
+    Object result = null;
+    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    	@Override
+    	public void execute() {
+    		addToResult(_privk3_getName(_self_, _self));
+    	}
+    };
+    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    if (stepManager != null) {
+    	stepManager.executeStep(_self,command,"NamedEntity","getName");
+    } else {
+    	command.execute();
+    }
+    result = command.getResult();
+    ;;
+    return (java.lang.String)result;
+  }
+  
+  protected static void _privk3_debug(final NamedEntityAspectNamedEntityAspectProperties _self_, final NamedEntity _self) {
+    InputOutput.println();
+    _self.toString();
+  }
+  
   protected static String _privk3_toString(final NamedEntityAspectNamedEntityAspectProperties _self_, final NamedEntity _self) {
     String _name = _self.getName();
     return ("name=" + _name);
+  }
+  
+  protected static String _privk3_getName(final NamedEntityAspectNamedEntityAspectProperties _self_, final NamedEntity _self) {
+    return _self.getName();
   }
 }

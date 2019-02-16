@@ -3,6 +3,7 @@ package smarthome.aspects;
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
 import fr.inria.diverse.k3.al.annotationprocessor.Step;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import smarthome.Predicate;
 import smarthome.Rule;
 import smarthome.aspects.DurationAspect;
@@ -33,6 +34,24 @@ public class RuleAspect {
     return (boolean)result;
   }
   
+  @Step
+  public static void debug(final Rule _self) {
+    final smarthome.aspects.RuleAspectRuleAspectProperties _self_ = smarthome.aspects.RuleAspectRuleAspectContext.getSelf(_self);
+    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    	@Override
+    	public void execute() {
+    		_privk3_debug(_self_, _self);
+    	}
+    };
+    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    if (stepManager != null) {
+    	stepManager.executeStep(_self,command,"Rule","debug");
+    } else {
+    	command.execute();
+    }
+    ;;
+  }
+  
   protected static boolean _privk3_eval(final RuleAspectRuleAspectProperties _self_, final Rule _self) {
     EList<Predicate> _predicates = _self.getPredicates();
     for (final Predicate p : _predicates) {
@@ -44,5 +63,17 @@ public class RuleAspect {
       }
     }
     return DurationAspect.isDone(_self.getDuration());
+  }
+  
+  protected static void _privk3_debug(final RuleAspectRuleAspectProperties _self_, final Rule _self) {
+    InputOutput.<String>println("{");
+    EList<Predicate> _predicates = _self.getPredicates();
+    for (final Predicate p : _predicates) {
+      {
+        InputOutput.println();
+        p.toString();
+      }
+    }
+    InputOutput.<String>println("}");
   }
 }

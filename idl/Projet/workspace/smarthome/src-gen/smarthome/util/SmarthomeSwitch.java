@@ -118,6 +118,15 @@ public class SmarthomeSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case SmarthomePackage.TAG: {
+			Tag tag = (Tag) theEObject;
+			T result = caseTag(tag);
+			if (result == null)
+				result = caseNamedEntity(tag);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case SmarthomePackage.ROOM: {
 			Room room = (Room) theEObject;
 			T result = caseRoom(room);
@@ -180,6 +189,13 @@ public class SmarthomeSwitch<T> extends Switch<T> {
 		case SmarthomePackage.DURATION: {
 			Duration duration = (Duration) theEObject;
 			T result = caseDuration(duration);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case SmarthomePackage.MODE: {
+			Mode mode = (Mode) theEObject;
+			T result = caseMode(mode);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -276,6 +292,21 @@ public class SmarthomeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCSVSensor(CSVSensor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tag</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tag</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTag(Tag object) {
 		return null;
 	}
 
@@ -396,6 +427,21 @@ public class SmarthomeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDuration(Duration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mode</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mode</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMode(Mode object) {
 		return null;
 	}
 

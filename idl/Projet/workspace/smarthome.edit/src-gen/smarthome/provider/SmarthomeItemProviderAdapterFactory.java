@@ -165,6 +165,29 @@ public class SmarthomeItemProviderAdapterFactory extends SmarthomeAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link smarthome.Tag} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TagItemProvider tagItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link smarthome.Tag}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTagAdapter() {
+		if (tagItemProvider == null) {
+			tagItemProvider = new TagItemProvider(this);
+		}
+
+		return tagItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link smarthome.Room} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -326,6 +349,29 @@ public class SmarthomeItemProviderAdapterFactory extends SmarthomeAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link smarthome.Mode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ModeItemProvider modeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link smarthome.Mode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createModeAdapter() {
+		if (modeItemProvider == null) {
+			modeItemProvider = new ModeItemProvider(this);
+		}
+
+		return modeItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -432,6 +478,8 @@ public class SmarthomeItemProviderAdapterFactory extends SmarthomeAdapterFactory
 			digitalSensorItemProvider.dispose();
 		if (csvSensorItemProvider != null)
 			csvSensorItemProvider.dispose();
+		if (tagItemProvider != null)
+			tagItemProvider.dispose();
 		if (roomItemProvider != null)
 			roomItemProvider.dispose();
 		if (patternItemProvider != null)
@@ -446,6 +494,8 @@ public class SmarthomeItemProviderAdapterFactory extends SmarthomeAdapterFactory
 			personPredicateItemProvider.dispose();
 		if (durationItemProvider != null)
 			durationItemProvider.dispose();
+		if (modeItemProvider != null)
+			modeItemProvider.dispose();
 	}
 
 }

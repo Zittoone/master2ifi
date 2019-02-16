@@ -3,6 +3,7 @@
 package smarthome.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import smarthome.Sensor;
 import smarthome.SmarthomePackage;
 

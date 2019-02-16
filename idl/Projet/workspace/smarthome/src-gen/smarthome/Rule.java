@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Rule extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Predicates</b></em>' reference list.
+	 * Returns the value of the '<em><b>Predicates</b></em>' containment reference list.
 	 * The list contents are of type {@link smarthome.Predicate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -33,9 +33,9 @@ public interface Rule extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Predicates</em>' reference list.
+	 * @return the value of the '<em>Predicates</em>' containment reference list.
 	 * @see smarthome.SmarthomePackage#getRule_Predicates()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Predicate> getPredicates();

@@ -4,12 +4,14 @@ package smarthome.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import smarthome.Pattern;
 import smarthome.Rule;
 import smarthome.SmarthomePackage;
@@ -29,7 +31,7 @@ import smarthome.SmarthomePackage;
  */
 public class PatternImpl extends NamedEntityImpl implements Pattern {
 	/**
-	 * The cached value of the '{@link #getRules() <em>Rules</em>}' reference list.
+	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRules()
@@ -64,9 +66,23 @@ public class PatternImpl extends NamedEntityImpl implements Pattern {
 	 */
 	public EList<Rule> getRules() {
 		if (rules == null) {
-			rules = new EObjectResolvingEList<Rule>(Rule.class, this, SmarthomePackage.PATTERN__RULES);
+			rules = new EObjectContainmentEList<Rule>(Rule.class, this, SmarthomePackage.PATTERN__RULES);
 		}
 		return rules;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case SmarthomePackage.PATTERN__RULES:
+			return ((InternalEList<?>) getRules()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

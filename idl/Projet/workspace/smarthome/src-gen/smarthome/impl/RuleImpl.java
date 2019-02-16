@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import smarthome.Duration;
 import smarthome.Predicate;
 import smarthome.Rule;
@@ -38,7 +38,7 @@ import smarthome.SmarthomePackage;
  */
 public class RuleImpl extends MinimalEObjectImpl.Container implements Rule {
 	/**
-	 * The cached value of the '{@link #getPredicates() <em>Predicates</em>}' reference list.
+	 * The cached value of the '{@link #getPredicates() <em>Predicates</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPredicates()
@@ -83,7 +83,8 @@ public class RuleImpl extends MinimalEObjectImpl.Container implements Rule {
 	 */
 	public EList<Predicate> getPredicates() {
 		if (predicates == null) {
-			predicates = new EObjectResolvingEList<Predicate>(Predicate.class, this, SmarthomePackage.RULE__PREDICATES);
+			predicates = new EObjectContainmentEList<Predicate>(Predicate.class, this,
+					SmarthomePackage.RULE__PREDICATES);
 		}
 		return predicates;
 	}
@@ -146,6 +147,8 @@ public class RuleImpl extends MinimalEObjectImpl.Container implements Rule {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case SmarthomePackage.RULE__PREDICATES:
+			return ((InternalEList<?>) getPredicates()).basicRemove(otherEnd, msgs);
 		case SmarthomePackage.RULE__DURATION:
 			return basicSetDuration(null, msgs);
 		}

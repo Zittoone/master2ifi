@@ -11,8 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -55,23 +53,8 @@ public class RuleItemProvider extends ItemProviderAdapter implements IEditingDom
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addPredicatesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Predicates feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPredicatesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Rule_predicates_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Rule_predicates_feature", "_UI_Rule_type"),
-						SmarthomePackage.Literals.RULE__PREDICATES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -86,6 +69,7 @@ public class RuleItemProvider extends ItemProviderAdapter implements IEditingDom
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(SmarthomePackage.Literals.RULE__PREDICATES);
 			childrenFeatures.add(SmarthomePackage.Literals.RULE__DURATION);
 		}
 		return childrenFeatures;
@@ -148,6 +132,7 @@ public class RuleItemProvider extends ItemProviderAdapter implements IEditingDom
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Rule.class)) {
+		case SmarthomePackage.RULE__PREDICATES:
 		case SmarthomePackage.RULE__DURATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -165,6 +150,12 @@ public class RuleItemProvider extends ItemProviderAdapter implements IEditingDom
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add(createChildParameter(SmarthomePackage.Literals.RULE__PREDICATES,
+				SmarthomeFactory.eINSTANCE.createSensorPredicate()));
+
+		newChildDescriptors.add(createChildParameter(SmarthomePackage.Literals.RULE__PREDICATES,
+				SmarthomeFactory.eINSTANCE.createPersonPredicate()));
 
 		newChildDescriptors.add(createChildParameter(SmarthomePackage.Literals.RULE__DURATION,
 				SmarthomeFactory.eINSTANCE.createDuration()));
