@@ -80,11 +80,11 @@ public class DigitalSensorAspect extends SensorAspect {
   }
   
   protected static void _privk3_debug(final DigitalSensorAspectDigitalSensorAspectProperties _self_, final DigitalSensor _self) {
-    InputOutput.println();
     String _name = _self.getName();
     String _plus = ("DigitalSensor[" + _name);
     String _plus_1 = (_plus + "] = ");
     Double _currentValue = SensorAspect.currentValue(_self);
-    /* (_plus_1 + _currentValue); */
+    String _plus_2 = (_plus_1 + _currentValue);
+    InputOutput.<String>println(_plus_2);
   }
 }

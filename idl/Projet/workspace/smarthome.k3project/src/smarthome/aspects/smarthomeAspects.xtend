@@ -74,6 +74,10 @@ class HomeAspect {
 			p.init()
 		}
 		
+		for(Pattern p : _self.patterns) {
+			p.init(_self.initialTime)
+		}
+		
 		_self.count = 0
 		while(_self.currentString !== null) {
 			
@@ -132,7 +136,7 @@ class HomeAspect {
 		println("Current timestamp:" + _self.currentTime)
 		println("Current timestamp elapsed(seconds):" + ((_self.currentTime - _self.initialTime) / 1000))
 		for(NamedEntity n : _self.monitoredEntities) {
-			println("----"+ n.name + "----")
+			println("--------"+ n.name + "--------")
 			n.debug()
 			println("---------------------")
 		}
@@ -185,7 +189,7 @@ abstract class SensorAspect extends NamedEntityAspect {
 	
 	@Step
 	def void debug() {
-		println "Sensor[" + _self.name + "] = " + _self.currentValue
+		println("Sensor[" + _self.name + "] = " + _self.currentValue)
 	}
 	
 	/*@Step
@@ -222,7 +226,7 @@ class AnalogSensorAspect extends SensorAspect {
 	
 	@Step
 	def void debug() {
-		println "AnalogSensor[" + _self.name + "] = " + _self.currentValue
+		println("AnalogSensor[" + _self.name + "] = " + _self.currentValue)
 	}
 }
 
@@ -242,7 +246,7 @@ class DigitalSensorAspect extends SensorAspect {
 	
 	@Step
 	def void debug() {
-		println "DigitalSensor[" + _self.name + "] = " + _self.currentValue
+		println("DigitalSensor[" + _self.name + "] = " + _self.currentValue)
 	}
 }
 
@@ -288,6 +292,13 @@ class RoomAspect extends NamedEntityAspect {
 class PatternAspect extends NamedEntityAspect {
 
 	@Step
+	def void init(long initialTime) {
+		for(Rule r : _self.rules) {
+			r.init(initialTime)
+		}
+	}
+	
+	@Step
 	def boolean eval(long currentTime) {
 		
 		for(Rule r : _self.rules) {
@@ -312,13 +323,20 @@ class PatternAspect extends NamedEntityAspect {
 	
 	@Step
 	def void exec() {
-		println "Pattern[" + _self.name + "] append !"
+		println("Pattern[" + _self.name + "] append !")
 	}
 	
 }
 
 @Aspect(className=Rule)
 class RuleAspect {
+	
+	@Step
+	def void init(long initialTime) {
+		if(_self.duration !== null) {
+			_self.duration.init(initialTime)
+		}
+	}
 
 	@Step
 	def boolean eval(long currentTime) {
@@ -346,7 +364,7 @@ class RuleAspect {
 		}
 		
 		if(_self.duration !== null) {
-			sb.append(_self.duration.debug()).append("\n")
+			sb.append(_self.duration.debug())
 		}
 		return sb.toString()
 	}
@@ -438,6 +456,9 @@ class PersonAspect extends NamedEntityAspect {
 abstract class PredicateAspect {
 	
 	@Step
+	abstract def void init(long initialTime)
+	
+	@Step
 	abstract def boolean eval()
 	
 	@Step
@@ -448,6 +469,8 @@ abstract class PredicateAspect {
 class SensorPredicateAspect extends PredicateAspect {
 
 	boolean currentValue = false
+	
+	
 	
 	@Step
 	def boolean eval() {
@@ -503,8 +526,8 @@ class DurationAspect {
 	boolean currentValue = false
 	
 	@Step
-	def void init(long currentTime) {
-		_self.validSince = currentTime
+	def void init(long initialTime) {
+		_self.validSince = initialTime
 	}
 	
 	@Step

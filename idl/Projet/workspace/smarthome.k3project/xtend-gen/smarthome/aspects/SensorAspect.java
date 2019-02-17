@@ -181,12 +181,12 @@ public abstract class SensorAspect extends NamedEntityAspect {
   }
   
   protected static void _privk3_debug(final SensorAspectSensorAspectProperties _self_, final Sensor _self) {
-    InputOutput.println();
     String _name = _self.getName();
     String _plus = ("Sensor[" + _name);
     String _plus_1 = (_plus + "] = ");
     Double _currentValue = SensorAspect.currentValue(_self);
-    /* (_plus_1 + _currentValue); */
+    String _plus_2 = (_plus_1 + _currentValue);
+    InputOutput.<String>println(_plus_2);
   }
   
   protected static void _privk3_setValue(final SensorAspectSensorAspectProperties _self_, final Sensor _self, final Double value) {

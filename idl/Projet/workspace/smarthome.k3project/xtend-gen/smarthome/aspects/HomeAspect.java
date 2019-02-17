@@ -213,6 +213,10 @@ public class HomeAspect {
       for (final Person p : _persons) {
         PersonAspect.init(p);
       }
+      EList<Pattern> _patterns = _self.getPatterns();
+      for (final Pattern p_1 : _patterns) {
+        PatternAspect.init(p_1, HomeAspect.initialTime(_self));
+      }
       HomeAspect.count(_self, 0);
       while ((HomeAspect.currentString(_self) != null)) {
         {
@@ -293,8 +297,8 @@ public class HomeAspect {
       for (final NamedEntity n : _monitoredEntities) {
         {
           String _name = n.getName();
-          String _plus_2 = ("----" + _name);
-          String _plus_3 = (_plus_2 + "----");
+          String _plus_2 = ("--------" + _name);
+          String _plus_3 = (_plus_2 + "--------");
           InputOutput.<String>println(_plus_3);
           NamedEntityAspect.debug(n);
           InputOutput.<String>println("---------------------");

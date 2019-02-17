@@ -14,6 +14,27 @@ import smarthome.aspects.RuleAspect;
 @SuppressWarnings("all")
 public class PatternAspect extends NamedEntityAspect {
   @Step
+  public static void init(final Pattern _self, final long initialTime) {
+    final smarthome.aspects.PatternAspectPatternAspectProperties _self_ = smarthome.aspects.PatternAspectPatternAspectContext.getSelf(_self);
+    // #DispatchPointCut_before# void init(long)
+    if (_self instanceof smarthome.Pattern){
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    		@Override
+    		public void execute() {
+    			smarthome.aspects.PatternAspect._privk3_init(_self_, (smarthome.Pattern)_self,initialTime);
+    		}
+    	};
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    	if (stepManager != null) {
+    		stepManager.executeStep(_self, new Object[] {initialTime}, command, "Pattern", "init");
+    	} else {
+    		command.execute();
+    	}
+    	;
+    };
+  }
+  
+  @Step
   public static boolean eval(final Pattern _self, final long currentTime) {
     final smarthome.aspects.PatternAspectPatternAspectProperties _self_ = smarthome.aspects.PatternAspectPatternAspectContext.getSelf(_self);
     Object result = null;
@@ -79,6 +100,13 @@ public class PatternAspect extends NamedEntityAspect {
     };
   }
   
+  protected static void _privk3_init(final PatternAspectPatternAspectProperties _self_, final Pattern _self, final long initialTime) {
+    EList<Rule> _rules = _self.getRules();
+    for (final Rule r : _rules) {
+      RuleAspect.init(r, initialTime);
+    }
+  }
+  
   protected static boolean _privk3_eval(final PatternAspectPatternAspectProperties _self_, final Pattern _self, final long currentTime) {
     EList<Rule> _rules = _self.getRules();
     for (final Rule r : _rules) {
@@ -104,9 +132,9 @@ public class PatternAspect extends NamedEntityAspect {
   }
   
   protected static void _privk3_exec(final PatternAspectPatternAspectProperties _self_, final Pattern _self) {
-    InputOutput.println();
     String _name = _self.getName();
     String _plus = ("Pattern[" + _name);
-    /* (_plus + "] append !"); */
+    String _plus_1 = (_plus + "] append !");
+    InputOutput.<String>println(_plus_1);
   }
 }

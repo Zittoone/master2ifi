@@ -80,11 +80,11 @@ public class AnalogSensorAspect extends SensorAspect {
   }
   
   protected static void _privk3_debug(final AnalogSensorAspectAnalogSensorAspectProperties _self_, final AnalogSensor _self) {
-    InputOutput.println();
     String _name = _self.getName();
     String _plus = ("AnalogSensor[" + _name);
     String _plus_1 = (_plus + "] = ");
     Double _currentValue = SensorAspect.currentValue(_self);
-    /* (_plus_1 + _currentValue); */
+    String _plus_2 = (_plus_1 + _currentValue);
+    InputOutput.<String>println(_plus_2);
   }
 }

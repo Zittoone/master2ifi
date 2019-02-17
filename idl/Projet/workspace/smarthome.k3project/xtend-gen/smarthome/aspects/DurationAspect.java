@@ -9,19 +9,19 @@ import smarthome.aspects.DurationAspectDurationAspectProperties;
 @SuppressWarnings("all")
 public class DurationAspect {
   @Step
-  public static void init(final Duration _self, final long currentTime) {
+  public static void init(final Duration _self, final long initialTime) {
     final smarthome.aspects.DurationAspectDurationAspectProperties _self_ = smarthome.aspects.DurationAspectDurationAspectContext.getSelf(_self);
     // #DispatchPointCut_before# void init(long)
     if (_self instanceof smarthome.Duration){
     	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
     		@Override
     		public void execute() {
-    			smarthome.aspects.DurationAspect._privk3_init(_self_, (smarthome.Duration)_self,currentTime);
+    			smarthome.aspects.DurationAspect._privk3_init(_self_, (smarthome.Duration)_self,initialTime);
     		}
     	};
     	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
     	if (stepManager != null) {
-    		stepManager.executeStep(_self, new Object[] {currentTime}, command, "Duration", "init");
+    		stepManager.executeStep(_self, new Object[] {initialTime}, command, "Duration", "init");
     	} else {
     		command.execute();
     	}
@@ -134,8 +134,8 @@ public class DurationAspect {
     };
   }
   
-  protected static void _privk3_init(final DurationAspectDurationAspectProperties _self_, final Duration _self, final long currentTime) {
-    DurationAspect.validSince(_self, currentTime);
+  protected static void _privk3_init(final DurationAspectDurationAspectProperties _self_, final Duration _self, final long initialTime) {
+    DurationAspect.validSince(_self, initialTime);
   }
   
   protected static void _privk3_reset(final DurationAspectDurationAspectProperties _self_, final Duration _self, final long currentTime) {

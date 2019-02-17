@@ -39,7 +39,7 @@ Home {
 		}
 	}
 	
-	monitor Alexis, Sleeping, "Bathroom.door", "Bedroom.bed"
+	monitor Alexis, Sleeping, "Bathroom.door"
 	
 	start
 }
