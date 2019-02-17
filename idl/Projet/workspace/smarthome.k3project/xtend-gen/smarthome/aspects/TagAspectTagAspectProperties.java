@@ -2,9 +2,9 @@ package smarthome.aspects;
 
 @SuppressWarnings("all")
 public class TagAspectTagAspectProperties {
-  public Double x;
+  public Double x = Double.valueOf(0.0);
   
-  public Double y;
+  public Double y = Double.valueOf(0.0);
   
-  public Double z;
+  public Double z = Double.valueOf(0.0);
 }

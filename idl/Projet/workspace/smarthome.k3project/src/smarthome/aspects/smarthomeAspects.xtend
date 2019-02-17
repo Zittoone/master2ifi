@@ -39,6 +39,8 @@ import smarthome.Operator
 import java.io.File
 import java.io.BufferedReader
 import java.io.FileReader
+import java.text.SimpleDateFormat
+import java.sql.Timestamp
 
 @Aspect(className=Home)
 class HomeAspect {
@@ -46,14 +48,23 @@ class HomeAspect {
 	BufferedReader br
 	String currentString
 	String nextString
-	String value
+	int count
+	long initialTime
+	long currentTime
+	
+	SimpleDateFormat datetimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+	
 	
 	@Main
 	def void doIt() {
 		
 		// Definition
     	_self.br = new BufferedReader(new FileReader(new File(_self.fileEvents)))
-    	_self.currentString = _self.br.readLine();
+    	_self.currentString = _self.br.readLine()
+    	
+    	val parsedString = _self.currentString.split(",")
+
+		_self.initialTime = _self.getMillisFromStringDate(parsedString.get(0))
     
 		for(Room r : _self.rooms) {
 			r.init()
@@ -63,29 +74,73 @@ class HomeAspect {
 			p.init()
 		}
 		
-		/*while((_self.nextString = _self.br.readLine()) != null) {
+		_self.count = 0
+		while(_self.currentString !== null) {
 			
-		}*/
+			_self.tick(_self.count)
+			
+			_self.count = _self.count + 1
+		}
 		
+		println("--END--")
 	}
 	
 	@Step
-	def void tick() {
+	def void tick(int count) {
 		
+		println("Iteration " + count)
+		
+		val parsedString = _self.currentString.split(",")
+		
+		if(parsedString.length <= 2) {
+			println("Error parsing")
+			return
+		}
+		
+		_self.currentTime = _self.getMillisFromStringDate(parsedString.get(0))
+		
+		println("Room ticks")
 		for(Room r : _self.rooms) {
 			r.tick()
-		}
-		
-		for(Person p : _self.persons) {
-			p.tick()
-		}
-		
-		for(Pattern p : _self.patterns) {
-			// Je sais c'est obvious
-			if(p.eval() == true) {
-				p.exec()
+			if(parsedString.get(1).equalsIgnoreCase(r.name)) {
+				for(Sensor s : r.sensors) {
+					if(parsedString.get(2).equalsIgnoreCase(s.name)) {
+						s.value = Double.valueOf(parsedString.get(3))
+					}
+				}
 			}
 		}
+		
+		println("Person ticks")
+		for(Person p : _self.persons) {
+			p.tick()
+			if(parsedString.get(1).equalsIgnoreCase(p.name)) {
+
+				// We only need y value :)
+				p.chest.y = Double.valueOf(parsedString.get(2))
+				p.belt.y = Double.valueOf(parsedString.get(3))
+				p.ankleLeft.y = Double.valueOf(parsedString.get(4))
+				p.ankleRight.y = Double.valueOf(parsedString.get(5))
+				
+			}
+		}
+		
+		println("Pattern eval & execution")
+		for(Pattern p : _self.patterns) {
+			if(p.eval(_self.currentTime))
+				p.exec()
+		}
+		
+		println("Monitoring")
+		for(NamedEntity n : _self.monitoredEntities) {
+			n.debug()
+		}
+		
+		_self.currentString = _self.br.readLine()
+	}
+	
+	def long getMillisFromStringDate(String str) {
+		return new Timestamp(_self.datetimeFormatter.parse(str).getTime()).time
 	}
 	
 	
@@ -119,23 +174,23 @@ abstract class NamedEntityAspect {
 @Aspect(className=Sensor)
 abstract class SensorAspect extends NamedEntityAspect {
 
-	protected Double currentValue
+	protected Double currentValue = 0.0
 	
 	@Step
-	def void tick()
+	abstract def void tick()
 	
 	@Step
-	def void init()
+	abstract def void init()
 	
 	@Step
 	def void debug() {
-		println _self.toString()
+		println "Sensor[" + _self.name + "] = " + _self.currentValue
 	}
 	
-	@Step
+	/*@Step
 	def String toString() {
 		return "Sensor[" + _self.name + "] = " + _self.currentValue
-	}
+	}*/
 	
 	@Step
 	def void setValue(Double value) {
@@ -158,6 +213,11 @@ class AnalogSensorAspect extends SensorAspect {
 		// TODO: fetch data from sensor ?
 	}
 	
+	@Step
+	def void init() {
+		
+	}
+	
 }
 
 @Aspect(className=DigitalSensor)
@@ -166,6 +226,11 @@ class DigitalSensorAspect extends SensorAspect {
 	@Step
 	def void tick() {
 		// TODO: fetch data from sensor ?
+	}
+	
+	@Step
+	def void init() {
+		
 	}
 }
 
@@ -209,10 +274,10 @@ class RoomAspect extends NamedEntityAspect {
 class PatternAspect extends NamedEntityAspect {
 
 	@Step
-	def boolean eval() {
+	def boolean eval(long currentTime) {
 		
 		for(Rule r : _self.rules) {
-			if(! r.eval()) {
+			if(! r.eval(currentTime)) {
 				return false
 			}
 		}
@@ -223,9 +288,9 @@ class PatternAspect extends NamedEntityAspect {
 	@Step
 	def void debug() {
 		
-		println "Pattern[" + _self.name + "]{"
+		println("Pattern[" + _self.name + "]{")
 		for(Rule r : _self.rules) {
-			println "\t" + r.toString()
+			println "\t" + r.debug()
 		}
 		println("}")
 	}
@@ -242,45 +307,50 @@ class PatternAspect extends NamedEntityAspect {
 class RuleAspect {
 
 	@Step
-	def boolean eval() {
+	def boolean eval(long currentTime) {
 		
 		// Evaluate all the predicates
 		for(Predicate p : _self.predicates) {
 			if(! p.eval()) {
 				
 				// Has a @Step so easy to debug
-				_self.duration.reset()
+				_self.duration.reset(currentTime)
 				
 				return false
 			}
 		}
 		
-		return _self.duration.isDone()
+		return _self.duration.isDone(currentTime)
 	}
 	
 	@Step
-	def void debug() {
+	def String debug() {
 		
-		println("{")
+		val sb = new StringBuilder()
+		sb.append("{")
 		for(Predicate p : _self.predicates) {
-			println p.toString()
+			sb.append(p.debug())
 		}
-		println("}")
+		sb.append("}")
+		return sb.toString()
 	}
 }
 
 @Aspect(className=Tag)
 class TagAspect extends NamedEntityAspect {
 	
-	public Double x
-	public Double y
-	public Double z
+	public Double x = 0.0
+	public Double y = 0.0
+	public Double z = 0.0
 	
 	@Step
 	def void tick() {
 		
 	}
 	
+	def String debug() {
+		return "[" + _self.name + "]{x=" + _self.x + ", y=" + _self.y + ", z=" + _self.z + "}"
+ 	} 
 	 
 	
 }
@@ -335,12 +405,12 @@ class PersonAspect extends NamedEntityAspect {
 	@Step
 	def void debug() {
 		
-		println "Person[" + _self.name + "]{"
+		println ("Person[" + _self.name + "]{")
 		// TODO: print all tags and current activity
-		println "\t" + _self.chest.toString()
-		println "\t" + _self.belt.toString()
-		println "\t" + _self.ankleLeft.toString()
-		println "\t" + _self.ankleRight.toString()
+		println ("\t" + _self.chest.debug())
+		println ("\t" + _self.belt.debug())
+		println ("\t" + _self.ankleLeft.debug())
+		println ("\t" + _self.ankleRight.debug())
 		println("}")
 	}
 
@@ -350,14 +420,16 @@ class PersonAspect extends NamedEntityAspect {
 abstract class PredicateAspect {
 	
 	@Step
-	def boolean eval()
-		
+	abstract def boolean eval()
+	
+	@Step
+	abstract def String debug()
 }
 
 @Aspect(className=SensorPredicate)
 class SensorPredicateAspect extends PredicateAspect {
 
-	boolean currentValue
+	boolean currentValue = false
 	
 	@Step
 	def boolean eval() {
@@ -380,8 +452,8 @@ class SensorPredicateAspect extends PredicateAspect {
 	}
 	
 	@Step
-	def void debug() {
-		println "{" + _self.sensor.toString() + " " + _self.operator.literal + " " + _self.value + " = " + _self.currentValue + "}"
+	def String debug() {
+		return "{" + _self.sensor.toString() + " " + _self.operator.literal + " " + _self.value + " = " + _self.currentValue + "}"
 	}
 		
 }
@@ -389,7 +461,7 @@ class SensorPredicateAspect extends PredicateAspect {
 @Aspect(className=PersonPredicate)
 class PersonPredicateAspect extends PredicateAspect {
 	
-	boolean currentValue
+	boolean currentValue = false
 	
 	@Step
 	def boolean eval() {
@@ -398,9 +470,9 @@ class PersonPredicateAspect extends PredicateAspect {
 	}
 	
 	@Step
-	def void debug() {
+	def String debug() {
 		
-		println "{" + _self.person.toString() + " is " + _self.activity.literal + " = " + _self.currentValue + "}"
+		return "{" + _self.person.toString() + " is " + _self.activity.literal + " = " + _self.currentValue + "}"
 
 	}
 	
@@ -410,28 +482,28 @@ class PersonPredicateAspect extends PredicateAspect {
 class DurationAspect {
 
 	long validSince
-	boolean currentValue
+	boolean currentValue = false
 	
 	@Step
-	def void init() {
-		_self.validSince = System.currentTimeMillis
+	def void init(long currentTime) {
+		_self.validSince = currentTime
 	}
 	
 	@Step
-	def void reset() {
-		_self.validSince = System.currentTimeMillis
+	def void reset(long currentTime) {
+		_self.validSince = currentTime
 	}
 	
 	@Step
-	def boolean isDone() {
-		_self.currentValue = (System.currentTimeMillis - _self.validSince) > (_self.time * _self.precision.value)
+	def boolean isDone(long currentTime) {
+		_self.currentValue = (currentTime - _self.validSince) > (_self.time * _self.precision.value)
 		return _self.currentValue
 	}
 	
 	@Step
 	def void debug() {
 		
-		println "{ Current:" + System.currentTimeMillis + ", validSince:" + _self.validSince + ", diff:" + (System.currentTimeMillis - _self.validSince) + ", duration:" + _self.time + _self.precision.literal + ", valid: " + _self.currentValue + "}"
+		println "{validSince:" + _self.validSince + ", duration:" + _self.time + _self.precision.literal + ", valid: " + _self.currentValue + "}"
 
 	}
 }

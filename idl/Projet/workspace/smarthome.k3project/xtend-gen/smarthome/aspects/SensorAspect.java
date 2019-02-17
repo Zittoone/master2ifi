@@ -15,139 +15,151 @@ public abstract class SensorAspect extends NamedEntityAspect {
   @Abstract
   public static void tick(final Sensor _self) {
     final smarthome.aspects.SensorAspectSensorAspectProperties _self_ = smarthome.aspects.SensorAspectSensorAspectContext.getSelf(_self);
-     if (_self instanceof smarthome.DigitalSensor){
-    					smarthome.aspects.DigitalSensorAspect.tick((smarthome.DigitalSensor)_self);
-    } else  if (_self instanceof smarthome.AnalogSensor){
-    					smarthome.aspects.AnalogSensorAspect.tick((smarthome.AnalogSensor)_self);
-    } else  if (_self instanceof smarthome.Sensor){
-    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
-    						@Override
-    						public void execute() {
-    							smarthome.aspects.SensorAspect._privk3_tick(_self_, (smarthome.Sensor)_self);
-    						}
-    					};
-    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
-    					if (stepManager != null) {
-    						stepManager.executeStep(_self,command,"Sensor","tick");
-    					} else {
-    						command.execute();
-    					}
-    					;
-    } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); };
+    	// BeginInjectInto smarthome.aspects.SensorAspect#void tick() from smarthome.aspects.AnalogSensorAspect
+    		if (_self instanceof smarthome.AnalogSensor){
+    			smarthome.aspects.AnalogSensorAspect.tick((smarthome.AnalogSensor)_self);
+    		} else
+    		// EndInjectInto smarthome.aspects.SensorAspect#void tick() from smarthome.aspects.AnalogSensorAspect
+    	// BeginInjectInto smarthome.aspects.SensorAspect#void tick() from smarthome.aspects.DigitalSensorAspect
+    		if (_self instanceof smarthome.DigitalSensor){
+    			smarthome.aspects.DigitalSensorAspect.tick((smarthome.DigitalSensor)_self);
+    		} else
+    		// EndInjectInto smarthome.aspects.SensorAspect#void tick() from smarthome.aspects.DigitalSensorAspect
+    // #DispatchPointCut_before# void tick()
+    if (_self instanceof smarthome.Sensor){
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    		@Override
+    		public void execute() {
+    			smarthome.aspects.SensorAspect._privk3_tick(_self_, (smarthome.Sensor)_self);
+    		}
+    	};
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    	if (stepManager != null) {
+    		stepManager.executeStep(_self, new Object[] {_self}, command, "Sensor", "tick");
+    	} else {
+    		command.execute();
+    	}
+    	;
+    };
   }
   
   @Step
   @Abstract
   public static void init(final Sensor _self) {
     final smarthome.aspects.SensorAspectSensorAspectProperties _self_ = smarthome.aspects.SensorAspectSensorAspectContext.getSelf(_self);
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
-    	@Override
-    	public void execute() {
-    		_privk3_init(_self_, _self);
+    	// BeginInjectInto smarthome.aspects.SensorAspect#void init() from smarthome.aspects.AnalogSensorAspect
+    		if (_self instanceof smarthome.AnalogSensor){
+    			smarthome.aspects.AnalogSensorAspect.init((smarthome.AnalogSensor)_self);
+    		} else
+    		// EndInjectInto smarthome.aspects.SensorAspect#void init() from smarthome.aspects.AnalogSensorAspect
+    	// BeginInjectInto smarthome.aspects.SensorAspect#void init() from smarthome.aspects.DigitalSensorAspect
+    		if (_self instanceof smarthome.DigitalSensor){
+    			smarthome.aspects.DigitalSensorAspect.init((smarthome.DigitalSensor)_self);
+    		} else
+    		// EndInjectInto smarthome.aspects.SensorAspect#void init() from smarthome.aspects.DigitalSensorAspect
+    // #DispatchPointCut_before# void init()
+    if (_self instanceof smarthome.Sensor){
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    		@Override
+    		public void execute() {
+    			smarthome.aspects.SensorAspect._privk3_init(_self_, (smarthome.Sensor)_self);
+    		}
+    	};
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    	if (stepManager != null) {
+    		stepManager.executeStep(_self, new Object[] {_self}, command, "Sensor", "init");
+    	} else {
+    		command.execute();
     	}
+    	;
     };
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
-    if (stepManager != null) {
-    	stepManager.executeStep(_self,command,"Sensor","init");
-    } else {
-    	command.execute();
-    }
-    ;;
   }
   
   @Step
   public static void debug(final Sensor _self) {
     final smarthome.aspects.SensorAspectSensorAspectProperties _self_ = smarthome.aspects.SensorAspectSensorAspectContext.getSelf(_self);
-     if (_self instanceof smarthome.Sensor){
-    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
-    						@Override
-    						public void execute() {
-    							smarthome.aspects.SensorAspect._privk3_debug(_self_, (smarthome.Sensor)_self);
-    						}
-    					};
-    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
-    					if (stepManager != null) {
-    						stepManager.executeStep(_self,command,"Sensor","debug");
-    					} else {
-    						command.execute();
-    					}
-    					;
-    } else  if (_self instanceof smarthome.NamedEntity){
-    					smarthome.aspects.NamedEntityAspect.debug((smarthome.NamedEntity)_self);
-    } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); };
+    // #DispatchPointCut_before# void debug()
+    if (_self instanceof smarthome.Sensor){
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    		@Override
+    		public void execute() {
+    			smarthome.aspects.SensorAspect._privk3_debug(_self_, (smarthome.Sensor)_self);
+    		}
+    	};
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    	if (stepManager != null) {
+    		stepManager.executeStep(_self, new Object[] {_self}, command, "Sensor", "debug");
+    	} else {
+    		command.execute();
+    	}
+    	;
+    };
   }
   
-  @Step
-  public static String toString(final Sensor _self) {
-    final smarthome.aspects.SensorAspectSensorAspectProperties _self_ = smarthome.aspects.SensorAspectSensorAspectContext.getSelf(_self);
-    Object result = null;
-     if (_self instanceof smarthome.Sensor){
-    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
-    						@Override
-    						public void execute() {
-    							addToResult(smarthome.aspects.SensorAspect._privk3_toString(_self_, (smarthome.Sensor)_self));
-    						}
-    					};
-    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
-    					if (stepManager != null) {
-    						stepManager.executeStep(_self,command,"Sensor","toString");
-    					} else {
-    						command.execute();
-    					}
-    					result = command.getResult();
-    					;
-    } else  if (_self instanceof smarthome.NamedEntity){
-    					result = smarthome.aspects.NamedEntityAspect.toString((smarthome.NamedEntity)_self);
-    } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); };
-    return (java.lang.String)result;
-  }
-  
+  /**
+   * @Step
+   * def String toString() {
+   * return "Sensor[" + _self.name + "] = " + _self.currentValue
+   * }
+   */
   @Step
   public static void setValue(final Sensor _self, final Double value) {
     final smarthome.aspects.SensorAspectSensorAspectProperties _self_ = smarthome.aspects.SensorAspectSensorAspectContext.getSelf(_self);
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
-    	@Override
-    	public void execute() {
-    		_privk3_setValue(_self_, _self,value);
+    // #DispatchPointCut_before# void setValue(Double)
+    if (_self instanceof smarthome.Sensor){
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    		@Override
+    		public void execute() {
+    			smarthome.aspects.SensorAspect._privk3_setValue(_self_, (smarthome.Sensor)_self,value);
+    		}
+    	};
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    	if (stepManager != null) {
+    		stepManager.executeStep(_self, new Object[] {value}, command, "Sensor", "setValue");
+    	} else {
+    		command.execute();
     	}
+    	;
     };
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
-    if (stepManager != null) {
-    	stepManager.executeStep(_self,command,"Sensor","setValue");
-    } else {
-    	command.execute();
-    }
-    ;;
   }
   
   @Step
   public static void readSource(final Sensor _self) {
     final smarthome.aspects.SensorAspectSensorAspectProperties _self_ = smarthome.aspects.SensorAspectSensorAspectContext.getSelf(_self);
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
-    	@Override
-    	public void execute() {
-    		_privk3_readSource(_self_, _self);
+    // #DispatchPointCut_before# void readSource()
+    if (_self instanceof smarthome.Sensor){
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    		@Override
+    		public void execute() {
+    			smarthome.aspects.SensorAspect._privk3_readSource(_self_, (smarthome.Sensor)_self);
+    		}
+    	};
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    	if (stepManager != null) {
+    		stepManager.executeStep(_self, new Object[] {_self}, command, "Sensor", "readSource");
+    	} else {
+    		command.execute();
     	}
+    	;
     };
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
-    if (stepManager != null) {
-    	stepManager.executeStep(_self,command,"Sensor","readSource");
-    } else {
-    	command.execute();
-    }
-    ;;
   }
   
   protected static Double currentValue(final Sensor _self) {
     final smarthome.aspects.SensorAspectSensorAspectProperties _self_ = smarthome.aspects.SensorAspectSensorAspectContext.getSelf(_self);
     Object result = null;
-    result = _privk3_currentValue(_self_, _self);;
+    // #DispatchPointCut_before# Double currentValue()
+    if (_self instanceof smarthome.Sensor){
+    	result = smarthome.aspects.SensorAspect._privk3_currentValue(_self_, (smarthome.Sensor)_self);
+    };
     return (java.lang.Double)result;
   }
   
   protected static void currentValue(final Sensor _self, final Double currentValue) {
     final smarthome.aspects.SensorAspectSensorAspectProperties _self_ = smarthome.aspects.SensorAspectSensorAspectContext.getSelf(_self);
-    _privk3_currentValue(_self_, _self,currentValue);;
+    // #DispatchPointCut_before# void currentValue(Double)
+    if (_self instanceof smarthome.Sensor){
+    	smarthome.aspects.SensorAspect._privk3_currentValue(_self_, (smarthome.Sensor)_self,currentValue);
+    };
   }
   
   protected static void _privk3_tick(final SensorAspectSensorAspectProperties _self_, final Sensor _self) {
@@ -160,15 +172,11 @@ public abstract class SensorAspect extends NamedEntityAspect {
   
   protected static void _privk3_debug(final SensorAspectSensorAspectProperties _self_, final Sensor _self) {
     InputOutput.println();
-    _self.toString();
-  }
-  
-  protected static String _privk3_toString(final SensorAspectSensorAspectProperties _self_, final Sensor _self) {
     String _name = _self.getName();
     String _plus = ("Sensor[" + _name);
     String _plus_1 = (_plus + "] = ");
     Double _currentValue = SensorAspect.currentValue(_self);
-    return (_plus_1 + _currentValue);
+    /* (_plus_1 + _currentValue); */
   }
   
   protected static void _privk3_setValue(final SensorAspectSensorAspectProperties _self_, final Sensor _self, final Double value) {

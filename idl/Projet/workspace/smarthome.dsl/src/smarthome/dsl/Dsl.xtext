@@ -6,6 +6,8 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Home returns Home:
 	{Home}
+	'Home'
+	'{'
 		('eventFile' fileEvents=EString)
 		('rooms' '{' rooms+=Room ( "," rooms+=Room)* '}' )?
 		('persons' '{' persons+=Person ( "," persons+=Person)* '}' )?
@@ -13,7 +15,7 @@ Home returns Home:
 		('monitor' monitoredEntities+=[NamedEntity | EString]( "," monitoredEntities+=[NamedEntity | EString])* )?
 		
 		('start')
-		
+	'}'
 ;
 
 //TODO:
@@ -44,8 +46,20 @@ Room returns Room:
 Person returns Person:
 	{Person}
 	'Person'
-	name=EString;
+	name=EString
+	'{'
+	'left-ankle' ankleLeft=Tag
+	'right-ankle' ankleRight=Tag
+	'belt' belt=Tag
+	'chest' chest=Tag
+	'}'
+;
 
+Tag returns Tag:
+	{Tag}
+	'ID'
+	name=EString
+;
 Pattern returns Pattern:
 	{Pattern}
 	'Pattern'

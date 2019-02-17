@@ -1,6 +1,7 @@
 package smarthome.aspects;
 
 import java.io.BufferedReader;
+import java.text.SimpleDateFormat;
 
 @SuppressWarnings("all")
 public class HomeAspectHomeAspectProperties {
@@ -10,5 +11,11 @@ public class HomeAspectHomeAspectProperties {
   
   public String nextString;
   
-  public String value;
+  public int count;
+  
+  public long initialTime;
+  
+  public long currentTime;
+  
+  public SimpleDateFormat datetimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 }

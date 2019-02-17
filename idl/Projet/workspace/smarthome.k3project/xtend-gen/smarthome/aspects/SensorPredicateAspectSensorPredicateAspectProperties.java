@@ -2,5 +2,5 @@ package smarthome.aspects;
 
 @SuppressWarnings("all")
 public class SensorPredicateAspectSensorPredicateAspectProperties {
-  public boolean currentValue;
+  public boolean currentValue = false;
 }

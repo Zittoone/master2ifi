@@ -2,7 +2,6 @@ package smarthome.aspects;
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
 import fr.inria.diverse.k3.al.annotationprocessor.Step;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import smarthome.PersonPredicate;
 import smarthome.aspects.PersonAspect;
 import smarthome.aspects.PersonPredicateAspectPersonPredicateAspectProperties;
@@ -15,55 +14,66 @@ public class PersonPredicateAspect extends PredicateAspect {
   public static boolean eval(final PersonPredicate _self) {
     final smarthome.aspects.PersonPredicateAspectPersonPredicateAspectProperties _self_ = smarthome.aspects.PersonPredicateAspectPersonPredicateAspectContext.getSelf(_self);
     Object result = null;
-     if (_self instanceof smarthome.PersonPredicate){
-    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
-    						@Override
-    						public void execute() {
-    							addToResult(smarthome.aspects.PersonPredicateAspect._privk3_eval(_self_, (smarthome.PersonPredicate)_self));
-    						}
-    					};
-    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
-    					if (stepManager != null) {
-    						stepManager.executeStep(_self,command,"PersonPredicate","eval");
-    					} else {
-    						command.execute();
-    					}
-    					result = command.getResult();
-    					;
-    } else  if (_self instanceof smarthome.Predicate){
-    					result = smarthome.aspects.PredicateAspect.eval((smarthome.Predicate)_self);
-    } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); };
+    // #DispatchPointCut_before# boolean eval()
+    if (_self instanceof smarthome.PersonPredicate){
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    		@Override
+    		public void execute() {
+    			addToResult(smarthome.aspects.PersonPredicateAspect._privk3_eval(_self_, (smarthome.PersonPredicate)_self));
+    		}
+    	};
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    	if (stepManager != null) {
+    		stepManager.executeStep(_self, new Object[] {_self}, command, "PersonPredicate", "eval");
+    	} else {
+    		command.execute();
+    	}
+    	result = command.getResult();
+    	;
+    };
     return (boolean)result;
   }
   
   @Step
-  public static void debug(final PersonPredicate _self) {
+  public static String debug(final PersonPredicate _self) {
     final smarthome.aspects.PersonPredicateAspectPersonPredicateAspectProperties _self_ = smarthome.aspects.PersonPredicateAspectPersonPredicateAspectContext.getSelf(_self);
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
-    	@Override
-    	public void execute() {
-    		_privk3_debug(_self_, _self);
+    Object result = null;
+    // #DispatchPointCut_before# String debug()
+    if (_self instanceof smarthome.PersonPredicate){
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    		@Override
+    		public void execute() {
+    			addToResult(smarthome.aspects.PersonPredicateAspect._privk3_debug(_self_, (smarthome.PersonPredicate)_self));
+    		}
+    	};
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    	if (stepManager != null) {
+    		stepManager.executeStep(_self, new Object[] {_self}, command, "PersonPredicate", "debug");
+    	} else {
+    		command.execute();
     	}
+    	result = command.getResult();
+    	;
     };
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
-    if (stepManager != null) {
-    	stepManager.executeStep(_self,command,"PersonPredicate","debug");
-    } else {
-    	command.execute();
-    }
-    ;;
+    return (java.lang.String)result;
   }
   
   private static boolean currentValue(final PersonPredicate _self) {
     final smarthome.aspects.PersonPredicateAspectPersonPredicateAspectProperties _self_ = smarthome.aspects.PersonPredicateAspectPersonPredicateAspectContext.getSelf(_self);
     Object result = null;
-    result = _privk3_currentValue(_self_, _self);;
+    // #DispatchPointCut_before# boolean currentValue()
+    if (_self instanceof smarthome.PersonPredicate){
+    	result = smarthome.aspects.PersonPredicateAspect._privk3_currentValue(_self_, (smarthome.PersonPredicate)_self);
+    };
     return (boolean)result;
   }
   
   private static void currentValue(final PersonPredicate _self, final boolean currentValue) {
     final smarthome.aspects.PersonPredicateAspectPersonPredicateAspectProperties _self_ = smarthome.aspects.PersonPredicateAspectPersonPredicateAspectContext.getSelf(_self);
-    _privk3_currentValue(_self_, _self,currentValue);;
+    // #DispatchPointCut_before# void currentValue(boolean)
+    if (_self instanceof smarthome.PersonPredicate){
+    	smarthome.aspects.PersonPredicateAspect._privk3_currentValue(_self_, (smarthome.PersonPredicate)_self,currentValue);
+    };
   }
   
   protected static boolean _privk3_eval(final PersonPredicateAspectPersonPredicateAspectProperties _self_, final PersonPredicate _self) {
@@ -71,8 +81,7 @@ public class PersonPredicateAspect extends PredicateAspect {
     return PersonPredicateAspect.currentValue(_self);
   }
   
-  protected static void _privk3_debug(final PersonPredicateAspectPersonPredicateAspectProperties _self_, final PersonPredicate _self) {
-    InputOutput.println();
+  protected static String _privk3_debug(final PersonPredicateAspectPersonPredicateAspectProperties _self_, final PersonPredicate _self) {
     String _string = _self.getPerson().toString();
     String _plus = ("{" + _string);
     String _plus_1 = (_plus + " is ");
@@ -81,7 +90,7 @@ public class PersonPredicateAspect extends PredicateAspect {
     String _plus_3 = (_plus_2 + " = ");
     boolean _currentValue = PersonPredicateAspect.currentValue(_self);
     String _plus_4 = (_plus_3 + Boolean.valueOf(_currentValue));
-    /* (_plus_4 + "}"); */
+    return (_plus_4 + "}");
   }
   
   protected static boolean _privk3_currentValue(final PersonPredicateAspectPersonPredicateAspectProperties _self_, final PersonPredicate _self) {

@@ -4,5 +4,5 @@ package smarthome.aspects;
 public class DurationAspectDurationAspectProperties {
   public long validSince;
   
-  public boolean currentValue;
+  public boolean currentValue = false;
 }

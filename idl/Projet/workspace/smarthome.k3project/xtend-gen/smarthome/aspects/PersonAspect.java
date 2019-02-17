@@ -16,110 +16,139 @@ public class PersonAspect extends NamedEntityAspect {
   @Step
   public static void tick(final Person _self) {
     final smarthome.aspects.PersonAspectPersonAspectProperties _self_ = smarthome.aspects.PersonAspectPersonAspectContext.getSelf(_self);
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
-    	@Override
-    	public void execute() {
-    		_privk3_tick(_self_, _self);
+    // #DispatchPointCut_before# void tick()
+    if (_self instanceof smarthome.Person){
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    		@Override
+    		public void execute() {
+    			smarthome.aspects.PersonAspect._privk3_tick(_self_, (smarthome.Person)_self);
+    		}
+    	};
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    	if (stepManager != null) {
+    		stepManager.executeStep(_self, new Object[] {_self}, command, "Person", "tick");
+    	} else {
+    		command.execute();
     	}
+    	;
     };
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
-    if (stepManager != null) {
-    	stepManager.executeStep(_self,command,"Person","tick");
-    } else {
-    	command.execute();
-    }
-    ;;
   }
   
   @Step
   public static void init(final Person _self) {
     final smarthome.aspects.PersonAspectPersonAspectProperties _self_ = smarthome.aspects.PersonAspectPersonAspectContext.getSelf(_self);
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
-    	@Override
-    	public void execute() {
-    		_privk3_init(_self_, _self);
+    // #DispatchPointCut_before# void init()
+    if (_self instanceof smarthome.Person){
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    		@Override
+    		public void execute() {
+    			smarthome.aspects.PersonAspect._privk3_init(_self_, (smarthome.Person)_self);
+    		}
+    	};
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    	if (stepManager != null) {
+    		stepManager.executeStep(_self, new Object[] {_self}, command, "Person", "init");
+    	} else {
+    		command.execute();
     	}
+    	;
     };
-    fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
-    if (stepManager != null) {
-    	stepManager.executeStep(_self,command,"Person","init");
-    } else {
-    	command.execute();
-    }
-    ;;
   }
   
   public static void determineActivity(final Person _self) {
     final smarthome.aspects.PersonAspectPersonAspectProperties _self_ = smarthome.aspects.PersonAspectPersonAspectContext.getSelf(_self);
-    _privk3_determineActivity(_self_, _self);;
+    // #DispatchPointCut_before# void determineActivity()
+    if (_self instanceof smarthome.Person){
+    	smarthome.aspects.PersonAspect._privk3_determineActivity(_self_, (smarthome.Person)_self);
+    };
   }
   
   public static Activity getCurrentActivity(final Person _self) {
     final smarthome.aspects.PersonAspectPersonAspectProperties _self_ = smarthome.aspects.PersonAspectPersonAspectContext.getSelf(_self);
     Object result = null;
-    result = _privk3_getCurrentActivity(_self_, _self);;
+    // #DispatchPointCut_before# Activity getCurrentActivity()
+    if (_self instanceof smarthome.Person){
+    	result = smarthome.aspects.PersonAspect._privk3_getCurrentActivity(_self_, (smarthome.Person)_self);
+    };
     return (smarthome.Activity)result;
   }
   
   @Step
   public static void debug(final Person _self) {
     final smarthome.aspects.PersonAspectPersonAspectProperties _self_ = smarthome.aspects.PersonAspectPersonAspectContext.getSelf(_self);
-     if (_self instanceof smarthome.Person){
-    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
-    						@Override
-    						public void execute() {
-    							smarthome.aspects.PersonAspect._privk3_debug(_self_, (smarthome.Person)_self);
-    						}
-    					};
-    					fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
-    					if (stepManager != null) {
-    						stepManager.executeStep(_self,command,"Person","debug");
-    					} else {
-    						command.execute();
-    					}
-    					;
-    } else  if (_self instanceof smarthome.NamedEntity){
-    					smarthome.aspects.NamedEntityAspect.debug((smarthome.NamedEntity)_self);
-    } else  { throw new IllegalArgumentException("Unhandled parameter types: " + java.util.Arrays.<Object>asList(_self).toString()); };
+    // #DispatchPointCut_before# void debug()
+    if (_self instanceof smarthome.Person){
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
+    		@Override
+    		public void execute() {
+    			smarthome.aspects.PersonAspect._privk3_debug(_self_, (smarthome.Person)_self);
+    		}
+    	};
+    	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
+    	if (stepManager != null) {
+    		stepManager.executeStep(_self, new Object[] {_self}, command, "Person", "debug");
+    	} else {
+    		command.execute();
+    	}
+    	;
+    };
   }
   
   private static Activity currentActivity(final Person _self) {
     final smarthome.aspects.PersonAspectPersonAspectProperties _self_ = smarthome.aspects.PersonAspectPersonAspectContext.getSelf(_self);
     Object result = null;
-    result = _privk3_currentActivity(_self_, _self);;
+    // #DispatchPointCut_before# Activity currentActivity()
+    if (_self instanceof smarthome.Person){
+    	result = smarthome.aspects.PersonAspect._privk3_currentActivity(_self_, (smarthome.Person)_self);
+    };
     return (smarthome.Activity)result;
   }
   
   private static void currentActivity(final Person _self, final Activity currentActivity) {
     final smarthome.aspects.PersonAspectPersonAspectProperties _self_ = smarthome.aspects.PersonAspectPersonAspectContext.getSelf(_self);
-    _privk3_currentActivity(_self_, _self,currentActivity);;
+    // #DispatchPointCut_before# void currentActivity(Activity)
+    if (_self instanceof smarthome.Person){
+    	smarthome.aspects.PersonAspect._privk3_currentActivity(_self_, (smarthome.Person)_self,currentActivity);
+    };
   }
   
   private static double STANDING_RATIO(final Person _self) {
     final smarthome.aspects.PersonAspectPersonAspectProperties _self_ = smarthome.aspects.PersonAspectPersonAspectContext.getSelf(_self);
     Object result = null;
-    result = _privk3_STANDING_RATIO(_self_, _self);;
+    // #DispatchPointCut_before# double STANDING_RATIO()
+    if (_self instanceof smarthome.Person){
+    	result = smarthome.aspects.PersonAspect._privk3_STANDING_RATIO(_self_, (smarthome.Person)_self);
+    };
     return (double)result;
   }
   
   private static double SITTING_RATIO(final Person _self) {
     final smarthome.aspects.PersonAspectPersonAspectProperties _self_ = smarthome.aspects.PersonAspectPersonAspectContext.getSelf(_self);
     Object result = null;
-    result = _privk3_SITTING_RATIO(_self_, _self);;
+    // #DispatchPointCut_before# double SITTING_RATIO()
+    if (_self instanceof smarthome.Person){
+    	result = smarthome.aspects.PersonAspect._privk3_SITTING_RATIO(_self_, (smarthome.Person)_self);
+    };
     return (double)result;
   }
   
   private static double LAYING_RATIO(final Person _self) {
     final smarthome.aspects.PersonAspectPersonAspectProperties _self_ = smarthome.aspects.PersonAspectPersonAspectContext.getSelf(_self);
     Object result = null;
-    result = _privk3_LAYING_RATIO(_self_, _self);;
+    // #DispatchPointCut_before# double LAYING_RATIO()
+    if (_self instanceof smarthome.Person){
+    	result = smarthome.aspects.PersonAspect._privk3_LAYING_RATIO(_self_, (smarthome.Person)_self);
+    };
     return (double)result;
   }
   
   private static double DELTA(final Person _self) {
     final smarthome.aspects.PersonAspectPersonAspectProperties _self_ = smarthome.aspects.PersonAspectPersonAspectContext.getSelf(_self);
     Object result = null;
-    result = _privk3_DELTA(_self_, _self);;
+    // #DispatchPointCut_before# double DELTA()
+    if (_self instanceof smarthome.Person){
+    	result = smarthome.aspects.PersonAspect._privk3_DELTA(_self_, (smarthome.Person)_self);
+    };
     return (double)result;
   }
   
@@ -159,22 +188,22 @@ public class PersonAspect extends NamedEntityAspect {
   }
   
   protected static void _privk3_debug(final PersonAspectPersonAspectProperties _self_, final Person _self) {
-    InputOutput.println();
     String _name = _self.getName();
     String _plus = ("Person[" + _name);
-    /* (_plus + "]{"); */
-    InputOutput.println();
-    String _string = _self.getChest().toString();
-    /* ("\t" + _string); */
-    InputOutput.println();
-    String _string_1 = _self.getBelt().toString();
-    /* ("\t" + _string_1); */
-    InputOutput.println();
-    String _string_2 = _self.getAnkleLeft().toString();
-    /* ("\t" + _string_2); */
-    InputOutput.println();
-    String _string_3 = _self.getAnkleRight().toString();
-    /* ("\t" + _string_3); */
+    String _plus_1 = (_plus + "]{");
+    InputOutput.<String>println(_plus_1);
+    String _debug = TagAspect.debug(_self.getChest());
+    String _plus_2 = ("\t" + _debug);
+    InputOutput.<String>println(_plus_2);
+    String _debug_1 = TagAspect.debug(_self.getBelt());
+    String _plus_3 = ("\t" + _debug_1);
+    InputOutput.<String>println(_plus_3);
+    String _debug_2 = TagAspect.debug(_self.getAnkleLeft());
+    String _plus_4 = ("\t" + _debug_2);
+    InputOutput.<String>println(_plus_4);
+    String _debug_3 = TagAspect.debug(_self.getAnkleRight());
+    String _plus_5 = ("\t" + _debug_3);
+    InputOutput.<String>println(_plus_5);
     InputOutput.<String>println("}");
   }
   
