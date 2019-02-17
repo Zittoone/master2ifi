@@ -99,7 +99,6 @@ class HomeAspect {
 		
 		_self.currentTime = _self.getMillisFromStringDate(parsedString.get(0))
 		
-		println("Room ticks")
 		for(Room r : _self.rooms) {
 			r.tick()
 			if(parsedString.get(1).equalsIgnoreCase(r.name)) {
@@ -110,8 +109,7 @@ class HomeAspect {
 				}
 			}
 		}
-		
-		println("Person ticks")
+
 		for(Person p : _self.persons) {
 			p.tick()
 			if(parsedString.get(1).equalsIgnoreCase(p.name)) {
@@ -124,16 +122,19 @@ class HomeAspect {
 				
 			}
 		}
-		
-		println("Pattern eval & execution")
+
 		for(Pattern p : _self.patterns) {
 			if(p.eval(_self.currentTime))
 				p.exec()
 		}
 		
 		println("Monitoring")
+		println("Current timestamp:" + _self.currentTime)
+		println("Current timestamp elapsed(seconds):" + ((_self.currentTime - _self.initialTime) / 1000))
 		for(NamedEntity n : _self.monitoredEntities) {
+			println("----"+ n.name + "----")
 			n.debug()
+			println("---------------------")
 		}
 		
 		_self.currentString = _self.br.readLine()
@@ -211,6 +212,7 @@ class AnalogSensorAspect extends SensorAspect {
 	@Step
 	def void tick() {
 		// TODO: fetch data from sensor ?
+		// instead of main func
 	}
 	
 	@Step
@@ -218,6 +220,10 @@ class AnalogSensorAspect extends SensorAspect {
 		
 	}
 	
+	@Step
+	def void debug() {
+		println "AnalogSensor[" + _self.name + "] = " + _self.currentValue
+	}
 }
 
 @Aspect(className=DigitalSensor)
@@ -226,11 +232,17 @@ class DigitalSensorAspect extends SensorAspect {
 	@Step
 	def void tick() {
 		// TODO: fetch data from sensor ?
+		// instead of main func
 	}
 	
 	@Step
 	def void init() {
 		
+	}
+	
+	@Step
+	def void debug() {
+		println "DigitalSensor[" + _self.name + "] = " + _self.currentValue
 	}
 }
 
@@ -238,6 +250,7 @@ class DigitalSensorAspect extends SensorAspect {
 class CSVSensorAspect {
 
 	// TODO: load file
+	// No need because event file
 	
 }
 
@@ -263,7 +276,8 @@ class RoomAspect extends NamedEntityAspect {
 		
 		println "Room[" + _self.name + "]{"
 		for(Sensor s : _self.sensors) {
-			println "\t" + s.toString()
+			print("-> ")
+			s.debug()
 		}
 		println("}")
 	}
@@ -290,7 +304,7 @@ class PatternAspect extends NamedEntityAspect {
 		
 		println("Pattern[" + _self.name + "]{")
 		for(Rule r : _self.rules) {
-			println "\t" + r.debug()
+			println(r.debug())
 		}
 		println("}")
 	}
@@ -326,12 +340,14 @@ class RuleAspect {
 	@Step
 	def String debug() {
 		
-		val sb = new StringBuilder()
-		sb.append("{")
+		var sb = new StringBuilder()
 		for(Predicate p : _self.predicates) {
-			sb.append(p.debug())
+			sb.append(p.debug()).append("\n")
 		}
-		sb.append("}")
+		
+		if(_self.duration !== null) {
+			sb.append(_self.duration.debug()).append("\n")
+		}
 		return sb.toString()
 	}
 }
@@ -349,7 +365,8 @@ class TagAspect extends NamedEntityAspect {
 	}
 	
 	def String debug() {
-		return "[" + _self.name + "]{x=" + _self.x + ", y=" + _self.y + ", z=" + _self.z + "}"
+		// return "[" + _self.name + "]{x=" + _self.x + ", y=" + _self.y + ", z=" + _self.z + "}"
+		return "[" + _self.name + "]{y=" + _self.y + "}"
  	} 
 	 
 	
@@ -372,7 +389,7 @@ class PersonAspect extends NamedEntityAspect {
 	
 	@Step
 	def void init() {
-		
+		_self.currentActivity = Activity.LAYING
 	}
 	
 	def void determineActivity() {
@@ -407,10 +424,11 @@ class PersonAspect extends NamedEntityAspect {
 		
 		println ("Person[" + _self.name + "]{")
 		// TODO: print all tags and current activity
-		println ("\t" + _self.chest.debug())
-		println ("\t" + _self.belt.debug())
-		println ("\t" + _self.ankleLeft.debug())
-		println ("\t" + _self.ankleRight.debug())
+		println ("-" + _self.chest.debug())
+		println ("-" + _self.belt.debug())
+		println ("-" + _self.ankleLeft.debug())
+		println ("-" + _self.ankleRight.debug())
+		println ("-" + _self.getCurrentActivity().getName())
 		println("}")
 	}
 
@@ -453,7 +471,7 @@ class SensorPredicateAspect extends PredicateAspect {
 	
 	@Step
 	def String debug() {
-		return "{" + _self.sensor.toString() + " " + _self.operator.literal + " " + _self.value + " = " + _self.currentValue + "}"
+		return "{" + _self.sensor.name + " " + _self.operator.literal + " " + _self.value + " ? " + _self.currentValue + "}"
 	}
 		
 }
@@ -472,7 +490,7 @@ class PersonPredicateAspect extends PredicateAspect {
 	@Step
 	def String debug() {
 		
-		return "{" + _self.person.toString() + " is " + _self.activity.literal + " = " + _self.currentValue + "}"
+		return "{" + _self.person.name+ " is " + _self.activity.literal + " ? " + _self.currentValue + "}"
 
 	}
 	
@@ -501,9 +519,9 @@ class DurationAspect {
 	}
 	
 	@Step
-	def void debug() {
+	def String debug() {
 		
-		println "{validSince:" + _self.validSince + ", duration:" + _self.time + _self.precision.literal + ", valid: " + _self.currentValue + "}"
+		return "{validSince:" + _self.validSince + ", duration:" + _self.time + _self.precision.literal + ", valid: " + _self.currentValue + "}"
 
 	}
 }

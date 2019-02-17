@@ -47,16 +47,16 @@ public abstract class SensorAspect extends NamedEntityAspect {
   @Abstract
   public static void init(final Sensor _self) {
     final smarthome.aspects.SensorAspectSensorAspectProperties _self_ = smarthome.aspects.SensorAspectSensorAspectContext.getSelf(_self);
-    	// BeginInjectInto smarthome.aspects.SensorAspect#void init() from smarthome.aspects.AnalogSensorAspect
-    		if (_self instanceof smarthome.AnalogSensor){
-    			smarthome.aspects.AnalogSensorAspect.init((smarthome.AnalogSensor)_self);
-    		} else
-    		// EndInjectInto smarthome.aspects.SensorAspect#void init() from smarthome.aspects.AnalogSensorAspect
     	// BeginInjectInto smarthome.aspects.SensorAspect#void init() from smarthome.aspects.DigitalSensorAspect
     		if (_self instanceof smarthome.DigitalSensor){
     			smarthome.aspects.DigitalSensorAspect.init((smarthome.DigitalSensor)_self);
     		} else
     		// EndInjectInto smarthome.aspects.SensorAspect#void init() from smarthome.aspects.DigitalSensorAspect
+    	// BeginInjectInto smarthome.aspects.SensorAspect#void init() from smarthome.aspects.AnalogSensorAspect
+    		if (_self instanceof smarthome.AnalogSensor){
+    			smarthome.aspects.AnalogSensorAspect.init((smarthome.AnalogSensor)_self);
+    		} else
+    		// EndInjectInto smarthome.aspects.SensorAspect#void init() from smarthome.aspects.AnalogSensorAspect
     // #DispatchPointCut_before# void init()
     if (_self instanceof smarthome.Sensor){
     	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
@@ -78,6 +78,16 @@ public abstract class SensorAspect extends NamedEntityAspect {
   @Step
   public static void debug(final Sensor _self) {
     final smarthome.aspects.SensorAspectSensorAspectProperties _self_ = smarthome.aspects.SensorAspectSensorAspectContext.getSelf(_self);
+    	// BeginInjectInto smarthome.aspects.SensorAspect#void debug() from smarthome.aspects.AnalogSensorAspect
+    		if (_self instanceof smarthome.AnalogSensor){
+    			smarthome.aspects.AnalogSensorAspect.debug((smarthome.AnalogSensor)_self);
+    		} else
+    		// EndInjectInto smarthome.aspects.SensorAspect#void debug() from smarthome.aspects.AnalogSensorAspect
+    	// BeginInjectInto smarthome.aspects.SensorAspect#void debug() from smarthome.aspects.DigitalSensorAspect
+    		if (_self instanceof smarthome.DigitalSensor){
+    			smarthome.aspects.DigitalSensorAspect.debug((smarthome.DigitalSensor)_self);
+    		} else
+    		// EndInjectInto smarthome.aspects.SensorAspect#void debug() from smarthome.aspects.DigitalSensorAspect
     // #DispatchPointCut_before# void debug()
     if (_self instanceof smarthome.Sensor){
     	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {

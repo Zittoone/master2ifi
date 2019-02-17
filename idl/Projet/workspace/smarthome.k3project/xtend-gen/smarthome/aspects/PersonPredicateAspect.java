@@ -82,12 +82,12 @@ public class PersonPredicateAspect extends PredicateAspect {
   }
   
   protected static String _privk3_debug(final PersonPredicateAspectPersonPredicateAspectProperties _self_, final PersonPredicate _self) {
-    String _string = _self.getPerson().toString();
-    String _plus = ("{" + _string);
+    String _name = _self.getPerson().getName();
+    String _plus = ("{" + _name);
     String _plus_1 = (_plus + " is ");
     String _literal = _self.getActivity().getLiteral();
     String _plus_2 = (_plus_1 + _literal);
-    String _plus_3 = (_plus_2 + " = ");
+    String _plus_3 = (_plus_2 + " ? ");
     boolean _currentValue = PersonPredicateAspect.currentValue(_self);
     String _plus_4 = (_plus_3 + Boolean.valueOf(_currentValue));
     return (_plus_4 + "}");

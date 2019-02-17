@@ -100,16 +100,10 @@ public class TagAspect extends NamedEntityAspect {
   protected static String _privk3_debug(final TagAspectTagAspectProperties _self_, final Tag _self) {
     String _name = _self.getName();
     String _plus = ("[" + _name);
-    String _plus_1 = (_plus + "]{x=");
-    Double _x = TagAspect.x(_self);
-    String _plus_2 = (_plus_1 + _x);
-    String _plus_3 = (_plus_2 + ", y=");
+    String _plus_1 = (_plus + "]{y=");
     Double _y = TagAspect.y(_self);
-    String _plus_4 = (_plus_3 + _y);
-    String _plus_5 = (_plus_4 + ", z=");
-    Double _z = TagAspect.z(_self);
-    String _plus_6 = (_plus_5 + _z);
-    return (_plus_6 + "}");
+    String _plus_2 = (_plus_1 + _y);
+    return (_plus_2 + "}");
   }
   
   protected static Double _privk3_x(final TagAspectTagAspectProperties _self_, final Tag _self) {

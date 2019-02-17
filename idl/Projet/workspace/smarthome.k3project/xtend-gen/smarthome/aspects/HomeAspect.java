@@ -239,7 +239,6 @@ public class HomeAspect {
         return;
       }
       HomeAspect.currentTime(_self, HomeAspect.getMillisFromStringDate(_self, parsedString[0]));
-      InputOutput.<String>println("Room ticks");
       EList<Room> _rooms = _self.getRooms();
       for (final Room r : _rooms) {
         {
@@ -256,7 +255,6 @@ public class HomeAspect {
           }
         }
       }
-      InputOutput.<String>println("Person ticks");
       EList<Person> _persons = _self.getPersons();
       for (final Person p : _persons) {
         {
@@ -274,7 +272,6 @@ public class HomeAspect {
           }
         }
       }
-      InputOutput.<String>println("Pattern eval & execution");
       EList<Pattern> _patterns = _self.getPatterns();
       for (final Pattern p_1 : _patterns) {
         boolean _eval = PatternAspect.eval(p_1, HomeAspect.currentTime(_self));
@@ -283,9 +280,25 @@ public class HomeAspect {
         }
       }
       InputOutput.<String>println("Monitoring");
+      long _currentTime = HomeAspect.currentTime(_self);
+      String _plus = ("Current timestamp:" + Long.valueOf(_currentTime));
+      InputOutput.<String>println(_plus);
+      long _currentTime_1 = HomeAspect.currentTime(_self);
+      long _initialTime = HomeAspect.initialTime(_self);
+      long _minus = (_currentTime_1 - _initialTime);
+      long _divide = (_minus / 1000);
+      String _plus_1 = ("Current timestamp elapsed(seconds):" + Long.valueOf(_divide));
+      InputOutput.<String>println(_plus_1);
       EList<NamedEntity> _monitoredEntities = _self.getMonitoredEntities();
       for (final NamedEntity n : _monitoredEntities) {
-        NamedEntityAspect.debug(n);
+        {
+          String _name = n.getName();
+          String _plus_2 = ("----" + _name);
+          String _plus_3 = (_plus_2 + "----");
+          InputOutput.<String>println(_plus_3);
+          NamedEntityAspect.debug(n);
+          InputOutput.<String>println("---------------------");
+        }
       }
       HomeAspect.currentString(_self, HomeAspect.br(_self).readLine());
     } catch (Throwable _e) {

@@ -3,6 +3,7 @@ package smarthome.aspects;
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
 import fr.inria.diverse.k3.al.annotationprocessor.Step;
 import org.eclipse.emf.common.util.EList;
+import smarthome.Duration;
 import smarthome.Predicate;
 import smarthome.Rule;
 import smarthome.aspects.DurationAspect;
@@ -75,12 +76,15 @@ public class RuleAspect {
   
   protected static String _privk3_debug(final RuleAspectRuleAspectProperties _self_, final Rule _self) {
     final StringBuilder sb = new StringBuilder();
-    sb.append("{");
     EList<Predicate> _predicates = _self.getPredicates();
     for (final Predicate p : _predicates) {
-      sb.append(PredicateAspect.debug(p));
+      sb.append(PredicateAspect.debug(p)).append("\n");
     }
-    sb.append("}");
+    Duration _duration = _self.getDuration();
+    boolean _tripleNotEquals = (_duration != null);
+    if (_tripleNotEquals) {
+      sb.append(DurationAspect.debug(_self.getDuration())).append("\n");
+    }
     return sb.toString();
   }
 }

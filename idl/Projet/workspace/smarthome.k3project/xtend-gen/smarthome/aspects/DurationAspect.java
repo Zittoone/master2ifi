@@ -2,7 +2,6 @@ package smarthome.aspects;
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
 import fr.inria.diverse.k3.al.annotationprocessor.Step;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import smarthome.Duration;
 import smarthome.aspects.DurationAspectDurationAspectProperties;
 
@@ -76,14 +75,15 @@ public class DurationAspect {
   }
   
   @Step
-  public static void debug(final Duration _self) {
+  public static String debug(final Duration _self) {
     final smarthome.aspects.DurationAspectDurationAspectProperties _self_ = smarthome.aspects.DurationAspectDurationAspectContext.getSelf(_self);
-    // #DispatchPointCut_before# void debug()
+    Object result = null;
+    // #DispatchPointCut_before# String debug()
     if (_self instanceof smarthome.Duration){
     	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand command = new fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepCommand() {
     		@Override
     		public void execute() {
-    			smarthome.aspects.DurationAspect._privk3_debug(_self_, (smarthome.Duration)_self);
+    			addToResult(smarthome.aspects.DurationAspect._privk3_debug(_self_, (smarthome.Duration)_self));
     		}
     	};
     	fr.inria.diverse.k3.al.annotationprocessor.stepmanager.IStepManager stepManager = fr.inria.diverse.k3.al.annotationprocessor.stepmanager.StepManagerRegistry.getInstance().findStepManager(_self);
@@ -92,8 +92,10 @@ public class DurationAspect {
     	} else {
     		command.execute();
     	}
+    	result = command.getResult();
     	;
     };
+    return (java.lang.String)result;
   }
   
   private static long validSince(final Duration _self) {
@@ -151,8 +153,7 @@ public class DurationAspect {
     return DurationAspect.currentValue(_self);
   }
   
-  protected static void _privk3_debug(final DurationAspectDurationAspectProperties _self_, final Duration _self) {
-    InputOutput.println();
+  protected static String _privk3_debug(final DurationAspectDurationAspectProperties _self_, final Duration _self) {
     long _validSince = DurationAspect.validSince(_self);
     String _plus = ("{validSince:" + Long.valueOf(_validSince));
     String _plus_1 = (_plus + ", duration:");
@@ -163,7 +164,7 @@ public class DurationAspect {
     String _plus_4 = (_plus_3 + ", valid: ");
     boolean _currentValue = DurationAspect.currentValue(_self);
     String _plus_5 = (_plus_4 + Boolean.valueOf(_currentValue));
-    /* (_plus_5 + "}"); */
+    return (_plus_5 + "}");
   }
   
   protected static long _privk3_validSince(final DurationAspectDurationAspectProperties _self_, final Duration _self) {

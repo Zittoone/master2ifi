@@ -98,9 +98,8 @@ public class RoomAspect extends NamedEntityAspect {
     EList<Sensor> _sensors = _self.getSensors();
     for (final Sensor s : _sensors) {
       {
-        InputOutput.println();
-        String _string = s.toString();
-        /* ("\t" + _string); */
+        InputOutput.<String>print("-> ");
+        SensorAspect.debug(s);
       }
     }
     InputOutput.<String>println("}");

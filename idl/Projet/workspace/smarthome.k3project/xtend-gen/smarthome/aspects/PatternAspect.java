@@ -98,11 +98,7 @@ public class PatternAspect extends NamedEntityAspect {
     InputOutput.<String>println(_plus_1);
     EList<Rule> _rules = _self.getRules();
     for (final Rule r : _rules) {
-      {
-        InputOutput.println();
-        String _debug = RuleAspect.debug(r);
-        /* ("\t" + _debug); */
-      }
+      InputOutput.<String>println(RuleAspect.debug(r));
     }
     InputOutput.<String>println("}");
   }

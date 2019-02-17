@@ -108,15 +108,15 @@ public class SensorPredicateAspect extends PredicateAspect {
   }
   
   protected static String _privk3_debug(final SensorPredicateAspectSensorPredicateAspectProperties _self_, final SensorPredicate _self) {
-    String _string = _self.getSensor().toString();
-    String _plus = ("{" + _string);
+    String _name = _self.getSensor().getName();
+    String _plus = ("{" + _name);
     String _plus_1 = (_plus + " ");
     String _literal = _self.getOperator().getLiteral();
     String _plus_2 = (_plus_1 + _literal);
     String _plus_3 = (_plus_2 + " ");
     double _value = _self.getValue();
     String _plus_4 = (_plus_3 + Double.valueOf(_value));
-    String _plus_5 = (_plus_4 + " = ");
+    String _plus_5 = (_plus_4 + " ? ");
     boolean _currentValue = SensorPredicateAspect.currentValue(_self);
     String _plus_6 = (_plus_5 + Boolean.valueOf(_currentValue));
     return (_plus_6 + "}");

@@ -12,11 +12,16 @@ public abstract class NamedEntityAspect {
   @Step
   public static void debug(final NamedEntity _self) {
     final smarthome.aspects.NamedEntityAspectNamedEntityAspectProperties _self_ = smarthome.aspects.NamedEntityAspectNamedEntityAspectContext.getSelf(_self);
-    	// BeginInjectInto smarthome.aspects.NamedEntityAspect#void debug() from smarthome.aspects.PatternAspect
-    		if (_self instanceof smarthome.Pattern){
-    			smarthome.aspects.PatternAspect.debug((smarthome.Pattern)_self);
+    	// BeginInjectInto smarthome.aspects.NamedEntityAspect#void debug() from smarthome.aspects.AnalogSensorAspect
+    		if (_self instanceof smarthome.AnalogSensor){
+    			smarthome.aspects.AnalogSensorAspect.debug((smarthome.AnalogSensor)_self);
     		} else
-    		// EndInjectInto smarthome.aspects.NamedEntityAspect#void debug() from smarthome.aspects.PatternAspect
+    		// EndInjectInto smarthome.aspects.NamedEntityAspect#void debug() from smarthome.aspects.AnalogSensorAspect
+    	// BeginInjectInto smarthome.aspects.NamedEntityAspect#void debug() from smarthome.aspects.DigitalSensorAspect
+    		if (_self instanceof smarthome.DigitalSensor){
+    			smarthome.aspects.DigitalSensorAspect.debug((smarthome.DigitalSensor)_self);
+    		} else
+    		// EndInjectInto smarthome.aspects.NamedEntityAspect#void debug() from smarthome.aspects.DigitalSensorAspect
     	// BeginInjectInto smarthome.aspects.NamedEntityAspect#void debug() from smarthome.aspects.PersonAspect
     		if (_self instanceof smarthome.Person){
     			smarthome.aspects.PersonAspect.debug((smarthome.Person)_self);
@@ -27,6 +32,11 @@ public abstract class NamedEntityAspect {
     			smarthome.aspects.SensorAspect.debug((smarthome.Sensor)_self);
     		} else
     		// EndInjectInto smarthome.aspects.NamedEntityAspect#void debug() from smarthome.aspects.SensorAspect
+    	// BeginInjectInto smarthome.aspects.NamedEntityAspect#void debug() from smarthome.aspects.PatternAspect
+    		if (_self instanceof smarthome.Pattern){
+    			smarthome.aspects.PatternAspect.debug((smarthome.Pattern)_self);
+    		} else
+    		// EndInjectInto smarthome.aspects.NamedEntityAspect#void debug() from smarthome.aspects.PatternAspect
     	// BeginInjectInto smarthome.aspects.NamedEntityAspect#void debug() from smarthome.aspects.RoomAspect
     		if (_self instanceof smarthome.Room){
     			smarthome.aspects.RoomAspect.debug((smarthome.Room)_self);

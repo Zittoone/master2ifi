@@ -41,16 +41,6 @@ Home {
 			{
 				(Alexis is laying and "Bedroom.bed" = 1.0) since 10 minutes
 			}
-		},
-		Pattern "Dead" {
-			{
-				(Alexis is laying and "Bedroom.bed" = 0.0) since 10 minutes
-			}
-		},
-		Pattern "Playing" {
-			{
-				(Alexis is sitting and "Living.seat" = 1.0) since 10 minutes
-			}
 		}
 	
 	}

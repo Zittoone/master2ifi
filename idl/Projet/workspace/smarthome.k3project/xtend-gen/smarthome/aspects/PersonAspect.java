@@ -157,6 +157,7 @@ public class PersonAspect extends NamedEntityAspect {
   }
   
   protected static void _privk3_init(final PersonAspectPersonAspectProperties _self_, final Person _self) {
+    PersonAspect.currentActivity(_self, Activity.LAYING);
   }
   
   protected static void _privk3_determineActivity(final PersonAspectPersonAspectProperties _self_, final Person _self) {
@@ -193,17 +194,20 @@ public class PersonAspect extends NamedEntityAspect {
     String _plus_1 = (_plus + "]{");
     InputOutput.<String>println(_plus_1);
     String _debug = TagAspect.debug(_self.getChest());
-    String _plus_2 = ("\t" + _debug);
+    String _plus_2 = ("-" + _debug);
     InputOutput.<String>println(_plus_2);
     String _debug_1 = TagAspect.debug(_self.getBelt());
-    String _plus_3 = ("\t" + _debug_1);
+    String _plus_3 = ("-" + _debug_1);
     InputOutput.<String>println(_plus_3);
     String _debug_2 = TagAspect.debug(_self.getAnkleLeft());
-    String _plus_4 = ("\t" + _debug_2);
+    String _plus_4 = ("-" + _debug_2);
     InputOutput.<String>println(_plus_4);
     String _debug_3 = TagAspect.debug(_self.getAnkleRight());
-    String _plus_5 = ("\t" + _debug_3);
+    String _plus_5 = ("-" + _debug_3);
     InputOutput.<String>println(_plus_5);
+    String _name_1 = PersonAspect.getCurrentActivity(_self).getName();
+    String _plus_6 = ("-" + _name_1);
+    InputOutput.<String>println(_plus_6);
     InputOutput.<String>println("}");
   }
   
